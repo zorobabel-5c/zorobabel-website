@@ -1,0 +1,744 @@
+"""ISO8601 Date values"""
+scalar Date
+
+type Films_d_auteur {
+  affiche: String!
+  animation: String!
+  annee: Int!
+  contact: String
+  coproduction: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+
+  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
+  duree_minutes: String!
+  format: String!
+  id: ID!
+  image: String!
+  image_1: String!
+  image_2: String!
+  image_3: String!
+
+  """Cette image ne sera visible qu'en l'absence du lien Vimeo"""
+  image_de_remplacement: String!
+
+  """
+  N'oubliez pas de décocher la case une fois le film terminé pour que l'affiche ou une image du film s'affiche sur la page d'accueil.
+  """
+  in_progress: Boolean
+  langue_originale: String!
+  lien_video: String
+
+  """
+  Une image noir et blanc, bien détourée, lisible en petit, 42 px de haut X 70 de large maximum
+  """
+  logo: String
+  montage: String!
+  musique: String!
+
+  """Voir le numéro du précédent film d'auteur"""
+  numero: Int!
+  participants: String
+  prix_obtenus_par_le_film: String
+
+  """Production / Partenariats / Aides"""
+  production: String
+  public: String!
+  realisation: String!
+  scenario: String!
+  son: String!
+  synopsis_en: String
+  synopsis_fr: String
+  titre_english: String
+  titre_original: String!
+  user_created: String
+  user_updated: String
+  ville: String!
+  voix: String!
+}
+
+type Films_d_auteur_aggregated {
+  avg: Films_d_auteur_aggregated_fields
+  avgDistinct: Films_d_auteur_aggregated_fields
+  count: Films_d_auteur_aggregated_count
+  countAll: Int
+  countDistinct: Films_d_auteur_aggregated_count
+  group: JSON
+  max: Films_d_auteur_aggregated_fields
+  min: Films_d_auteur_aggregated_fields
+  sum: Films_d_auteur_aggregated_fields
+  sumDistinct: Films_d_auteur_aggregated_fields
+}
+
+type Films_d_auteur_aggregated_count {
+  affiche: Int
+  animation: Int
+  annee: Int
+  contact: Int
+  coproduction: Int
+  date_created: Int
+  date_updated: Int
+
+  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
+  duree_minutes: Int
+  format: Int
+  id: Int
+  image: Int
+  image_1: Int
+  image_2: Int
+  image_3: Int
+
+  """Cette image ne sera visible qu'en l'absence du lien Vimeo"""
+  image_de_remplacement: Int
+
+  """
+  N'oubliez pas de décocher la case une fois le film terminé pour que l'affiche ou une image du film s'affiche sur la page d'accueil.
+  """
+  in_progress: Int
+  langue_originale: Int
+  lien_video: Int
+
+  """
+  Une image noir et blanc, bien détourée, lisible en petit, 42 px de haut X 70 de large maximum
+  """
+  logo: Int
+  montage: Int
+  musique: Int
+
+  """Voir le numéro du précédent film d'auteur"""
+  numero: Int
+  participants: Int
+  prix_obtenus_par_le_film: Int
+
+  """Production / Partenariats / Aides"""
+  production: Int
+  public: Int
+  realisation: Int
+  scenario: Int
+  son: Int
+  synopsis_en: Int
+  synopsis_fr: Int
+  titre_english: Int
+  titre_original: Int
+  user_created: Int
+  user_updated: Int
+  ville: Int
+  voix: Int
+}
+
+type Films_d_auteur_aggregated_fields {
+  annee: Float
+
+  """Voir le numéro du précédent film d'auteur"""
+  numero: Float
+}
+
+input Films_d_auteur_filter {
+  _and: [Films_d_auteur_filter]
+  _or: [Films_d_auteur_filter]
+  affiche: string_filter_operators
+  animation: string_filter_operators
+  annee: number_filter_operators
+  contact: string_filter_operators
+  coproduction: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  duree_minutes: string_filter_operators
+  format: string_filter_operators
+  id: string_filter_operators
+  image: string_filter_operators
+  image_1: string_filter_operators
+  image_2: string_filter_operators
+  image_3: string_filter_operators
+  image_de_remplacement: string_filter_operators
+  in_progress: boolean_filter_operators
+  langue_originale: string_filter_operators
+  lien_video: string_filter_operators
+  logo: string_filter_operators
+  montage: string_filter_operators
+  musique: string_filter_operators
+  numero: number_filter_operators
+  participants: string_filter_operators
+  prix_obtenus_par_le_film: string_filter_operators
+  production: string_filter_operators
+  public: string_filter_operators
+  realisation: string_filter_operators
+  scenario: string_filter_operators
+  son: string_filter_operators
+  synopsis_en: string_filter_operators
+  synopsis_fr: string_filter_operators
+  titre_english: string_filter_operators
+  titre_original: string_filter_operators
+  user_created: string_filter_operators
+  user_updated: string_filter_operators
+  ville: string_filter_operators
+  voix: string_filter_operators
+}
+
+"""A Float or a String"""
+scalar GraphQLStringOrFloat
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type Query {
+  Films_d_auteur(filter: Films_d_auteur_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Films_d_auteur!]!
+  Films_d_auteur_aggregated(filter: Films_d_auteur_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [Films_d_auteur_aggregated!]!
+  Films_d_auteur_by_id(id: ID!): Films_d_auteur
+  ateliers(filter: ateliers_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ateliers!]!
+  ateliers_aggregated(filter: ateliers_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [ateliers_aggregated!]!
+  ateliers_by_id(id: ID!): ateliers
+  episodes(filter: episodes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [episodes!]!
+  episodes_aggregated(filter: episodes_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [episodes_aggregated!]!
+  episodes_by_id(id: ID!): episodes
+  evenements(filter: evenements_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [evenements!]!
+  evenements_aggregated(filter: evenements_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [evenements_aggregated!]!
+  evenements_by_id(id: ID!): evenements
+  films_d_ateliers(filter: films_d_ateliers_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_d_ateliers!]!
+  films_d_ateliers_aggregated(filter: films_d_ateliers_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [films_d_ateliers_aggregated!]!
+  films_d_ateliers_by_id(id: ID!): films_d_ateliers
+  films_de_commande(filter: films_de_commande_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_de_commande!]!
+  films_de_commande_aggregated(filter: films_de_commande_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [films_de_commande_aggregated!]!
+  films_de_commande_by_id(id: ID!): films_de_commande
+  series(filter: series_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series!]!
+  series_aggregated(filter: series_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [series_aggregated!]!
+  series_by_id(id: ID!): series
+  series_episode(filter: series_episode_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_episode!]!
+  series_episode_aggregated(filter: series_episode_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [series_episode_aggregated!]!
+  series_episode_by_id(id: ID!): series_episode
+}
+
+type ateliers {
+  affiche: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_de_peremption: Date!
+  date_de_peremption_func: date_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+
+  """
+  Indiquez ici des informations qui ne serait éventuellement pas reprises dans le visuel (intitulé, description, infos pratiques, âge des participants, dates, horaire, adresse, P.A.F., contact, garderie, facilités, soutiens institutionnels, etc.)
+  """
+  description: String!
+  id: ID!
+  titre: String!
+  type_d_atelier: String!
+  user_created: String
+  user_updated: String
+}
+
+type ateliers_aggregated {
+  count: ateliers_aggregated_count
+  countAll: Int
+  countDistinct: ateliers_aggregated_count
+  group: JSON
+}
+
+type ateliers_aggregated_count {
+  affiche: Int
+  date_created: Int
+  date_de_peremption: Int
+  date_updated: Int
+
+  """
+  Indiquez ici des informations qui ne serait éventuellement pas reprises dans le visuel (intitulé, description, infos pratiques, âge des participants, dates, horaire, adresse, P.A.F., contact, garderie, facilités, soutiens institutionnels, etc.)
+  """
+  description: Int
+  id: Int
+  titre: Int
+  type_d_atelier: Int
+  user_created: Int
+  user_updated: Int
+}
+
+input ateliers_filter {
+  _and: [ateliers_filter]
+  _or: [ateliers_filter]
+  affiche: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_de_peremption: date_filter_operators
+  date_de_peremption_func: date_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  description: string_filter_operators
+  id: string_filter_operators
+  titre: string_filter_operators
+  type_d_atelier: string_filter_operators
+  user_created: string_filter_operators
+  user_updated: string_filter_operators
+}
+
+input boolean_filter_operators {
+  _eq: Boolean
+  _neq: Boolean
+  _nnull: Boolean
+  _null: Boolean
+}
+
+input count_function_filter_operators {
+  count: number_filter_operators
+}
+
+type count_functions {
+  count: Int
+}
+
+input date_filter_operators {
+  _between: [GraphQLStringOrFloat]
+  _eq: String
+  _gt: String
+  _gte: String
+  _in: [String]
+  _lt: String
+  _lte: String
+  _nbetween: [GraphQLStringOrFloat]
+  _neq: String
+  _nin: [String]
+  _nnull: Boolean
+  _null: Boolean
+}
+
+input date_function_filter_operators {
+  day: number_filter_operators
+  month: number_filter_operators
+  week: number_filter_operators
+  weekday: number_filter_operators
+  year: number_filter_operators
+}
+
+type date_functions {
+  day: Int
+  month: Int
+  week: Int
+  weekday: Int
+  year: Int
+}
+
+input datetime_function_filter_operators {
+  day: number_filter_operators
+  hour: number_filter_operators
+  minute: number_filter_operators
+  month: number_filter_operators
+  second: number_filter_operators
+  week: number_filter_operators
+  weekday: number_filter_operators
+  year: number_filter_operators
+}
+
+type datetime_functions {
+  day: Int
+  hour: Int
+  minute: Int
+  month: Int
+  second: Int
+  week: Int
+  weekday: Int
+  year: Int
+}
+
+type episodes {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  description: String
+  id: ID!
+  titre: String!
+  user_created: String
+  user_updated: String
+}
+
+type episodes_aggregated {
+  count: episodes_aggregated_count
+  countAll: Int
+  countDistinct: episodes_aggregated_count
+  group: JSON
+}
+
+type episodes_aggregated_count {
+  date_created: Int
+  date_updated: Int
+  description: Int
+  id: Int
+  titre: Int
+  user_created: Int
+  user_updated: Int
+}
+
+input episodes_filter {
+  _and: [episodes_filter]
+  _or: [episodes_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  description: string_filter_operators
+  id: string_filter_operators
+  titre: string_filter_operators
+  user_created: string_filter_operators
+  user_updated: string_filter_operators
+}
+
+type evenements {
+  affiche: String
+  date_created: Date
+  date_created_func: datetime_functions
+
+  """Date à laquelle l'événement ne s'affichera plus sur le site"""
+  date_de_peremption: Date!
+  date_de_peremption_func: date_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+
+  """
+  Indiquez ici les information liées à l'événement (description, infos pratiques, date, horaire, P.A.F. éventuellement, contact, etc.
+  """
+  description: String!
+  id: ID!
+  titre: String!
+  user_created: String
+  user_updated: String
+}
+
+type evenements_aggregated {
+  count: evenements_aggregated_count
+  countAll: Int
+  countDistinct: evenements_aggregated_count
+  group: JSON
+}
+
+type evenements_aggregated_count {
+  affiche: Int
+  date_created: Int
+
+  """Date à laquelle l'événement ne s'affichera plus sur le site"""
+  date_de_peremption: Int
+  date_updated: Int
+
+  """
+  Indiquez ici les information liées à l'événement (description, infos pratiques, date, horaire, P.A.F. éventuellement, contact, etc.
+  """
+  description: Int
+  id: Int
+  titre: Int
+  user_created: Int
+  user_updated: Int
+}
+
+input evenements_filter {
+  _and: [evenements_filter]
+  _or: [evenements_filter]
+  affiche: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_de_peremption: date_filter_operators
+  date_de_peremption_func: date_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  description: string_filter_operators
+  id: string_filter_operators
+  titre: string_filter_operators
+  user_created: string_filter_operators
+  user_updated: string_filter_operators
+}
+
+type films_d_ateliers {
+  annee: Int!
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+
+  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
+  duree_minutes: String!
+  format: String!
+  id: ID!
+  lien_video: String
+  logo: String
+  numero: Int!
+
+  """Cochez la case si vous souhaitez que le film apparaisse dans le site."""
+  online: Boolean
+  partenariats: String
+  public: String
+  titre: String!
+  user_created: String
+  user_updated: String
+}
+
+type films_d_ateliers_aggregated {
+  avg: films_d_ateliers_aggregated_fields
+  avgDistinct: films_d_ateliers_aggregated_fields
+  count: films_d_ateliers_aggregated_count
+  countAll: Int
+  countDistinct: films_d_ateliers_aggregated_count
+  group: JSON
+  max: films_d_ateliers_aggregated_fields
+  min: films_d_ateliers_aggregated_fields
+  sum: films_d_ateliers_aggregated_fields
+  sumDistinct: films_d_ateliers_aggregated_fields
+}
+
+type films_d_ateliers_aggregated_count {
+  annee: Int
+  date_created: Int
+  date_updated: Int
+
+  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
+  duree_minutes: Int
+  format: Int
+  id: Int
+  lien_video: Int
+  logo: Int
+  numero: Int
+
+  """Cochez la case si vous souhaitez que le film apparaisse dans le site."""
+  online: Int
+  partenariats: Int
+  public: Int
+  titre: Int
+  user_created: Int
+  user_updated: Int
+}
+
+type films_d_ateliers_aggregated_fields {
+  annee: Float
+  numero: Float
+}
+
+input films_d_ateliers_filter {
+  _and: [films_d_ateliers_filter]
+  _or: [films_d_ateliers_filter]
+  annee: number_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  duree_minutes: string_filter_operators
+  format: string_filter_operators
+  id: string_filter_operators
+  lien_video: string_filter_operators
+  logo: string_filter_operators
+  numero: number_filter_operators
+  online: boolean_filter_operators
+  partenariats: string_filter_operators
+  public: string_filter_operators
+  titre: string_filter_operators
+  user_created: string_filter_operators
+  user_updated: string_filter_operators
+}
+
+type films_de_commande {
+  annee: Int
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  description: String
+
+  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
+  duree_minutes: String!
+  format: String!
+  id: ID!
+  logo: String
+  numero: Int!
+  public: String!
+  titre: String!
+  user_created: String
+  user_updated: String
+}
+
+type films_de_commande_aggregated {
+  avg: films_de_commande_aggregated_fields
+  avgDistinct: films_de_commande_aggregated_fields
+  count: films_de_commande_aggregated_count
+  countAll: Int
+  countDistinct: films_de_commande_aggregated_count
+  group: JSON
+  max: films_de_commande_aggregated_fields
+  min: films_de_commande_aggregated_fields
+  sum: films_de_commande_aggregated_fields
+  sumDistinct: films_de_commande_aggregated_fields
+}
+
+type films_de_commande_aggregated_count {
+  annee: Int
+  date_created: Int
+  date_updated: Int
+  description: Int
+
+  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
+  duree_minutes: Int
+  format: Int
+  id: Int
+  logo: Int
+  numero: Int
+  public: Int
+  titre: Int
+  user_created: Int
+  user_updated: Int
+}
+
+type films_de_commande_aggregated_fields {
+  annee: Float
+  numero: Float
+}
+
+input films_de_commande_filter {
+  _and: [films_de_commande_filter]
+  _or: [films_de_commande_filter]
+  annee: number_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  description: string_filter_operators
+  duree_minutes: string_filter_operators
+  format: string_filter_operators
+  id: string_filter_operators
+  logo: string_filter_operators
+  numero: number_filter_operators
+  public: string_filter_operators
+  titre: string_filter_operators
+  user_created: string_filter_operators
+  user_updated: string_filter_operators
+}
+
+input number_filter_operators {
+  _between: [GraphQLStringOrFloat]
+  _eq: GraphQLStringOrFloat
+  _gt: GraphQLStringOrFloat
+  _gte: GraphQLStringOrFloat
+  _in: [GraphQLStringOrFloat]
+  _lt: GraphQLStringOrFloat
+  _lte: GraphQLStringOrFloat
+  _nbetween: [GraphQLStringOrFloat]
+  _neq: GraphQLStringOrFloat
+  _nin: [GraphQLStringOrFloat]
+  _nnull: Boolean
+  _null: Boolean
+}
+
+type series {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  episode(filter: series_episode_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_episode]
+  episode_func: count_functions
+  id: ID!
+
+  """
+  Une image noir et blanc, bien détourée, lisible en petit, 42 px de haut X 70 de large maximum
+  """
+  logo: String
+  titre: String!
+  user_created: String
+  user_updated: String
+}
+
+type series_aggregated {
+  count: series_aggregated_count
+  countAll: Int
+  countDistinct: series_aggregated_count
+  group: JSON
+}
+
+type series_aggregated_count {
+  date_created: Int
+  date_updated: Int
+  episode: Int
+  id: Int
+
+  """
+  Une image noir et blanc, bien détourée, lisible en petit, 42 px de haut X 70 de large maximum
+  """
+  logo: Int
+  titre: Int
+  user_created: Int
+  user_updated: Int
+}
+
+type series_episode {
+  collection: String
+  id: ID!
+  item: series_episode_item_union
+  series_id(filter: series_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): series
+}
+
+type series_episode_aggregated {
+  avg: series_episode_aggregated_fields
+  avgDistinct: series_episode_aggregated_fields
+  count: series_episode_aggregated_count
+  countAll: Int
+  countDistinct: series_episode_aggregated_count
+  group: JSON
+  max: series_episode_aggregated_fields
+  min: series_episode_aggregated_fields
+  sum: series_episode_aggregated_fields
+  sumDistinct: series_episode_aggregated_fields
+}
+
+type series_episode_aggregated_count {
+  collection: Int
+  id: Int
+  item: Int
+  series_id: Int
+}
+
+type series_episode_aggregated_fields {
+  id: Float
+}
+
+input series_episode_filter {
+  _and: [series_episode_filter]
+  _or: [series_episode_filter]
+  collection: string_filter_operators
+  id: number_filter_operators
+  item__episodes: episodes_filter
+  series_id: series_filter
+}
+
+union series_episode_item_union = episodes
+
+input series_filter {
+  _and: [series_filter]
+  _or: [series_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  episode: series_episode_filter
+  episode_func: count_function_filter_operators
+  id: string_filter_operators
+  logo: string_filter_operators
+  titre: string_filter_operators
+  user_created: string_filter_operators
+  user_updated: string_filter_operators
+}
+
+input string_filter_operators {
+  _contains: String
+  _empty: Boolean
+  _ends_with: String
+  _eq: String
+  _icontains: String
+  _in: [String]
+  _ncontains: String
+  _nempty: Boolean
+  _nends_with: String
+  _neq: String
+  _nin: [String]
+  _nnull: Boolean
+  _nstarts_with: String
+  _null: Boolean
+  _starts_with: String
+}
