@@ -2,61 +2,57 @@
 scalar Date
 
 type Films_d_auteur {
-  affiche: String!
-  animation: String!
-  annee: Int!
+  affiche(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  animation: String
+  annee: Int
   contact: String
   coproduction: String
   date_created: Date
   date_created_func: datetime_functions
   date_updated: Date
   date_updated_func: datetime_functions
-
-  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
-  duree_minutes: String!
-  format: String!
+  duree_minutes: String
+  duree_secondes: String
+  format: String
   id: ID!
-  image: String!
-  image_1: String!
-  image_2: String!
-  image_3: String!
-
-  """Cette image ne sera visible qu'en l'absence du lien Vimeo"""
-  image_de_remplacement: String!
+  image: String
+  image_1(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  image_2(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  image_3(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  image_de_remplacement(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
 
   """
   N'oubliez pas de décocher la case une fois le film terminé pour que l'affiche ou une image du film s'affiche sur la page d'accueil.
   """
   in_progress: Boolean
-  langue_originale: String!
+  langue_originale: String
+  lien_bande_annonce: String
   lien_video: String
-
-  """
-  Une image noir et blanc, bien détourée, lisible en petit, 42 px de haut X 70 de large maximum
-  """
-  logo: String
-  montage: String!
-  musique: String!
+  logo(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  montage: String
+  mot_de_passe: String
+  musique: String
 
   """Voir le numéro du précédent film d'auteur"""
-  numero: Int!
+  numero: Int
   participants: String
   prix_obtenus_par_le_film: String
 
   """Production / Partenariats / Aides"""
   production: String
-  public: String!
-  realisation: String!
-  scenario: String!
-  son: String!
+  public: String
+  realisation: String
+  scenario: String
+  son: String
   synopsis_en: String
   synopsis_fr: String
   titre_english: String
-  titre_original: String!
+  titre_original: String
   user_created: String
   user_updated: String
-  ville: String!
-  voix: String!
+  video(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
+  ville: String
+  voix: String
 }
 
 type Films_d_auteur_aggregated {
@@ -80,9 +76,8 @@ type Films_d_auteur_aggregated_count {
   coproduction: Int
   date_created: Int
   date_updated: Int
-
-  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
   duree_minutes: Int
+  duree_secondes: Int
   format: Int
   id: Int
   image: Int
@@ -98,6 +93,7 @@ type Films_d_auteur_aggregated_count {
   """
   in_progress: Int
   langue_originale: Int
+  lien_bande_annonce: Int
   lien_video: Int
 
   """
@@ -105,6 +101,7 @@ type Films_d_auteur_aggregated_count {
   """
   logo: Int
   montage: Int
+  mot_de_passe: Int
   musique: Int
 
   """Voir le numéro du précédent film d'auteur"""
@@ -124,6 +121,7 @@ type Films_d_auteur_aggregated_count {
   titre_original: Int
   user_created: Int
   user_updated: Int
+  video: Int
   ville: Int
   voix: Int
 }
@@ -138,7 +136,7 @@ type Films_d_auteur_aggregated_fields {
 input Films_d_auteur_filter {
   _and: [Films_d_auteur_filter]
   _or: [Films_d_auteur_filter]
-  affiche: string_filter_operators
+  affiche: directus_files_filter
   animation: string_filter_operators
   annee: number_filter_operators
   contact: string_filter_operators
@@ -148,18 +146,21 @@ input Films_d_auteur_filter {
   date_updated: date_filter_operators
   date_updated_func: datetime_function_filter_operators
   duree_minutes: string_filter_operators
+  duree_secondes: string_filter_operators
   format: string_filter_operators
   id: string_filter_operators
   image: string_filter_operators
-  image_1: string_filter_operators
-  image_2: string_filter_operators
-  image_3: string_filter_operators
-  image_de_remplacement: string_filter_operators
+  image_1: directus_files_filter
+  image_2: directus_files_filter
+  image_3: directus_files_filter
+  image_de_remplacement: directus_files_filter
   in_progress: boolean_filter_operators
   langue_originale: string_filter_operators
+  lien_bande_annonce: string_filter_operators
   lien_video: string_filter_operators
-  logo: string_filter_operators
+  logo: directus_files_filter
   montage: string_filter_operators
+  mot_de_passe: string_filter_operators
   musique: string_filter_operators
   numero: number_filter_operators
   participants: string_filter_operators
@@ -175,9 +176,13 @@ input Films_d_auteur_filter {
   titre_original: string_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
+  video: vimeo_metadata_filter
   ville: string_filter_operators
   voix: string_filter_operators
 }
+
+"""BigInt value"""
+scalar GraphQLBigInt
 
 """A Float or a String"""
 scalar GraphQLStringOrFloat
@@ -212,10 +217,13 @@ type Query {
   series_episode(filter: series_episode_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_episode!]!
   series_episode_aggregated(filter: series_episode_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [series_episode_aggregated!]!
   series_episode_by_id(id: ID!): series_episode
+  vimeo_metadata(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vimeo_metadata!]!
+  vimeo_metadata_aggregated(filter: vimeo_metadata_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [vimeo_metadata_aggregated!]!
+  vimeo_metadata_by_id(id: ID!): vimeo_metadata
 }
 
 type ateliers {
-  affiche: String
+  affiche(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
   date_created: Date
   date_created_func: datetime_functions
   date_de_peremption: Date!
@@ -261,7 +269,7 @@ type ateliers_aggregated_count {
 input ateliers_filter {
   _and: [ateliers_filter]
   _or: [ateliers_filter]
-  affiche: string_filter_operators
+  affiche: directus_files_filter
   date_created: date_filter_operators
   date_created_func: datetime_function_filter_operators
   date_de_peremption: date_filter_operators
@@ -344,51 +352,163 @@ type datetime_functions {
   year: Int
 }
 
+type directus_files {
+  charset: String
+  description: String
+  duration: Int
+  embed: String
+  filename_disk: String
+  filename_download: String!
+  filesize: GraphQLBigInt
+  folder: String
+  height: Int
+  id: ID!
+  location: String
+  metadata: JSON
+  metadata_func: count_functions
+  modified_by: String
+  modified_on: Date
+  modified_on_func: datetime_functions
+  storage: String!
+  tags: JSON
+  tags_func: count_functions
+  title: String
+  type: String
+  uploaded_by: String
+  uploaded_on: Date
+  uploaded_on_func: datetime_functions
+  width: Int
+}
+
+input directus_files_filter {
+  _and: [directus_files_filter]
+  _or: [directus_files_filter]
+  charset: string_filter_operators
+  description: string_filter_operators
+  duration: number_filter_operators
+  embed: string_filter_operators
+  filename_disk: string_filter_operators
+  filename_download: string_filter_operators
+  filesize: number_filter_operators
+  folder: string_filter_operators
+  height: number_filter_operators
+  id: string_filter_operators
+  location: string_filter_operators
+  metadata: string_filter_operators
+  metadata_func: count_function_filter_operators
+  modified_by: string_filter_operators
+  modified_on: date_filter_operators
+  modified_on_func: datetime_function_filter_operators
+  storage: string_filter_operators
+  tags: string_filter_operators
+  tags_func: count_function_filter_operators
+  title: string_filter_operators
+  type: string_filter_operators
+  uploaded_by: string_filter_operators
+  uploaded_on: date_filter_operators
+  uploaded_on_func: datetime_function_filter_operators
+  width: number_filter_operators
+}
+
 type episodes {
+  annee: Int
+  coproduction: String
   date_created: Date
   date_created_func: datetime_functions
   date_updated: Date
   date_updated_func: datetime_functions
-  description: String
+
+  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
+  duree_minutes: String
+  duree_secondes: String
   id: ID!
+  lien_video: String
+  logo(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+
+  """Voir le numéro du précédent film d'auteur"""
+  numero: Int
+  realisation: String
+  series(filter: series_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): series
+  synopsis_en: String
+  synopsis_fr: String
   titre: String!
+  titre_english: String
   user_created: String
   user_updated: String
 }
 
 type episodes_aggregated {
+  avg: episodes_aggregated_fields
+  avgDistinct: episodes_aggregated_fields
   count: episodes_aggregated_count
   countAll: Int
   countDistinct: episodes_aggregated_count
   group: JSON
+  max: episodes_aggregated_fields
+  min: episodes_aggregated_fields
+  sum: episodes_aggregated_fields
+  sumDistinct: episodes_aggregated_fields
 }
 
 type episodes_aggregated_count {
+  annee: Int
+  coproduction: Int
   date_created: Int
   date_updated: Int
-  description: Int
+
+  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
+  duree_minutes: Int
+  duree_secondes: Int
   id: Int
+  lien_video: Int
+  logo: Int
+
+  """Voir le numéro du précédent film d'auteur"""
+  numero: Int
+  realisation: Int
+  series: Int
+  synopsis_en: Int
+  synopsis_fr: Int
   titre: Int
+  titre_english: Int
   user_created: Int
   user_updated: Int
+}
+
+type episodes_aggregated_fields {
+  annee: Float
+
+  """Voir le numéro du précédent film d'auteur"""
+  numero: Float
 }
 
 input episodes_filter {
   _and: [episodes_filter]
   _or: [episodes_filter]
+  annee: number_filter_operators
+  coproduction: string_filter_operators
   date_created: date_filter_operators
   date_created_func: datetime_function_filter_operators
   date_updated: date_filter_operators
   date_updated_func: datetime_function_filter_operators
-  description: string_filter_operators
+  duree_minutes: string_filter_operators
+  duree_secondes: string_filter_operators
   id: string_filter_operators
+  lien_video: string_filter_operators
+  logo: directus_files_filter
+  numero: number_filter_operators
+  realisation: string_filter_operators
+  series: series_filter
+  synopsis_en: string_filter_operators
+  synopsis_fr: string_filter_operators
   titre: string_filter_operators
+  titre_english: string_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
 }
 
 type evenements {
-  affiche: String
+  affiche(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
   date_created: Date
   date_created_func: datetime_functions
 
@@ -436,7 +556,7 @@ type evenements_aggregated_count {
 input evenements_filter {
   _and: [evenements_filter]
   _or: [evenements_filter]
-  affiche: string_filter_operators
+  affiche: directus_files_filter
   date_created: date_filter_operators
   date_created_func: datetime_function_filter_operators
   date_de_peremption: date_filter_operators
@@ -459,19 +579,22 @@ type films_d_ateliers {
 
   """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
   duree_minutes: String!
-  format: String!
+  duree_secondes: String
   id: ID!
   lien_video: String
-  logo: String
+  logo(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
   numero: Int!
 
   """Cochez la case si vous souhaitez que le film apparaisse dans le site."""
   online: Boolean
   partenariats: String
   public: String
+  synopsis_fr: String
+  technique: String
   titre: String!
   user_created: String
   user_updated: String
+  video(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
 }
 
 type films_d_ateliers_aggregated {
@@ -494,7 +617,7 @@ type films_d_ateliers_aggregated_count {
 
   """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
   duree_minutes: Int
-  format: Int
+  duree_secondes: Int
   id: Int
   lien_video: Int
   logo: Int
@@ -504,9 +627,12 @@ type films_d_ateliers_aggregated_count {
   online: Int
   partenariats: Int
   public: Int
+  synopsis_fr: Int
+  technique: Int
   titre: Int
   user_created: Int
   user_updated: Int
+  video: Int
 }
 
 type films_d_ateliers_aggregated_fields {
@@ -523,17 +649,20 @@ input films_d_ateliers_filter {
   date_updated: date_filter_operators
   date_updated_func: datetime_function_filter_operators
   duree_minutes: string_filter_operators
-  format: string_filter_operators
+  duree_secondes: string_filter_operators
   id: string_filter_operators
   lien_video: string_filter_operators
-  logo: string_filter_operators
+  logo: directus_files_filter
   numero: number_filter_operators
   online: boolean_filter_operators
   partenariats: string_filter_operators
   public: string_filter_operators
+  synopsis_fr: string_filter_operators
+  technique: string_filter_operators
   titre: string_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
+  video: vimeo_metadata_filter
 }
 
 type films_de_commande {
@@ -545,13 +674,14 @@ type films_de_commande {
   description: String
 
   """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
-  duree_minutes: String!
-  format: String!
+  duree_minutes: String
+  duree_secondes: String
   id: ID!
-  logo: String
-  numero: Int!
-  public: String!
-  titre: String!
+  logo(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  numero: Int
+  realisation: String
+  technique: String
+  titre: String
   user_created: String
   user_updated: String
 }
@@ -577,11 +707,12 @@ type films_de_commande_aggregated_count {
 
   """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
   duree_minutes: Int
-  format: Int
+  duree_secondes: Int
   id: Int
   logo: Int
   numero: Int
-  public: Int
+  realisation: Int
+  technique: Int
   titre: Int
   user_created: Int
   user_updated: Int
@@ -602,11 +733,12 @@ input films_de_commande_filter {
   date_updated_func: datetime_function_filter_operators
   description: string_filter_operators
   duree_minutes: string_filter_operators
-  format: string_filter_operators
+  duree_secondes: string_filter_operators
   id: string_filter_operators
-  logo: string_filter_operators
+  logo: directus_files_filter
   numero: number_filter_operators
-  public: string_filter_operators
+  realisation: string_filter_operators
+  technique: string_filter_operators
   titre: string_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
@@ -632,39 +764,64 @@ type series {
   date_created_func: datetime_functions
   date_updated: Date
   date_updated_func: datetime_functions
-  episode(filter: series_episode_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_episode]
-  episode_func: count_functions
+  episodes(filter: episodes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [episodes]
+  episodes_func: count_functions
   id: ID!
+  image_remplacement(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  lien_bande_annonce: String
+  logo(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
 
-  """
-  Une image noir et blanc, bien détourée, lisible en petit, 42 px de haut X 70 de large maximum
-  """
-  logo: String
+  """Voir le numéro du précédent film d'auteur"""
+  numero: Int
+  realisation: String
+  synopsis_en: String
+  synopsis_fr: String
   titre: String!
+  titre_english: String
   user_created: String
   user_updated: String
 }
 
 type series_aggregated {
+  avg: series_aggregated_fields
+  avgDistinct: series_aggregated_fields
   count: series_aggregated_count
   countAll: Int
   countDistinct: series_aggregated_count
   group: JSON
+  max: series_aggregated_fields
+  min: series_aggregated_fields
+  sum: series_aggregated_fields
+  sumDistinct: series_aggregated_fields
 }
 
 type series_aggregated_count {
   date_created: Int
   date_updated: Int
-  episode: Int
+  episodes: Int
   id: Int
+  image_remplacement: Int
+  lien_bande_annonce: Int
 
   """
   Une image noir et blanc, bien détourée, lisible en petit, 42 px de haut X 70 de large maximum
   """
   logo: Int
+
+  """Voir le numéro du précédent film d'auteur"""
+  numero: Int
+  realisation: Int
+  synopsis_en: Int
+  synopsis_fr: Int
   titre: Int
+  titre_english: Int
   user_created: Int
   user_updated: Int
+}
+
+type series_aggregated_fields {
+  """Voir le numéro du précédent film d'auteur"""
+  numero: Float
 }
 
 type series_episode {
@@ -716,11 +873,18 @@ input series_filter {
   date_created_func: datetime_function_filter_operators
   date_updated: date_filter_operators
   date_updated_func: datetime_function_filter_operators
-  episode: series_episode_filter
-  episode_func: count_function_filter_operators
+  episodes: episodes_filter
+  episodes_func: count_function_filter_operators
   id: string_filter_operators
-  logo: string_filter_operators
+  image_remplacement: directus_files_filter
+  lien_bande_annonce: string_filter_operators
+  logo: directus_files_filter
+  numero: number_filter_operators
+  realisation: string_filter_operators
+  synopsis_en: string_filter_operators
+  synopsis_fr: string_filter_operators
   titre: string_filter_operators
+  titre_english: string_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
 }
@@ -741,4 +905,62 @@ input string_filter_operators {
   _nstarts_with: String
   _null: Boolean
   _starts_with: String
+}
+
+type vimeo_metadata {
+  height: Int
+  html: String!
+  id: ID!
+  thumbnail_height: Int
+  thumbnail_url: String!
+  thumbnail_width: Int
+  video_id: String
+  width: Int
+  zorobabel_link: String
+}
+
+type vimeo_metadata_aggregated {
+  avg: vimeo_metadata_aggregated_fields
+  avgDistinct: vimeo_metadata_aggregated_fields
+  count: vimeo_metadata_aggregated_count
+  countAll: Int
+  countDistinct: vimeo_metadata_aggregated_count
+  group: JSON
+  max: vimeo_metadata_aggregated_fields
+  min: vimeo_metadata_aggregated_fields
+  sum: vimeo_metadata_aggregated_fields
+  sumDistinct: vimeo_metadata_aggregated_fields
+}
+
+type vimeo_metadata_aggregated_count {
+  height: Int
+  html: Int
+  id: Int
+  thumbnail_height: Int
+  thumbnail_url: Int
+  thumbnail_width: Int
+  video_id: Int
+  width: Int
+  zorobabel_link: Int
+}
+
+type vimeo_metadata_aggregated_fields {
+  height: Float
+  thumbnail_height: Float
+  thumbnail_width: Float
+  width: Float
+}
+
+input vimeo_metadata_filter {
+  _and: [vimeo_metadata_filter]
+  _or: [vimeo_metadata_filter]
+  height: number_filter_operators
+  html: string_filter_operators
+  id: string_filter_operators
+  thumbnail_height: number_filter_operators
+  thumbnail_url: string_filter_operators
+  thumbnail_width: number_filter_operators
+  video_id: string_filter_operators
+  width: number_filter_operators
+  zorobabel_link: string_filter_operators
 }

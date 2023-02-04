@@ -2,18 +2,18 @@
 	import '../app.css';
 </script>
 
-<main class="px-[5vw]">
+<main class="px-[10vw]">
 	<nav>
 		<ul class="flex justify-around">
 			<li>logo</li>
 			<li>zorobabel</li>
 			<li>films</li>
-			<li>appels à projet calls for proposal</li>
-			<li>ateliers workshops</li>
-			<li>événements events</li>
-			<li>zorobabel</li>
+			<li>appels à projet</li>
+			<li>ateliers</li>
+			<li>événements</li>
 			<li>search</li>
 		</ul>
+		<br />
 	</nav>
 	<section id="content">
 		<slot />

@@ -1,0 +1,39 @@
+query HomepageFilms {
+	ateliers: films_d_ateliers(
+		limit: 10
+		sort: "-date_created"
+		filter: { video: { id: { _nnull: true } } }
+	) {
+		id
+		titre
+		lien_video
+		date_created
+		video {
+			height
+			html
+			thumbnail_url
+			width
+			thumbnail_width
+			thumbnail_height
+		}
+	}
+	auteurs: Films_d_auteur(
+		limit: 10
+		sort: "-date_created"
+		filter: { video: { id: { _nnull: true } } }
+	) {
+		id
+		lien_video
+		titre_original
+		titre_english
+		date_created
+		video {
+			height
+			html
+			thumbnail_url
+			width
+			thumbnail_width
+			thumbnail_height
+		}
+	}
+}
