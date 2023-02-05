@@ -7,5 +7,7 @@
 
 	$: ({ FilmDAuteurs } = data);
 	$: ({ films = [] } = $FilmDAuteurs.data! ?? {});
-	$: browser && goto(`/films/auteurs/${encodeURI(films[0]?.titre_original ?? '404')}`);
+	$: browser &&
+		!$FilmDAuteurs.fetching &&
+		goto(`/films/auteurs/${encodeURI(films[0]?.titre_original ?? '404')}`);
 </script>

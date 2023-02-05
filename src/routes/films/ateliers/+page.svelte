@@ -7,5 +7,7 @@
 
 	$: ({ FilmDAteliers } = data);
 	$: ({ films = [] } = $FilmDAteliers.data! ?? {});
-	$: browser && goto(`/films/ateliers/${encodeURI(films[0]?.titre ?? '404')}`);
+	$: browser &&
+		!$FilmDAteliers.fetching &&
+		goto(`/films/ateliers/${encodeURI(films[0]?.titre ?? '404')}`);
 </script>

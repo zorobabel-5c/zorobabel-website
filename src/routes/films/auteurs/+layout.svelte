@@ -9,22 +9,24 @@
 	$: ({ films = [] } = $FilmDAuteurs.data! ?? {});
 </script>
 
-<FilmLayout>
-	<ul slot="nav" id="sub-sidenav">
-		{#each films as film}
-			<li>
-				<a
-					href={`./${encodeURI(film.titre_original ?? '')}`}
-					class:text-red-500={$page.url.pathname.endsWith(encodeURI(film.titre_original ?? ''))}
-					>{film.titre_original}</a
-				>
-			</li>
-		{/each}
-	</ul>
-	<div slot="content">
-		<slot />
-	</div>
-</FilmLayout>
+{#if !$FilmDAuteurs.fetching}
+	<FilmLayout>
+		<ul slot="nav" id="sub-sidenav">
+			{#each films as film}
+				<li>
+					<a
+						href={`./${encodeURI(film.titre_original ?? '')}`}
+						class:text-red-500={$page.url.pathname.endsWith(encodeURI(film.titre_original ?? ''))}
+						>{film.titre_original}</a
+					>
+				</li>
+			{/each}
+		</ul>
+		<div slot="content">
+			<slot />
+		</div>
+	</FilmLayout>
+{/if}
 
 <style>
 	#sub-sidenav > li {
