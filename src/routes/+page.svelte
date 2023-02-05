@@ -10,8 +10,10 @@
 	$: combined = sortByDateCreated(ateliers, auteurs);
 </script>
 
-<section class="lg:columns-4 md:columns-3 sm:columns-1 gap-1">
-	{#each combined as entry, i}
-		<HomepageEntry {entry} index={i} />
-	{/each}
-</section>
+{#if !$HomepageFilms.fetching}
+	<section class="lg:columns-4 md:columns-3 sm:columns-1 gap-1">
+		{#each combined as entry, i}
+			<HomepageEntry {entry} index={i} />
+		{/each}
+	</section>
+{/if}

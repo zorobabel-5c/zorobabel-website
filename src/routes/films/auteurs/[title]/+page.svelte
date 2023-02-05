@@ -15,8 +15,11 @@
 		>
 	</h1>
 	{#if currentFilm?.video?.html}
-		<div class="iframe-container">
-			{@html currentFilm?.video?.html}
+		<div
+			class="iframe-container"
+			style={`aspect-ratio: ${currentFilm.video.width}/${currentFilm.video.height};`}
+		>
+			{@html currentFilm.video.html}
 		</div>
 	{/if}
 	<div class="columns-2">
@@ -29,17 +32,13 @@
 <style lang="scss">
 	.iframe-container {
 		position: relative;
-		padding: 76% 0 0 0;
 		overflow: hidden;
 		border-radius: 3px;
-		margin-bottom: 2rem;
+		margin: 2rem 0;
 
 		& > :global(iframe) {
 			width: 100%;
 			height: 100%;
-			right: 0;
-			top: 0;
-			position: absolute;
 		}
 	}
 </style>
