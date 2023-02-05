@@ -1,0 +1,52 @@
+query FilmDAuteurs {
+	films: Films_d_auteur(
+		limit: 20
+		sort: "-date_created"
+		filter: { video: { id: { _nnull: true } } }
+	) {
+		id
+		lien_video
+		titre_original
+		titre_english
+		date_created
+		video {
+			height
+			html
+			thumbnail_url
+			width
+			thumbnail_width
+			thumbnail_height
+		}
+		ville
+		voix
+		synopsis_fr
+		synopsis_en
+		son
+		scenario
+		realisation
+		public
+		production
+		prix_obtenus_par_le_film
+		participants
+		numero
+		musique
+		mot_de_passe
+		montage
+		logo {
+			id
+		}
+		lien_bande_annonce
+		langue_originale
+		in_progress
+		image
+		format
+		duree_secondes
+		coproduction
+		contact
+		annee
+		animation
+		affiche {
+			id
+		}
+	}
+}

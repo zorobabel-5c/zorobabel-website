@@ -1,0 +1,32 @@
+query FilmDAteliers {
+	films: films_d_ateliers(
+		limit: 20
+		sort: "-date_created"
+		filter: { video: { id: { _nnull: true } } }
+	) {
+		id
+		annee
+		date_created
+		duree_secondes
+		logo {
+			id
+		}
+		numero
+		online
+		partenariats
+		public
+		synopsis_fr
+		technique
+		titre
+		user_created
+		video {
+			html
+			height
+			thumbnail_height
+			thumbnail_url
+			thumbnail_width
+			video_id
+			width
+		}
+	}
+}

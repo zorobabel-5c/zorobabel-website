@@ -27,6 +27,9 @@ query HomepageFilms {
 		titre_original
 		titre_english
 		date_created
+		affiche {
+			id
+		}
 		video {
 			height
 			html

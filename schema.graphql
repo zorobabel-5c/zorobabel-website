@@ -591,7 +591,7 @@ type films_d_ateliers {
   public: String
   synopsis_fr: String
   technique: String
-  titre: String!
+  titre: String
   user_created: String
   user_updated: String
   video(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
