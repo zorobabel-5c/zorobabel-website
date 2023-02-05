@@ -4,8 +4,14 @@
 
 <main class="px-[10vw]">
 	<nav>
-		<ul class="flex justify-around">
-			<li>logo</li>
+		<ul class="flex justify-around items-center mt-4 w-full">
+			<li>
+				<img
+					src="https://backend-zorobabel.5c.be/assets/2552fac3-984e-42ea-9d70-643338768dbb"
+					alt=""
+					class="aspect-square w-[70px]"
+				/>
+			</li>
 			<li>zorobabel</li>
 			<li>films</li>
 			<li>appels à projet</li>
