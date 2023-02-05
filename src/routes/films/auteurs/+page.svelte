@@ -6,6 +6,6 @@
 	export let data: LayoutData;
 
 	$: ({ FilmDAuteurs } = data);
-	$: ({ films } = $FilmDAuteurs.data!);
+	$: ({ films = [] } = $FilmDAuteurs.data! ?? {});
 	$: browser && goto(`/films/auteurs/${encodeURI(films[0]?.titre_original ?? '404')}`);
 </script>

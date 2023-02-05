@@ -1,40 +1,47 @@
+<script lang="ts">
+	import { page } from '$app/stores';
+</script>
+
 <section id="films" class="grid lg:grid-cols-[500px_1fr] md:grid-cols-[250px_1fr]">
 	<aside
 		class="grid lg:grid-cols-[1fr_1fr] md:lg:grid-cols-[1fr] lg:border-none md:border-r border-solid border-gray-800 md:mr-4"
 	>
-		<nav class="lg:border-r border-solid border-gray-800 lg:mr-4">
+		<nav class="lg:border-r border-solid border-gray-800 lg:mr-4" data-sveltekit-preload-data="tap">
 			<ul id="sidenav">
 				<li>
-					<a href="../auteurs">
+					<a href="../auteurs" class:text-red-500={$page.url.pathname.startsWith('/films/auteurs')}>
 						<p>films d'auteur</p>
 						<p>author's films</p>
 					</a>
 				</li>
 				<li>
-					<a href="/series">
+					<a href="/series" class:text-red-500={$page.url.pathname.startsWith('/series')}>
 						<p>séries créatives</p>
 						<p>creative series</p>
 					</a>
 				</li>
 				<li>
-					<a href="../ateliers">
+					<a
+						href="../ateliers"
+						class:text-red-500={$page.url.pathname.startsWith('/films/ateliers')}
+					>
 						<p>films d’atelier</p>
 						<p>workshop's films</p>
 					</a>
 				</li>
 				<li>
-					<a href="/diffusion">
+					<a href="/diffusion" class:text-red-500={$page.url.pathname.startsWith('/diffusion')}>
 						<p>diffusion</p>
 					</a>
 				</li>
 				<li>
-					<a href="/liens">
+					<a href="/liens" class:text-red-500={$page.url.pathname.startsWith('/liens')}>
 						<p>liens</p>
 						<p>links</p>
 					</a>
 				</li>
 				<li>
-					<a href="/catalogue">
+					<a href="/catalogue" class:text-red-500={$page.url.pathname.startsWith('/catalogue')}>
 						<p>catalogue</p>
 					</a>
 				</li>

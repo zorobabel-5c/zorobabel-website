@@ -6,7 +6,7 @@
 	export let data: PageData;
 
 	$: ({ HomepageFilms } = data);
-	$: ({ ateliers, auteurs } = $HomepageFilms.data!);
+	$: ({ ateliers = [], auteurs = [] } = $HomepageFilms.data! ?? {});
 	$: combined = sortByDateCreated(ateliers, auteurs);
 </script>
 
