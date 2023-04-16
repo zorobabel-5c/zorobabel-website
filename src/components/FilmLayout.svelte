@@ -1,28 +1,45 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
+	export let sideNavItems: string[] = [];
+
+	onMount(() => {
+		let active = $page.url.pathname.split('/')[3];
+		document.getElementById(active)?.scrollIntoView();
+	});
 </script>
 
 <section id="films" class="grid lg:grid-cols-[500px_1fr] md:grid-cols-[250px_1fr]">
 	<aside
 		class="grid lg:grid-cols-[1fr_1fr] md:lg:grid-cols-[1fr] lg:border-none md:border-r border-solid border-gray-800 md:mr-4"
 	>
-		<nav class="lg:border-r border-solid border-gray-800 lg:mr-4" data-sveltekit-preload-data="tap">
-			<ul id="sidenav">
+		<nav
+			id="sidenav"
+			class="lg:border-r border-solid border-gray-800 lg:mr-4"
+			data-sveltekit-preload-data="tap"
+		>
+			<ul class="[&>li]:mb-8 overflow-y-scroll lg:h-[calc(100vh-120px)] md:h-[calc(50vh-60px)]">
 				<li>
-					<a href="../auteurs" class:text-red-500={$page.url.pathname.startsWith('/films/auteurs')}>
+					<a
+						href="/films/auteurs"
+						class:text-red-500={$page.url.pathname.startsWith('/films/auteurs')}
+					>
 						<p>films d'auteur</p>
 						<p>author's films</p>
 					</a>
 				</li>
 				<li>
-					<a href="../series" class:text-red-500={$page.url.pathname.startsWith('/series')}>
+					<a
+						href="/films/series"
+						class:text-red-500={$page.url.pathname.startsWith('/films/series')}
+					>
 						<p>séries créatives</p>
 						<p>creative series</p>
 					</a>
 				</li>
 				<li>
 					<a
-						href="../ateliers"
+						href="/films/ateliers"
 						class:text-red-500={$page.url.pathname.startsWith('/films/ateliers')}
 					>
 						<p>films d’atelier</p>
@@ -48,17 +65,23 @@
 			</ul>
 		</nav>
 		<div class="lg:hidden md:block h-[1px] bg-gray-800 w-[90%] my-8" />
-		<nav class="lg:border-r border-solid border-gray-800 lg:mr-4">
-			<slot name="nav" />
-		</nav>
+		{#if sideNavItems?.length > 0}
+			<nav id="second_sidenav" class="lg:border-r border-solid border-gray-800 lg:mr-4">
+				<ul class="[&>li]:mb-8 lg:h-[calc(100vh-120px)] md:h-[calc(50vh-60px)] overflow-y-scroll">
+					{#each sideNavItems as nav}
+						<li id={encodeURI(nav)}>
+							<a
+								href={`./${encodeURI(nav)}`}
+								class:text-red-500={$page.url.pathname.endsWith(encodeURI(nav))}
+								>{nav}
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</nav>
+		{/if}
 	</aside>
 	<main>
 		<slot name="content" />
 	</main>
 </section>
-
-<style lang="scss">
-	#sidenav > li {
-		margin-bottom: 1rem;
-	}
-</style>

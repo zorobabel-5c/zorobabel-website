@@ -1,22 +1,30 @@
 <script lang="ts">
 	import type { HomepageFilms$result } from '$houdini';
+	import { isAtelier, isAuteur, isEvenement } from '../utils/guards';
 
 	export let index: number;
 	export let entry:
 		| HomepageFilms$result['evenements'][number]
 		| HomepageFilms$result['ateliers'][number]
 		| HomepageFilms$result['auteurs'][number];
-	// TODO: fix links
-	// let title = "SO"
-	// $: isAtelier = 'titre' in entry;
-	$: title = 'titre' in entry ? entry.titre : 'titre_original' in entry ? entry.titre_original : '';
-	// $: url = isAtelier
-	// 	? `/films/ateliers/${encodeURI(title ?? '')}`
-	// 	: `/films/auteurs/${encodeURI(title ?? '')}`;
+	$: title =
+		isEvenement(entry) || isAtelier(entry)
+			? entry.titre
+			: isAuteur(entry)
+			? entry.titre_original
+			: '';
+	$: baseUrl = isEvenement(entry)
+		? `/événements/`
+		: isAtelier(entry)
+		? `/ateliers/`
+		: isAuteur(entry)
+		? '/films/auteurs/'
+		: '';
+	$: url = `${baseUrl}${encodeURI(title ?? '')}`;
 </script>
 
 <div class="group rounded-md overflow-hidden mb-1 relative cursor-pointer">
-	<a href={'#'}>
+	<a href={title ? url : '#'}>
 		<div
 			class="absolute h-full w-full bg-black opacity-80 hidden group-hover:flex justify-center items-center"
 		>

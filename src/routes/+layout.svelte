@@ -5,7 +5,7 @@
 
 <main class="px-[10vw]">
 	<nav>
-		<ul class="flex justify-around items-center mt-4 w-full border-b border-gray-800 border-solid">
+		<ul class="flex justify-around items-center pt-4 w-full border-b border-gray-800 border-solid">
 			<li>
 				<a href="/">
 					<img
