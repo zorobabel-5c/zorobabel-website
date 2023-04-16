@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
 	import Afiche from '../components/Afiche.svelte';
 	import HomepageEntry from '../components/HomepageEntry.svelte';
 	import { pickRandom, sortByDateCreated } from '../utils/array';
@@ -16,8 +15,7 @@
 		ateliers = []
 	} = $HomepageFilms.data! ?? {});
 	$: combined = sortByDateCreated([...auteurs, ...evenements], ateliers);
-	$: random = pickRandom(episodes);
-	// $: random = pickRandom(films_d_ateliers, auteurs, episodes);
+	$: random = pickRandom(films_d_ateliers, auteurs, episodes);
 </script>
 
 {#if !$HomepageFilms.fetching}

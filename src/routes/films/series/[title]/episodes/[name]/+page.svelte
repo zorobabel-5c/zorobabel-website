@@ -8,7 +8,6 @@
 	$: ({ series = [] } = $SeriesPage.data! ?? {});
 	$: currentSeries = series.find((s) => s.titre === $page.params.title);
 	$: currentEpisode = currentSeries?.episodes?.find((e) => e?.titre === $page.params.name);
-	$: browser && console.log({ currentEpisode, currentSeries });
 </script>
 
 {#if !$SeriesPage.fetching}

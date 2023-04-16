@@ -1,11 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
-
-	onMount(() => {
-		let active = $page.url.pathname.split('/')[3];
-		document.getElementById(active)?.scrollIntoView();
-	});
 </script>
 
 <section id="films" class="grid lg:grid-cols-[500px_1fr] md:grid-cols-[250px_1fr]">

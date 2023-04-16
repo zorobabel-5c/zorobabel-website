@@ -3,7 +3,7 @@
 	import FilmLayout from '../../../components/FilmLayout.svelte';
 	import List from '../../../components/List.svelte';
 	import { page } from '$app/stores';
-	import { browser } from '$app/environment';
+	import { truncate } from '../../../utils/string';
 
 	export let data: LayoutData;
 	let isActive = $page.params.title;
@@ -34,14 +34,15 @@
 						items={item.episodes ?? []}
 						let:item
 						getKey={(e) => encodeURI(e?.titre ?? '')}
-						classes="overflow-y-scroll lg:h-[80vh] md:h-[40vh]"
+						classes="overflow-y-scroll lg:h-[80vh] md:h-[40vh]  grid gap-4"
+						pathIndex={5}
 					>
 						{#if item}
 							<a
 								href={`/films/series/${isActive}/episodes/${encodeURI(item.titre)}`}
 								class:text-red-500={$page.url.pathname.endsWith(encodeURI(item.titre))}
 							>
-								{item.titre}
+								{truncate(item.titre)}
 							</a>
 						{/if}
 					</List>
