@@ -1,0 +1,41 @@
+query SeriesPage {
+	series {
+		date_created
+		id
+		image_remplacement {
+			id
+		}
+		logo {
+			id
+		}
+		realisation
+		synopsis_en
+		synopsis_fr
+		titre
+		titre_english
+		episodes {
+			annee
+			coproduction
+			date_created
+			duree_secondes
+			video {
+				html
+				width
+				height
+			}
+			realisation
+			series {
+				id
+				titre
+			}
+			logo {
+				id
+			}
+			synopsis_en
+			synopsis_fr
+			titre
+			titre_english
+			numero
+		}
+	}
+}

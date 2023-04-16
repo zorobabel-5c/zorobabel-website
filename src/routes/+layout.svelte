@@ -9,7 +9,7 @@
 			<li>
 				<a href="/">
 					<img
-						src="https://backend-zorobabel.5c.be/assets/2552fac3-984e-42ea-9d70-643338768dbb"
+						src="https://backend-zorobabel.5c.be/assets/62c21e86-8e74-4f41-afd0-a243b80f7b5a"
 						alt=""
 						class="aspect-square w-[70px]"
 					/>

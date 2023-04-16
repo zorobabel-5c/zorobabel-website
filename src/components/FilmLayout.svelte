@@ -15,7 +15,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="/series" class:text-red-500={$page.url.pathname.startsWith('/series')}>
+					<a href="../series" class:text-red-500={$page.url.pathname.startsWith('/series')}>
 						<p>séries créatives</p>
 						<p>creative series</p>
 					</a>

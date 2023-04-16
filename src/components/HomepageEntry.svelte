@@ -1,13 +1,27 @@
 <script lang="ts">
 	import type { HomepageFilms$result } from '$houdini';
+	import { isAuteur, isEpisode, isFilmDAtelier } from '../utils/guards';
 
-	export let entry: HomepageFilms$result[keyof HomepageFilms$result][number];
+	export let entry:
+		| HomepageFilms$result['films_d_ateliers'][number]
+		| HomepageFilms$result['auteurs'][number]
+		| HomepageFilms$result['episodes'][number];
 	export let index: number;
-	$: isAtelier = 'titre' in entry;
-	$: title = 'titre' in entry ? entry.titre : 'titre_original' in entry ? entry.titre_original : '';
-	$: url = isAtelier
-		? `/films/ateliers/${encodeURI(title ?? '')}`
-		: `/films/auteurs/${encodeURI(title ?? '')}`;
+	$: title = isAuteur(entry)
+		? entry.titre_original
+		: isEpisode(entry)
+		? entry.series?.titre
+		: isFilmDAtelier(entry)
+		? entry.titre
+		: '';
+	$: path = isAuteur(entry)
+		? '/auteurs'
+		: isFilmDAtelier(entry)
+		? '/ateliers'
+		: isEpisode(entry)
+		? '/series'
+		: '';
+	$: url = `/films${path}/${encodeURI(title ?? '')}`;
 </script>
 
 <div class="group rounded-md overflow-hidden mb-1 relative cursor-pointer">

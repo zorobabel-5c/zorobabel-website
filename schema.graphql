@@ -51,6 +51,7 @@ type Films_d_auteur {
   user_created: String
   user_updated: String
   video(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
+  video_bande_annonce(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
   ville: String
   voix: String
 }
@@ -122,6 +123,7 @@ type Films_d_auteur_aggregated_count {
   user_created: Int
   user_updated: Int
   video: Int
+  video_bande_annonce: Int
   ville: Int
   voix: Int
 }
@@ -177,6 +179,7 @@ input Films_d_auteur_filter {
   user_created: string_filter_operators
   user_updated: string_filter_operators
   video: vimeo_metadata_filter
+  video_bande_annonce: vimeo_metadata_filter
   ville: string_filter_operators
   voix: string_filter_operators
 }
@@ -194,31 +197,31 @@ scalar JSON
 
 type Query {
   Films_d_auteur(filter: Films_d_auteur_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Films_d_auteur!]!
-  Films_d_auteur_aggregated(filter: Films_d_auteur_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [Films_d_auteur_aggregated!]!
+  Films_d_auteur_aggregated(filter: Films_d_auteur_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Films_d_auteur_aggregated!]!
   Films_d_auteur_by_id(id: ID!): Films_d_auteur
   ateliers(filter: ateliers_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ateliers!]!
-  ateliers_aggregated(filter: ateliers_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [ateliers_aggregated!]!
+  ateliers_aggregated(filter: ateliers_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ateliers_aggregated!]!
   ateliers_by_id(id: ID!): ateliers
   episodes(filter: episodes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [episodes!]!
-  episodes_aggregated(filter: episodes_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [episodes_aggregated!]!
+  episodes_aggregated(filter: episodes_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [episodes_aggregated!]!
   episodes_by_id(id: ID!): episodes
   evenements(filter: evenements_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [evenements!]!
-  evenements_aggregated(filter: evenements_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [evenements_aggregated!]!
+  evenements_aggregated(filter: evenements_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [evenements_aggregated!]!
   evenements_by_id(id: ID!): evenements
   films_d_ateliers(filter: films_d_ateliers_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_d_ateliers!]!
-  films_d_ateliers_aggregated(filter: films_d_ateliers_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [films_d_ateliers_aggregated!]!
+  films_d_ateliers_aggregated(filter: films_d_ateliers_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_d_ateliers_aggregated!]!
   films_d_ateliers_by_id(id: ID!): films_d_ateliers
   films_de_commande(filter: films_de_commande_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_de_commande!]!
-  films_de_commande_aggregated(filter: films_de_commande_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [films_de_commande_aggregated!]!
+  films_de_commande_aggregated(filter: films_de_commande_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_de_commande_aggregated!]!
   films_de_commande_by_id(id: ID!): films_de_commande
   series(filter: series_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series!]!
-  series_aggregated(filter: series_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [series_aggregated!]!
+  series_aggregated(filter: series_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_aggregated!]!
   series_by_id(id: ID!): series
   series_episode(filter: series_episode_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_episode!]!
-  series_episode_aggregated(filter: series_episode_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [series_episode_aggregated!]!
+  series_episode_aggregated(filter: series_episode_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_episode_aggregated!]!
   series_episode_by_id(id: ID!): series_episode
   vimeo_metadata(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vimeo_metadata!]!
-  vimeo_metadata_aggregated(filter: vimeo_metadata_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [vimeo_metadata_aggregated!]!
+  vimeo_metadata_aggregated(filter: vimeo_metadata_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vimeo_metadata_aggregated!]!
   vimeo_metadata_by_id(id: ID!): vimeo_metadata
 }
 
@@ -417,8 +420,6 @@ type episodes {
   date_created_func: datetime_functions
   date_updated: Date
   date_updated_func: datetime_functions
-
-  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
   duree_minutes: String
   duree_secondes: String
   id: ID!
@@ -435,6 +436,7 @@ type episodes {
   titre_english: String
   user_created: String
   user_updated: String
+  video(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
 }
 
 type episodes_aggregated {
@@ -455,8 +457,6 @@ type episodes_aggregated_count {
   coproduction: Int
   date_created: Int
   date_updated: Int
-
-  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
   duree_minutes: Int
   duree_secondes: Int
   id: Int
@@ -473,6 +473,7 @@ type episodes_aggregated_count {
   titre_english: Int
   user_created: Int
   user_updated: Int
+  video: Int
 }
 
 type episodes_aggregated_fields {
@@ -505,6 +506,7 @@ input episodes_filter {
   titre_english: string_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
+  video: vimeo_metadata_filter
 }
 
 type evenements {
@@ -672,8 +674,6 @@ type films_de_commande {
   date_updated: Date
   date_updated_func: datetime_functions
   description: String
-
-  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
   duree_minutes: String
   duree_secondes: String
   id: ID!
@@ -704,8 +704,6 @@ type films_de_commande_aggregated_count {
   date_created: Int
   date_updated: Int
   description: Int
-
-  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
   duree_minutes: Int
   duree_secondes: Int
   id: Int
@@ -780,6 +778,7 @@ type series {
   titre_english: String
   user_created: String
   user_updated: String
+  video_bande_annonce(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
 }
 
 type series_aggregated {
@@ -817,6 +816,7 @@ type series_aggregated_count {
   titre_english: Int
   user_created: Int
   user_updated: Int
+  video_bande_annonce: Int
 }
 
 type series_aggregated_fields {
@@ -887,6 +887,7 @@ input series_filter {
   titre_english: string_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
+  video_bande_annonce: vimeo_metadata_filter
 }
 
 input string_filter_operators {
@@ -912,7 +913,7 @@ type vimeo_metadata {
   html: String!
   id: ID!
   thumbnail_height: Int
-  thumbnail_url: String!
+  thumbnail_url: String
   thumbnail_width: Int
   video_id: String
   width: Int

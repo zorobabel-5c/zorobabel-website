@@ -1,9 +1,9 @@
 query HomepageFilms {
-	ateliers: films_d_ateliers(
-		limit: 10
+	films_d_ateliers(
 		sort: "-date_created"
-		filter: { video: { id: { _nnull: true } } }
+		filter: { _and: [{ video: { id: { _nnull: true } } }, { online: { _eq: true } }] }
 	) {
+		__typename
 		id
 		titre
 		lien_video
@@ -18,12 +18,24 @@ query HomepageFilms {
 		}
 	}
 	auteurs: Films_d_auteur(
-		limit: 10
 		sort: "-date_created"
-		filter: { video: { id: { _nnull: true } } }
+		filter: {
+			_and: [
+				{ video: { id: { _nnull: true } } }
+				{
+					_or: [
+						{ in_progress: { _eq: true }, lien_bande_annonce: { _nnull: true } }
+						{ in_progress: { _eq: false }, lien_video: { _nnull: true } }
+					]
+				}
+			]
+		}
 	) {
+		__typename
 		id
 		lien_video
+		lien_bande_annonce
+		in_progress
 		titre_original
 		titre_english
 		date_created
@@ -38,5 +50,44 @@ query HomepageFilms {
 			thumbnail_width
 			thumbnail_height
 		}
+	}
+	episodes(sort: "-date_created", filter: { video: { id: { _nnull: true } } }) {
+		__typename
+		id
+		lien_video
+		date_created
+		titre
+		titre_english
+		video {
+			height
+			html
+			thumbnail_url
+			width
+			thumbnail_width
+			thumbnail_height
+		}
+		series {
+			titre
+		}
+	}
+
+	# more
+	evenements {
+		__typename
+		id
+		affiche {
+			id
+		}
+		titre
+		date_created
+	}
+	ateliers {
+		__typename
+		id
+		affiche {
+			id
+		}
+		titre
+		date_created
 	}
 }
