@@ -58,6 +58,7 @@ query HomepageFilms {
 		date_created
 		titre
 		titre_english
+		numero
 		video {
 			height
 			html

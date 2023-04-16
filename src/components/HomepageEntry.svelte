@@ -10,18 +10,17 @@
 	$: title = isAuteur(entry)
 		? entry.titre_original
 		: isEpisode(entry)
-		? entry.series?.titre
+		? entry.titre
 		: isFilmDAtelier(entry)
 		? entry.titre
 		: '';
-	$: path = isAuteur(entry)
-		? '/auteurs'
-		: isFilmDAtelier(entry)
-		? '/ateliers'
+	$: url = isAuteur(entry)
+		? `/films/auteurs/${encodeURI(title ?? '')}`
 		: isEpisode(entry)
-		? '/series'
+		? `/films/series/${encodeURI(entry.series?.titre ?? '')}/episodes/${encodeURI(title ?? '')}`
+		: isFilmDAtelier(entry)
+		? `/films/ateliers/${encodeURI(title ?? '')}`
 		: '';
-	$: url = `/films${path}/${encodeURI(title ?? '')}`;
 </script>
 
 <div class="group rounded-md overflow-hidden mb-1 relative cursor-pointer">
@@ -30,7 +29,7 @@
 			class="absolute h-full w-full bg-black opacity-80 hidden group-hover:flex justify-center items-center"
 		>
 			<p class="font-extralight text-lg text-white text-center text-ellipsis px-2">
-				{title}
+				{!isEpisode(entry) ? title : `${entry.series?.titre ?? ''} - EP${entry.numero} ${title}`}
 			</p>
 		</div>
 		<img

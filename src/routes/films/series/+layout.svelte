@@ -15,7 +15,7 @@
 {#if !$SeriesPage.fetching}
 	<FilmLayout>
 		<svelte:fragment slot="nav">
-			<List items={series} let:item getKey={(s) => encodeURI(s.titre)}>
+			<List items={series} let:item getKey={(s) => encodeURI(s.titre)} shouldScrollIntoView={false}>
 				<p
 					class="cursor-pointer font-semibold"
 					on:click={() => {
@@ -30,7 +30,12 @@
 					{item.titre}
 				</p>
 				{#if isActive === item.titre}
-					<List items={item.episodes ?? []} let:item getKey={(e) => encodeURI(e?.titre ?? '')}>
+					<List
+						items={item.episodes ?? []}
+						let:item
+						getKey={(e) => encodeURI(e?.titre ?? '')}
+						classes="overflow-y-scroll lg:h-[80vh] md:h-[40vh]"
+					>
 						{#if item}
 							<a
 								href={`/films/series/${isActive}/episodes/${encodeURI(item.titre)}`}

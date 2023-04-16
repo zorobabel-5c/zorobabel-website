@@ -5,16 +5,20 @@
 	type T = $$Generic;
 	export let items: T[];
 	export let getKey: (item: T) => string;
+	export let shouldScrollIntoView = false;
+	export let classes = '';
 
 	onMount(() => {
-		let active = $page.url.pathname.split('/')[3];
-		let elem = document.querySelector(`li[data-list-item-key='${active}']`);
-		console.log(elem);
-		elem?.scrollIntoView();
+		if (shouldScrollIntoView) {
+			let active = $page.url.pathname.split('/')[3];
+			let elem = document.querySelector(`li[data-list-item-key="${active}"]`);
+			console.log(elem);
+			elem?.scrollIntoView();
+		}
 	});
 </script>
 
-<ul>
+<ul class={classes}>
 	{#each items as item}
 		<li data-list-item-key={getKey(item)}>
 			<slot {item} />

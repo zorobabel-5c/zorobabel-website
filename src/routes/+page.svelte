@@ -16,8 +16,8 @@
 		ateliers = []
 	} = $HomepageFilms.data! ?? {});
 	$: combined = sortByDateCreated([...auteurs, ...evenements], ateliers);
-	$: random = pickRandom(films_d_ateliers, auteurs, episodes);
-	$: browser && console.log(combined);
+	$: random = pickRandom(episodes);
+	// $: random = pickRandom(films_d_ateliers, auteurs, episodes);
 </script>
 
 {#if !$HomepageFilms.fetching}
