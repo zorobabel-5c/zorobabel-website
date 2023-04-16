@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	export let sideNavItems: string[] = [];
 
 	onMount(() => {
 		let active = $page.url.pathname.split('/')[3];
@@ -65,21 +64,12 @@
 			</ul>
 		</nav>
 		<div class="lg:hidden md:block h-[1px] bg-gray-800 w-[90%] my-8" />
-		{#if sideNavItems?.length > 0}
-			<nav id="second_sidenav" class="lg:border-r border-solid border-gray-800 lg:mr-4">
-				<ul class="[&>li]:mb-8 lg:h-[calc(100vh-120px)] md:h-[calc(50vh-60px)] overflow-y-scroll">
-					{#each sideNavItems as nav}
-						<li id={encodeURI(nav)}>
-							<a
-								href={`./${encodeURI(nav)}`}
-								class:text-red-500={$page.url.pathname.endsWith(encodeURI(nav))}
-								>{nav}
-							</a>
-						</li>
-					{/each}
-				</ul>
-			</nav>
-		{/if}
+		<nav
+			id="second_sidenav"
+			class="lg:border-r border-solid border-gray-800 lg:mr-4 [&>ul>li]:mb-8 lg:[&>ul]:h-[calc(100vh-120px)] [&>ul]:md:h-[calc(50vh-60px)] [&>ul]:overflow-y-scroll"
+		>
+			<slot name="nav" />
+		</nav>
 	</aside>
 	<main>
 		<slot name="content" />

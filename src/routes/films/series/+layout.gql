@@ -8,34 +8,45 @@ query SeriesPage {
 		logo {
 			id
 		}
+		numero
 		realisation
 		synopsis_en
 		synopsis_fr
 		titre
 		titre_english
+		video_bande_annonce {
+			html
+			thumbnail_url
+			width
+			thumbnail_width
+			thumbnail_height
+			height
+		}
 		episodes {
 			annee
 			coproduction
 			date_created
+			duree_minutes
 			duree_secondes
-			video {
-				html
-				width
-				height
-			}
-			realisation
-			series {
-				id
-				titre
-			}
+			id
 			logo {
 				id
 			}
+			numero
+			realisation
 			synopsis_en
 			synopsis_fr
 			titre
 			titre_english
-			numero
+			video {
+				id
+				html
+				height
+				width
+				thumbnail_width
+				thumbnail_url
+				thumbnail_height
+			}
 		}
 	}
 }

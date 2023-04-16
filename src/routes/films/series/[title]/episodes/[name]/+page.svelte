@@ -1,11 +1,14 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
-	import type { LayoutData } from '../$houdini';
+	import type { LayoutData } from '../../../$houdini';
 	export let data: LayoutData;
 
 	$: ({ SeriesPage } = data);
 	$: ({ series = [] } = $SeriesPage.data! ?? {});
 	$: currentSeries = series.find((s) => s.titre === $page.params.title);
+	$: currentEpisode = currentSeries?.episodes?.find((e) => e?.titre === $page.params.name);
+	$: browser && console.log({ currentEpisode, currentSeries });
 </script>
 
 {#if !$SeriesPage.fetching}
@@ -14,17 +17,17 @@
 			class="italic font-thin">{currentSeries?.titre_english}</span
 		>
 	</h1>
-	{#if currentSeries?.video_bande_annonce?.html}
+	{#if currentEpisode?.video?.html}
 		<div
 			class="iframe-container"
-			style={`aspect-ratio: ${currentSeries.video_bande_annonce.width}/${currentSeries.video_bande_annonce.height};`}
+			style={`aspect-ratio: ${currentEpisode.video.width}/${currentEpisode.video.height};`}
 		>
-			{@html currentSeries.video_bande_annonce.html}
+			{@html currentEpisode.video.html}
 		</div>
 	{/if}
 	<div class="columns-2">
-		<p>{currentSeries?.synopsis_fr}</p>
-		<p>{currentSeries?.synopsis_en}</p>
+		<p>{currentEpisode?.synopsis_fr}</p>
+		<p>{currentEpisode?.synopsis_en}</p>
 	</div>
 {/if}
 
