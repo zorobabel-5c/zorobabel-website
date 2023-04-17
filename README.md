@@ -26,6 +26,25 @@ npm start
 
 You can preview the production build locally with `npm run preview`.
 
+
+## Deploy with Docker
+
+Build docker image
+
+```bash
+npm run build:image
+```
+
+The image is built and tagged zorobabel/svelte-app
+
+Run image
+
+```bash
+npm run run:image
+```
+
+The app would be running and exposed on port 3000
+
 ## TODOS
 
 - Look up Houdini's data loading error handling best practices
