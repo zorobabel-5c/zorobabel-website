@@ -13,7 +13,6 @@
 		if (shouldScrollIntoView) {
 			let active = $page.url.pathname.split('/')[pathIndex];
 			let elem = document.querySelector(`li[data-list-item-key="${active}"]`);
-			console.log(elem);
 			elem?.scrollIntoView();
 		}
 	});

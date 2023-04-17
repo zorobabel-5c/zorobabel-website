@@ -3,7 +3,7 @@
 	import FilmLayout from '../../../components/FilmLayout.svelte';
 	import List from '../../../components/List.svelte';
 	import { page } from '$app/stores';
-	import { truncate } from '../../../utils/string';
+	import { removePrefix, truncate } from '../../../utils/string';
 
 	export let data: LayoutData;
 	let isActive = $page.params.title;
@@ -32,17 +32,17 @@
 				{#if isActive === item.titre}
 					<List
 						items={item.episodes ?? []}
-						let:item
+						let:item={subItem}
 						getKey={(e) => encodeURI(e?.titre ?? '')}
 						classes="overflow-y-scroll lg:h-[80vh] md:h-[40vh]  grid gap-4"
 						pathIndex={5}
 					>
-						{#if item}
+						{#if subItem?.titre}
 							<a
-								href={`/films/series/${isActive}/episodes/${encodeURI(item.titre)}`}
-								class:text-red-500={$page.url.pathname.endsWith(encodeURI(item.titre))}
+								href={`/films/series/${encodeURI(item.titre)}/episodes/${encodeURI(subItem.titre)}`}
+								class:text-red-500={$page.url.pathname.endsWith(encodeURI(subItem.titre))}
 							>
-								{truncate(item.titre)}
+								{removePrefix(subItem.titre, item.titre)}
 							</a>
 						{/if}
 					</List>
