@@ -18,9 +18,13 @@ To create a production version of your app:
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+This commands outputs a node app at /build directory and can be run with
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```bash
+npm start
+```
+
+You can preview the production build locally with `npm run preview`.
 
 ## TODOS
 
