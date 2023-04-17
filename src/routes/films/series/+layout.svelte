@@ -42,7 +42,7 @@
 								href={`/films/series/${encodeURI(item.titre)}/episodes/${encodeURI(subItem.titre)}`}
 								class:text-red-500={$page.url.pathname.endsWith(encodeURI(subItem.titre))}
 							>
-								{removePrefix(subItem.titre, item.titre)}
+								{truncate(removePrefix(subItem.titre, item.titre), 60)}
 							</a>
 						{/if}
 					</List>
