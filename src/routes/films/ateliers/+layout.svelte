@@ -2,25 +2,19 @@
 	import type { LayoutData } from './$houdini';
 	import FilmLayout from '../../../components/FilmLayout.svelte';
 	import List from '../../../components/List.svelte';
-	import { page } from '$app/stores';
+	import LinkListItem from '../../../components/LinkListItem.svelte';
 
 	export let data: LayoutData;
 
 	$: ({ FilmDAteliers } = data);
 	$: ({ films = [] } = $FilmDAteliers.data! ?? {});
-	$: navItems = films.map((f) => f.titre ?? '');
 </script>
 
 {#if !$FilmDAteliers.fetching}
 	<FilmLayout>
 		<svelte:fragment slot="nav">
-			<List items={navItems} let:item getKey={encodeURI}>
-				<a
-					href={`./${encodeURI(item)}`}
-					class:text-red-500={$page.url.pathname.endsWith(encodeURI(item))}
-				>
-					{item}
-				</a>
+			<List items={films} let:item getKey={(f) => f.titre}>
+				<LinkListItem {item} getTitle={(f) => f.titre ?? ''} getLogoId={(f) => f.logo?.id} />
 			</List>
 		</svelte:fragment>
 		<div slot="content">

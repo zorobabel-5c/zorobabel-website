@@ -4,6 +4,8 @@
 	import List from '../../../components/List.svelte';
 	import { page } from '$app/stores';
 	import { removePrefix, truncate } from '../../../utils/string';
+	import LinkListItem from '../../../components/LinkListItem.svelte';
+	import { imageFromAssets } from '../../../utils/assets';
 
 	export let data: LayoutData;
 	let isActive = $page.params.title;
@@ -15,9 +17,16 @@
 {#if !$SeriesPage.fetching}
 	<FilmLayout>
 		<svelte:fragment slot="nav">
-			<List items={series} let:item getKey={(s) => encodeURI(s.titre)} shouldScrollIntoView={false}>
-				<p
-					class="cursor-pointer font-semibold"
+			<List
+				items={series}
+				let:item
+				getKey={(s) => s.titre}
+				classes="mb-8 relative"
+				shouldScrollIntoView={false}
+			>
+				<div
+					class="sticky top-0 cursor-pointer font-semibold flex gap-2 items-center mb-4 py-1 px-4 bg-white"
+					class:shadow-sm={isActive === item.titre}
 					on:click={() => {
 						isActive = item.titre;
 					}}
@@ -27,23 +36,26 @@
 						}
 					}}
 				>
-					{item.titre}
-				</p>
+					<img src={imageFromAssets(item.logo?.id)} alt="logo" class="w-10" />
+					<span>{item.titre}</span>
+				</div>
 				{#if isActive === item.titre}
 					<List
 						items={item.episodes ?? []}
 						let:item={subItem}
-						getKey={(e) => encodeURI(e?.titre ?? '')}
-						classes="overflow-y-scroll lg:h-[80vh] md:h-[40vh]  grid gap-4"
+						getKey={(e) => e?.titre}
+						classes="overflow-y-scroll ml-10 lg:max-h-[80vh] md:max-h-[40vh]  grid content-start gap-4"
 						pathIndex={5}
 					>
 						{#if subItem?.titre}
-							<a
-								href={`/films/series/${encodeURI(item.titre)}/episodes/${encodeURI(subItem.titre)}`}
-								class:text-red-500={$page.url.pathname.endsWith(encodeURI(subItem.titre))}
-							>
-								{truncate(removePrefix(subItem.titre, item.titre), 60)}
-							</a>
+							<LinkListItem
+								item={subItem}
+								getTitle={(f) => f.titre}
+								getLogoId={(f) => f.logo?.id}
+								getLink={(ep) =>
+									`/films/series/${encodeURI(item.titre)}/episodes/${encodeURI(ep.titre)}`}
+								getProcessedTitle={(ep) => truncate(removePrefix(ep.titre, item.titre))}
+							/>
 						{/if}
 					</List>
 				{/if}

@@ -19,11 +19,11 @@
 </script>
 
 {#if !$HomepageFilms.fetching}
-	<section class="lg:columns-4 md:columns-3 sm:columns-1 gap-1">
+	<section class="xl:columns-4 lg:columns-3 md:columns-2 sm:columns-1 gap-1">
 		<HomepageEntry entry={random} index={0} />
 		{#each combined as entry, i}
 			{#if entry.affiche?.id}
-				<Afiche {entry} index={i + 1} />
+				<Afiche {entry} />
 			{/if}
 		{/each}
 	</section>

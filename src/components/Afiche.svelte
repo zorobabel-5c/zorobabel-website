@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { HomepageFilms$result } from '$houdini';
+	import { imageFromAssets } from '../utils/assets';
 	import { isAtelier, isAuteur, isEvenement } from '../utils/guards';
 
-	export let index: number;
 	export let entry:
 		| HomepageFilms$result['evenements'][number]
 		| HomepageFilms$result['ateliers'][number]
@@ -23,7 +23,7 @@
 	$: url = `${baseUrl}${encodeURI(title ?? '')}`;
 </script>
 
-<div class="group rounded-md overflow-hidden mb-1 relative cursor-pointer">
+<div class="group overflow-hidden mb-1 relative cursor-pointer">
 	<a href={title ? url : '#'}>
 		<div
 			class="absolute h-full w-full bg-black opacity-80 hidden group-hover:flex justify-center items-center"
@@ -32,12 +32,8 @@
 				{title}
 			</p>
 		</div>
-		<img
-			src={'https://backend-zorobabel.5c.be/assets/' + entry.affiche?.id}
-			alt="todo"
-			class:aspect-video={index % 2 !== 0}
-			class:aspect-square={index % 2 === 0}
-			class="w-full object-cover"
-		/>
+		{#if entry.affiche}
+			<img src={imageFromAssets(entry.affiche)} alt="todo" class="w-full object-cover" />
+		{/if}
 	</a>
 </div>

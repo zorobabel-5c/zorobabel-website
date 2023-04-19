@@ -4,7 +4,7 @@
 
 	type T = $$Generic;
 	export let items: T[];
-	export let getKey: (item: T) => string;
+	export let getKey: (item: T) => string | undefined | null;
 	export let shouldScrollIntoView = true;
 	export let pathIndex = 3;
 	export let classes = '';
@@ -20,7 +20,7 @@
 
 <ul class={classes}>
 	{#each items as item}
-		<li data-list-item-key={getKey(item)}>
+		<li data-list-item-key={encodeURI(getKey(item) ?? '')}>
 			<slot {item} />
 		</li>
 	{/each}
