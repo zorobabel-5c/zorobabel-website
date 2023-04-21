@@ -1,13 +1,15 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import type { LayoutData } from '../../../$houdini';
+	import { decodeTitle } from '../../../../../../utils/string';
 	export let data: LayoutData;
 
 	$: ({ SeriesPage } = data);
 	$: ({ series = [] } = $SeriesPage.data! ?? {});
-	$: currentSeries = series.find((s) => s.titre === $page.params.title);
-	$: currentEpisode = currentSeries?.episodes?.find((e) => e?.titre === $page.params.name);
+	$: currentSeries = series.find((s) => s.titre === decodeTitle($page.params.title));
+	$: currentEpisode = currentSeries?.episodes?.find(
+		(e) => e?.titre === decodeTitle($page.params.name)
+	);
 </script>
 
 {#if !$SeriesPage.fetching}

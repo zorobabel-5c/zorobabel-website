@@ -14,7 +14,7 @@
 	<FilmLayout>
 		<svelte:fragment slot="nav">
 			<List items={films} let:item getKey={(f) => f.titre}>
-				<LinkListItem {item} getTitle={(f) => f.titre ?? ''} getLogoId={(f) => f.logo?.id} />
+				<LinkListItem {item} getLogoId={(f) => f.logo?.id} />
 			</List>
 		</svelte:fragment>
 		<div slot="content">

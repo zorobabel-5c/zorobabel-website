@@ -2,17 +2,13 @@
 	import type { HomepageFilms$result } from '$houdini';
 	import { imageFromAssets } from '../utils/assets';
 	import { isAtelier, isAuteur, isEvenement } from '../utils/guards';
+	import { getTitle, encodeTitle } from '../utils/string';
 
 	export let entry:
 		| HomepageFilms$result['evenements'][number]
 		| HomepageFilms$result['ateliers'][number]
 		| HomepageFilms$result['auteurs'][number];
-	$: title =
-		isEvenement(entry) || isAtelier(entry)
-			? entry.titre
-			: isAuteur(entry)
-			? entry.titre_original
-			: '';
+	$: title = getTitle(entry);
 	$: baseUrl = isEvenement(entry)
 		? `/événements/`
 		: isAtelier(entry)
@@ -20,7 +16,7 @@
 		: isAuteur(entry)
 		? '/films/auteurs/'
 		: '';
-	$: url = `${baseUrl}${encodeURI(title ?? '')}`;
+	$: url = `${baseUrl}${encodeTitle(title)}`;
 </script>
 
 <div class="group overflow-hidden mb-1 relative cursor-pointer">

@@ -3,6 +3,7 @@
 	import FilmLayout from '../../../components/FilmLayout.svelte';
 	import List from '../../../components/List.svelte';
 	import LinkListItem from '../../../components/LinkListItem.svelte';
+	import { getTitle } from '../../../utils/string';
 
 	export let data: LayoutData;
 
@@ -13,12 +14,8 @@
 {#if !$FilmDAuteurs.fetching}
 	<FilmLayout>
 		<svelte:fragment slot="nav">
-			<List items={films} let:item getKey={(f) => f.titre_original}>
-				<LinkListItem
-					{item}
-					getTitle={(f) => f.titre_original ?? ''}
-					getLogoId={(f) => f.logo?.id}
-				/>
+			<List items={films} let:item getKey={getTitle}>
+				<LinkListItem {item} getLogoId={(f) => f.logo?.id} />
 			</List>
 		</svelte:fragment>
 		<div slot="content">

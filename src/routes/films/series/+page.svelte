@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
+	import { getAndEncodeTitle } from '../../../utils/string';
 	import type { LayoutData } from './$houdini';
 
 	export let data: LayoutData;
@@ -9,5 +10,5 @@
 	$: ({ series = [] } = $SeriesPage.data! ?? {});
 	$: browser &&
 		!$SeriesPage.fetching &&
-		goto(`/films/series/${encodeURI(series[0]?.titre ?? '404')}`);
+		goto(`/films/series/${getAndEncodeTitle(series[0]) ?? '404'}`);
 </script>

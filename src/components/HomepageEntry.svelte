@@ -1,25 +1,20 @@
 <script lang="ts">
 	import type { HomepageFilms$result } from '$houdini';
 	import { isAuteur, isEpisode, isFilmDAtelier } from '../utils/guards';
+	import { getTitle, encodeTitle } from '../utils/string';
 
 	export let entry:
 		| HomepageFilms$result['films_d_ateliers'][number]
 		| HomepageFilms$result['auteurs'][number]
 		| HomepageFilms$result['episodes'][number];
 	export let index: number;
-	$: title = isAuteur(entry)
-		? entry.titre_original
-		: isEpisode(entry)
-		? entry.titre
-		: isFilmDAtelier(entry)
-		? entry.titre
-		: '';
+	$: title = getTitle(entry);
 	$: url = isAuteur(entry)
-		? `/films/auteurs/${encodeURI(title ?? '')}`
+		? `/films/auteurs/${encodeTitle(title)}`
 		: isEpisode(entry)
-		? `/films/series/${encodeURI(entry.series?.titre ?? '')}/episodes/${encodeURI(title ?? '')}`
+		? `/films/series/${encodeTitle(entry.series?.titre)}/episodes/${encodeTitle(title)}`
 		: isFilmDAtelier(entry)
-		? `/films/ateliers/${encodeURI(title ?? '')}`
+		? `/films/ateliers/${encodeTitle(title)}`
 		: '';
 </script>
 
@@ -29,7 +24,7 @@
 			class="absolute h-full w-full bg-black opacity-80 hidden group-hover:flex justify-center items-center"
 		>
 			<p class="font-extralight text-lg text-white text-center text-ellipsis px-2">
-				{!isEpisode(entry) ? title : `${entry.series?.titre ?? ''} - EP${entry.numero} ${title}`}
+				{!isEpisode(entry) ? title : `${getTitle(entry.series)} - EP${entry.numero} ${title}`}
 			</p>
 		</div>
 		<img

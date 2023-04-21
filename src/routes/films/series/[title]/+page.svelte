@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { LayoutData } from '../$houdini';
+	import { decodeTitle } from '../../../../utils/string';
 	export let data: LayoutData;
 
 	$: ({ SeriesPage } = data);
 	$: ({ series = [] } = $SeriesPage.data! ?? {});
-	$: currentSeries = series.find((s) => s.titre === $page.params.title);
+	$: currentSeries = series.find((s) => s.titre === decodeTitle($page.params.title));
 </script>
 
 {#if !$SeriesPage.fetching}

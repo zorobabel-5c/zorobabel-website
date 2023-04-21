@@ -1,9 +1,9 @@
 <script lang="ts">
-	import FilmLayout from '../../components/FilmLayout.svelte';
+	import FilmLayout from '../../../components/FilmLayout.svelte';
 </script>
 
 <FilmLayout>
 	<div slot="content">
-		<h1>diffusion</h1>
+		<h1>Catalogue</h1>
 	</div>
 </FilmLayout>

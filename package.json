@@ -25,6 +25,7 @@
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
+		"fast-check": "^3.8.1",
 		"graphql": "^15.8.0",
 		"houdini": "^0.20.3",
 		"houdini-svelte": "^0.20.3",

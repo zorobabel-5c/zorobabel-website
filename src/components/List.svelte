@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { decodeTitle, encodeTitle } from '../utils/string';
+
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 
@@ -11,7 +13,7 @@
 
 	onMount(() => {
 		if (shouldScrollIntoView) {
-			let active = $page.url.pathname.split('/')[pathIndex];
+			let active = decodeURI($page.url.pathname).split('/')[pathIndex];
 			let elem = document.querySelector(`li[data-list-item-key="${active}"]`);
 			elem?.scrollIntoView();
 		}
@@ -20,7 +22,7 @@
 
 <ul class={classes}>
 	{#each items as item}
-		<li data-list-item-key={encodeURI(getKey(item) ?? '')}>
+		<li data-list-item-key={encodeTitle(getKey(item))}>
 			<slot {item} />
 		</li>
 	{/each}

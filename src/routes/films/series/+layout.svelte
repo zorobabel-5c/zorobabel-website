@@ -3,12 +3,12 @@
 	import FilmLayout from '../../../components/FilmLayout.svelte';
 	import List from '../../../components/List.svelte';
 	import { page } from '$app/stores';
-	import { removePrefix, truncate } from '../../../utils/string';
+	import { decodeTitle, getAndEncodeTitle, removePrefix, truncate } from '../../../utils/string';
 	import LinkListItem from '../../../components/LinkListItem.svelte';
 	import { imageFromAssets } from '../../../utils/assets';
 
 	export let data: LayoutData;
-	let isActive = $page.params.title;
+	let isActive = decodeTitle($page.params.title);
 
 	$: ({ SeriesPage } = data);
 	$: ({ series = [] } = $SeriesPage.data! ?? {});
@@ -37,7 +37,7 @@
 					}}
 				>
 					<img src={imageFromAssets(item.logo?.id)} alt="logo" class="w-10" />
-					<span>{item.titre}</span>
+					<span>{truncate(item.titre)}</span>
 				</div>
 				{#if isActive === item.titre}
 					<List
@@ -50,10 +50,9 @@
 						{#if subItem?.titre}
 							<LinkListItem
 								item={subItem}
-								getTitle={(f) => f.titre}
 								getLogoId={(f) => f.logo?.id}
 								getLink={(ep) =>
-									`/films/series/${encodeURI(item.titre)}/episodes/${encodeURI(ep.titre)}`}
+									`/films/series/${getAndEncodeTitle(item)}/episodes/${getAndEncodeTitle(ep)}`}
 								getProcessedTitle={(ep) => truncate(removePrefix(ep.titre, item.titre))}
 							/>
 						{/if}

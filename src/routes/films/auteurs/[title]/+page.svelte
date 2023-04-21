@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { LayoutData } from '../$houdini';
+	import { decodeTitle } from '../../../../utils/string';
 	export let data: LayoutData;
 
 	$: ({ FilmDAuteurs } = data);
 	$: ({ films = [] } = $FilmDAuteurs.data! ?? {});
-	$: currentFilm = films.find((f) => f.titre_original === $page.params.title);
+	$: currentFilm = films.find((f) => f.titre_original === decodeTitle($page.params.title));
 </script>
 
 {#if !$FilmDAuteurs.fetching}
@@ -28,7 +29,6 @@
 	</div>
 {/if}
 
-<!-- <pre><code>{JSON.stringify(currentFilm, null, 2)}</code></pre> -->
 <style lang="scss">
 	.iframe-container {
 		position: relative;

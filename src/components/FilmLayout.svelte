@@ -40,18 +40,24 @@
 					</a>
 				</li>
 				<li>
-					<a href="/diffusion" class:text-red-500={$page.url.pathname.startsWith('/diffusion')}>
+					<a
+						href="/films/diffusion"
+						class:text-red-500={$page.url.pathname.startsWith('/films/diffusion')}
+					>
 						<p>diffusion</p>
 					</a>
 				</li>
 				<li>
-					<a href="/liens" class:text-red-500={$page.url.pathname.startsWith('/liens')}>
+					<a href="/films/liens" class:text-red-500={$page.url.pathname.startsWith('/films/liens')}>
 						<p>liens</p>
 						<p>links</p>
 					</a>
 				</li>
 				<li>
-					<a href="/catalogue" class:text-red-500={$page.url.pathname.startsWith('/catalogue')}>
+					<a
+						href="/films/catalogue"
+						class:text-red-500={$page.url.pathname.startsWith('/films/catalogue')}
+					>
 						<p>catalogue</p>
 					</a>
 				</li>

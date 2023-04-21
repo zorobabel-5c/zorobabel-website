@@ -1,22 +1,25 @@
 <script lang="ts">
-	import { truncate } from '../utils/string';
+	import { getTitle, truncate, getAndEncodeTitle } from '../utils/string';
 
 	import { compose } from '../utils/fn';
 
 	import { page } from '$app/stores';
 	import { imageFromAssets } from '../utils/assets';
+	import type { Titled } from '../utils/types';
 
-	type T = $$Generic;
+	type T = $$Generic<Titled>;
 
 	export let item: T;
-	export let getTitle: (item: T) => string;
-	export let getLink: (item: T) => string = (it) => `./${encodeURI(getTitle(it))}`;
+	export let getLink: (item: T) => string = (it) => `./${getAndEncodeTitle(it)}`;
 	export let getProcessedTitle: (item: T) => string = compose(getTitle, truncate);
 	export let getLogoId: (item: T) => string | undefined;
 	const logoSrc = imageFromAssets(getLogoId(item));
 </script>
 
-<a href={getLink(item)} class:text-red-500={$page.url.pathname.endsWith(getLink(item))}>
+<a
+	href={getLink(item)}
+	class:text-red-500={decodeURI($page.url.pathname).endsWith(getLink(item).replace(/^[.]+/, ''))}
+>
 	<div class="flex gap-2 items-center px-2">
 		{#if logoSrc}
 			<img src={logoSrc} alt="logo" class="w-10" />

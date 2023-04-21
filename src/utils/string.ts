@@ -1,3 +1,6 @@
+import { compose } from './fn';
+import type { Nullable, Nullify, Titled } from './types';
+
 export function truncate(str: string, len = 30): string {
 	if (str.length > len) {
 		return str.slice(0, len) + '...';
@@ -14,3 +17,23 @@ export function removePrefix(str: string, prefix: string): string {
 	}
 	return str1;
 }
+
+export function encodeTitle(str: Nullable<string>): string {
+	if (!str) return '';
+	return str.replaceAll('_', '__').replace(/\s/g, '_');
+}
+
+export function decodeTitle(str: Nullable<string>): string {
+	if (!str) return '';
+	return str.replace(/_(?!_)/g, ' ').replaceAll('__', '_');
+}
+
+export function getTitle(titled: Nullable<Titled>): string {
+	if (!titled) return '';
+	if ('titre' in titled) return titled.titre ?? '';
+	if ('titre_original' in titled) return titled.titre_original ?? '';
+	if ('titre_english' in titled) return titled.titre_english ?? '';
+	return '';
+}
+
+export const getAndEncodeTitle = compose(getTitle, encodeTitle);
