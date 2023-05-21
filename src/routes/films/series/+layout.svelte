@@ -3,7 +3,7 @@
 	import FilmLayout from '../../../components/FilmLayout.svelte';
 	import List from '../../../components/List.svelte';
 	import { page } from '$app/stores';
-	import { decodeTitle, getAndEncodeTitle, removePrefix, truncate } from '../../../utils/string';
+	import { decodeTitle, getAndEncodeTitle, removePrefix, truncate } from '../../../utils';
 	import LinkListItem from '../../../components/LinkListItem.svelte';
 	import { imageFromAssets } from '../../../utils/assets';
 

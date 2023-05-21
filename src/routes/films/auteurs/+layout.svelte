@@ -3,7 +3,7 @@
 	import FilmLayout from '../../../components/FilmLayout.svelte';
 	import List from '../../../components/List.svelte';
 	import LinkListItem from '../../../components/LinkListItem.svelte';
-	import { getTitle } from '../../../utils/string';
+	import { getTitle } from '../../../utils';
 
 	export let data: LayoutData;
 
