@@ -1,25 +1,59 @@
-import { describe, test, assert } from 'vitest';
+import { describe, test, assert as viteAssert } from 'vitest';
 import { zip, interleave, zipWithNext } from './array';
+import { assert, property, array, string, integer } from 'fast-check';
 
 describe('Array fns', () => {
 	test('zip', () => {
-		const test = zip([1, 2, 3], ['first', 'second', 'third']);
-		assert.deepEqual(test, [
-			[1, 'first'],
-			[2, 'second'],
-			[3, 'third']
-		]);
+		assert(
+			property(array(string()), array(integer()), (a, b) => {
+				viteAssert.equal(zip(a, b).length, Math.min(a.length, b.length));
+				viteAssert.deepEqual(
+					zip(a, b).map((d) => d[0]),
+					a.slice(0, Math.min(a.length, b.length))
+				);
+				viteAssert.deepEqual(
+					zip(a, b).map((d) => d[1]),
+					b.slice(0, Math.min(a.length, b.length))
+				);
+			})
+		);
 	});
 	test('zipWithNext', () => {
-		const test = zipWithNext([1, 2, 3, 4]);
-		assert.deepEqual(test, [
-			[1, 2],
-			[2, 3],
-			[3, 4]
-		]);
+		assert(
+			property(array(string(), { minLength: 2 }), (a) => {
+				viteAssert.equal(zipWithNext(a).length, a.length - 1);
+				viteAssert.deepEqual(
+					zipWithNext(a).map((d) => d[0]),
+					a.slice(0, -1)
+				);
+				viteAssert.deepEqual(
+					zipWithNext(a).map((d) => d[1]),
+					a.slice(1)
+				);
+				viteAssert.deepEqual([...new Set(zipWithNext(a).flat())], [...new Set(a)]);
+			})
+		);
 	});
 	test('interleave', () => {
-		const test = interleave([1, 2, 3], ['first', 'second', 'third']);
-		assert.deepEqual(test, [1, 'first', 2, 'second', 3, 'third']);
+		assert(
+			property(array(string()), array(string()), (a, b) => {
+				viteAssert.equal(interleave(a, b).length, a.length + b.length);
+				if (a.length > b.length) {
+					viteAssert.deepEqual(
+						interleave(a, b)
+							.slice(0, b.length * 2)
+							.filter((_, i) => i % 2 !== 0),
+						b
+					);
+				} else {
+					viteAssert.deepEqual(
+						interleave(a, b)
+							.slice(0, a.length * 2)
+							.filter((_, i) => i % 2 === 0),
+						a
+					);
+				}
+			})
+		);
 	});
 });

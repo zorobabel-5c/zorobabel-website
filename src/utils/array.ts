@@ -1,5 +1,24 @@
 export function interleave<T, U>(first: T[], second: U[]): Array<T | U> {
-	return zip(first, second).flat();
+	const [a, b] = [[...first], [...second]];
+	const res: Array<T | U> = [];
+	for (let i = 0; i < first.length + second.length; i++) {
+		if (!a.length) {
+			res.push(...b);
+			return res;
+		}
+		if (!b.length) {
+			res.push(...a);
+			return res;
+		}
+		if (i % 2 === 0) {
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			res.push(a.shift()!);
+		} else {
+			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+			res.push(b.shift()!);
+		}
+	}
+	return res;
 }
 
 export function zip<T, U>(first: T[], second: U[]): Array<[T, U]> {

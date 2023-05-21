@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getTitle, truncate, getAndEncodeTitle } from '../utils/string';
+	import { getTitle, truncate, getAndEncodeTitle } from '../utils';
 
 	import { compose } from '../utils/fn';
 
