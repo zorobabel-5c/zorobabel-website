@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { LayoutData } from '../$houdini';
+	import VimeoIframe from '../../../../components/VimeoIframe.svelte';
 	import { decodeTitle } from '../../../../utils/string';
 	export let data: LayoutData;
 
@@ -11,37 +12,27 @@
 
 {#if !$FilmDAteliers.fetching}
 	{#if currentFilm?.titre}
-		<h1 class="text-2xl">
+		<h1 class="text-2xl text-center">
 			{currentFilm?.titre}
 		</h1>
 	{/if}
-
-	{#if currentFilm?.video?.html}
-		<div
-			class="iframe-container"
-			style={`aspect-ratio: ${currentFilm.video.width}/${currentFilm.video.height};`}
-		>
-			{@html currentFilm.video.html}
-		</div>
-	{/if}
-	{#if currentFilm?.synopsis_fr}
+	<div class="my-4 text-center">
+		<span>{currentFilm?.public},</span>
+		<span>{currentFilm?.technique},</span>
+		<span>{currentFilm?.duree_minutes}'</span>
+		<span>{currentFilm?.duree_secondes}",</span>
+		{#if currentFilm?.annee}
+			<span>{currentFilm.annee}</span>
+		{/if}
+		{#if currentFilm?.partenariats}
+			<span>{@html currentFilm.partenariats}</span>
+		{/if}
+		<span />
+	</div>
+	<VimeoIframe video={currentFilm?.video} />
+	<!-- {#if currentFilm?.synopsis_fr}
 		<div>
 			<p>{currentFilm?.synopsis_fr}</p>
 		</div>
-	{/if}
+	{/if} -->
 {/if}
-
-<!-- <pre><code>{JSON.stringify(currentFilm, null, 2)}</code></pre> -->
-<style lang="scss">
-	.iframe-container {
-		position: relative;
-		overflow: hidden;
-		border-radius: 3px;
-		margin: 2rem 0;
-
-		& > :global(iframe) {
-			width: 100%;
-			height: 100%;
-		}
-	}
-</style>

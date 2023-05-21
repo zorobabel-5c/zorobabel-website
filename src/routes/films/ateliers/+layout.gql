@@ -4,6 +4,7 @@ query FilmDAteliers {
 		annee
 		date_created
 		duree_secondes
+		duree_minutes
 		logo {
 			id
 		}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { LayoutData } from '../../../$houdini';
+	import VimeoIframe from '../../../../../../components/VimeoIframe.svelte';
 	import { decodeTitle } from '../../../../../../utils/string';
 	export let data: LayoutData;
 
@@ -18,30 +19,9 @@
 			class="italic font-thin">{currentSeries?.titre_english}</span
 		>
 	</h1>
-	{#if currentEpisode?.video?.html}
-		<div
-			class="iframe-container"
-			style={`aspect-ratio: ${currentEpisode.video.width}/${currentEpisode.video.height};`}
-		>
-			{@html currentEpisode.video.html}
-		</div>
-	{/if}
+	<VimeoIframe video={currentEpisode?.video} />
 	<div class="columns-2">
 		<p>{currentEpisode?.synopsis_fr}</p>
 		<p>{currentEpisode?.synopsis_en}</p>
 	</div>
 {/if}
-
-<style lang="scss">
-	.iframe-container {
-		position: relative;
-		overflow: hidden;
-		border-radius: 3px;
-		margin: 2rem 0;
-
-		& > :global(iframe) {
-			width: 100%;
-			height: 100%;
-		}
-	}
-</style>

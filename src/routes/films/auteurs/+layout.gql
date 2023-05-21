@@ -31,12 +31,22 @@ query FilmDAuteurs {
 		logo {
 			id
 		}
+		image_1 {
+			id
+		}
+		image_2 {
+			id
+		}
+		image_3 {
+			id
+		}
 		lien_bande_annonce
 		langue_originale
 		in_progress
 		image
 		format
 		duree_secondes
+		duree_minutes
 		coproduction
 		contact
 		annee
