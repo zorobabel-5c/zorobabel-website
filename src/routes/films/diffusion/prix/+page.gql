@@ -1,0 +1,50 @@
+query PrixQuery {
+	prix: Prix(filter: {}) {
+		numero
+		film_awarded {
+			item {
+				... on Films_d_auteur {
+					__typename
+					id
+					logo {
+						id
+					}
+					title: titre_original
+				}
+				... on films_d_ateliers {
+					__typename
+					id
+					logo {
+						id
+					}
+					title: titre
+				}
+				... on films_de_commande {
+					__typename
+					id
+					logo {
+						id
+					}
+					title: titre
+				}
+				... on series {
+					__typename
+					id
+					logo {
+						id
+					}
+					title: titre
+				}
+				... on episodes {
+					__typename
+					id
+					logo {
+						id
+					}
+					title: titre
+				}
+			}
+		}
+		description
+	}
+}

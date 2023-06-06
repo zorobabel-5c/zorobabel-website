@@ -1,11 +1,11 @@
 <script lang="ts">
 	import type { LayoutData } from './$houdini';
-	import FilmLayout from '../../../components/FilmLayout.svelte';
-	import List from '../../../components/List.svelte';
+	import FilmLayout from '$lib/components/FilmLayout.svelte';
+	import List from '$lib/components/List.svelte';
 	import { page } from '$app/stores';
-	import { decodeTitle, getAndEncodeTitle, removePrefix, truncate } from '../../../utils';
-	import LinkListItem from '../../../components/LinkListItem.svelte';
-	import { imageFromAssets } from '../../../utils/assets';
+	import { decodeTitle, getAndEncodeTitle, removePrefix, truncate } from '$lib/utils';
+	import LinkListItem from '$lib/components/LinkListItem.svelte';
+	import { imageFromAssets } from '$lib/utils';
 
 	export let data: LayoutData;
 	let isActive = decodeTitle($page.params.title);

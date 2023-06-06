@@ -47,7 +47,8 @@ type Films_d_auteur {
   synopsis_en: String
   synopsis_fr: String
   titre_english: String
-  titre_original: String
+  titre_original: String!
+  urlslug: String
   user_created: String
   user_updated: String
   video(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
@@ -120,6 +121,7 @@ type Films_d_auteur_aggregated_count {
   synopsis_fr: Int
   titre_english: Int
   titre_original: Int
+  urlslug: Int
   user_created: Int
   user_updated: Int
   video: Int
@@ -176,6 +178,7 @@ input Films_d_auteur_filter {
   synopsis_fr: string_filter_operators
   titre_english: string_filter_operators
   titre_original: string_filter_operators
+  urlslug: string_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
   video: vimeo_metadata_filter
@@ -195,31 +198,145 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 """
 scalar JSON
 
+type Prix {
+  description: String
+  film_awarded(filter: Prix_film_awarded_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Prix_film_awarded]
+  film_awarded_func: count_functions
+  id: ID!
+  numero: Int!
+}
+
+type Prix_aggregated {
+  avg: Prix_aggregated_fields
+  avgDistinct: Prix_aggregated_fields
+  count: Prix_aggregated_count
+  countAll: Int
+  countDistinct: Prix_aggregated_count
+  group: JSON
+  max: Prix_aggregated_fields
+  min: Prix_aggregated_fields
+  sum: Prix_aggregated_fields
+  sumDistinct: Prix_aggregated_fields
+}
+
+type Prix_aggregated_count {
+  description: Int
+  film_awarded: Int
+  id: Int
+  numero: Int
+}
+
+type Prix_aggregated_fields {
+  numero: Float
+}
+
+type Prix_film_awarded {
+  Prix_id(filter: Prix_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): Prix
+  collection: String
+  id: ID!
+  item: Prix_film_awarded_item_union
+}
+
+type Prix_film_awarded_aggregated {
+  avg: Prix_film_awarded_aggregated_fields
+  avgDistinct: Prix_film_awarded_aggregated_fields
+  count: Prix_film_awarded_aggregated_count
+  countAll: Int
+  countDistinct: Prix_film_awarded_aggregated_count
+  group: JSON
+  max: Prix_film_awarded_aggregated_fields
+  min: Prix_film_awarded_aggregated_fields
+  sum: Prix_film_awarded_aggregated_fields
+  sumDistinct: Prix_film_awarded_aggregated_fields
+}
+
+type Prix_film_awarded_aggregated_count {
+  Prix_id: Int
+  collection: Int
+  id: Int
+  item: Int
+}
+
+type Prix_film_awarded_aggregated_fields {
+  id: Float
+}
+
+input Prix_film_awarded_filter {
+  Prix_id: Prix_filter
+  _and: [Prix_film_awarded_filter]
+  _or: [Prix_film_awarded_filter]
+  collection: string_filter_operators
+  id: number_filter_operators
+  item__Films_d_auteur: Films_d_auteur_filter
+  item__episodes: episodes_filter
+  item__films_d_ateliers: films_d_ateliers_filter
+  item__films_de_commande: films_de_commande_filter
+  item__series: series_filter
+}
+
+union Prix_film_awarded_item_union = Films_d_auteur | episodes | films_d_ateliers | films_de_commande | series
+
+input Prix_filter {
+  _and: [Prix_filter]
+  _or: [Prix_filter]
+  description: string_filter_operators
+  film_awarded: Prix_film_awarded_filter
+  film_awarded_func: count_function_filter_operators
+  id: string_filter_operators
+  numero: number_filter_operators
+}
+
 type Query {
   Films_d_auteur(filter: Films_d_auteur_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Films_d_auteur!]!
   Films_d_auteur_aggregated(filter: Films_d_auteur_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Films_d_auteur_aggregated!]!
   Films_d_auteur_by_id(id: ID!): Films_d_auteur
+  Prix(filter: Prix_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Prix!]!
+  Prix_aggregated(filter: Prix_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Prix_aggregated!]!
+  Prix_by_id(id: ID!): Prix
+  Prix_film_awarded(filter: Prix_film_awarded_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Prix_film_awarded!]!
+  Prix_film_awarded_aggregated(filter: Prix_film_awarded_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Prix_film_awarded_aggregated!]!
+  Prix_film_awarded_by_id(id: ID!): Prix_film_awarded
   ateliers(filter: ateliers_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ateliers!]!
   ateliers_aggregated(filter: ateliers_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ateliers_aggregated!]!
   ateliers_by_id(id: ID!): ateliers
+  cinema(filter: cinema_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [cinema!]!
+  cinema_aggregated(filter: cinema_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [cinema_aggregated!]!
+  cinema_by_id(id: ID!): cinema
+  coproductions(filter: coproductions_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [coproductions!]!
+  coproductions_aggregated(filter: coproductions_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [coproductions_aggregated!]!
+  coproductions_by_id(id: ID!): coproductions
   episodes(filter: episodes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [episodes!]!
   episodes_aggregated(filter: episodes_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [episodes_aggregated!]!
   episodes_by_id(id: ID!): episodes
   evenements(filter: evenements_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [evenements!]!
   evenements_aggregated(filter: evenements_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [evenements_aggregated!]!
   evenements_by_id(id: ID!): evenements
+  evenements_films(filter: evenements_films_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [evenements_films!]!
+  evenements_films_aggregated(filter: evenements_films_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [evenements_films_aggregated!]!
+  evenements_films_by_id(id: ID!): evenements_films
+  festivals: festivals
   films_d_ateliers(filter: films_d_ateliers_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_d_ateliers!]!
   films_d_ateliers_aggregated(filter: films_d_ateliers_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_d_ateliers_aggregated!]!
   films_d_ateliers_by_id(id: ID!): films_d_ateliers
   films_de_commande(filter: films_de_commande_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_de_commande!]!
   films_de_commande_aggregated(filter: films_de_commande_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_de_commande_aggregated!]!
   films_de_commande_by_id(id: ID!): films_de_commande
+  liens(filter: liens_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [liens!]!
+  liens_aggregated(filter: liens_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [liens_aggregated!]!
+  liens_by_id(id: ID!): liens
+  partenariats: partenariats
+  publications(filter: publications_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [publications!]!
+  publications_aggregated(filter: publications_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [publications_aggregated!]!
+  publications_by_id(id: ID!): publications
   series(filter: series_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series!]!
   series_aggregated(filter: series_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_aggregated!]!
   series_by_id(id: ID!): series
   series_episode(filter: series_episode_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_episode!]!
   series_episode_aggregated(filter: series_episode_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_episode_aggregated!]!
   series_episode_by_id(id: ID!): series_episode
+  television(filter: television_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [television!]!
+  television_aggregated(filter: television_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [television_aggregated!]!
+  television_by_id(id: ID!): television
   vimeo_metadata(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vimeo_metadata!]!
   vimeo_metadata_aggregated(filter: vimeo_metadata_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vimeo_metadata_aggregated!]!
   vimeo_metadata_by_id(id: ID!): vimeo_metadata
@@ -292,6 +409,66 @@ input boolean_filter_operators {
   _neq: Boolean
   _nnull: Boolean
   _null: Boolean
+}
+
+type cinema {
+  affiche(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  description: String
+  id: ID!
+  titre: String
+}
+
+type cinema_aggregated {
+  count: cinema_aggregated_count
+  countAll: Int
+  countDistinct: cinema_aggregated_count
+  group: JSON
+}
+
+type cinema_aggregated_count {
+  affiche: Int
+  description: Int
+  id: Int
+  titre: Int
+}
+
+input cinema_filter {
+  _and: [cinema_filter]
+  _or: [cinema_filter]
+  affiche: directus_files_filter
+  description: string_filter_operators
+  id: string_filter_operators
+  titre: string_filter_operators
+}
+
+type coproductions {
+  description: String
+  id: ID!
+  lien: String
+  titre_lien: String
+}
+
+type coproductions_aggregated {
+  count: coproductions_aggregated_count
+  countAll: Int
+  countDistinct: coproductions_aggregated_count
+  group: JSON
+}
+
+type coproductions_aggregated_count {
+  description: Int
+  id: Int
+  lien: Int
+  titre_lien: Int
+}
+
+input coproductions_filter {
+  _and: [coproductions_filter]
+  _or: [coproductions_filter]
+  description: string_filter_operators
+  id: string_filter_operators
+  lien: string_filter_operators
+  titre_lien: string_filter_operators
 }
 
 input count_function_filter_operators {
@@ -555,6 +732,46 @@ type evenements_aggregated_count {
   user_updated: Int
 }
 
+type evenements_films {
+  description: String
+  id: ID!
+  logo(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  numero: Int!
+}
+
+type evenements_films_aggregated {
+  avg: evenements_films_aggregated_fields
+  avgDistinct: evenements_films_aggregated_fields
+  count: evenements_films_aggregated_count
+  countAll: Int
+  countDistinct: evenements_films_aggregated_count
+  group: JSON
+  max: evenements_films_aggregated_fields
+  min: evenements_films_aggregated_fields
+  sum: evenements_films_aggregated_fields
+  sumDistinct: evenements_films_aggregated_fields
+}
+
+type evenements_films_aggregated_count {
+  description: Int
+  id: Int
+  logo: Int
+  numero: Int
+}
+
+type evenements_films_aggregated_fields {
+  numero: Float
+}
+
+input evenements_films_filter {
+  _and: [evenements_films_filter]
+  _or: [evenements_films_filter]
+  description: string_filter_operators
+  id: string_filter_operators
+  logo: directus_files_filter
+  numero: number_filter_operators
+}
+
 input evenements_filter {
   _and: [evenements_filter]
   _or: [evenements_filter]
@@ -570,6 +787,11 @@ input evenements_filter {
   titre: string_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
+}
+
+type festivals {
+  id: ID!
+  liste: String
 }
 
 type films_d_ateliers {
@@ -593,7 +815,7 @@ type films_d_ateliers {
   public: String
   synopsis_fr: String
   technique: String
-  titre: String
+  titre: String!
   user_created: String
   user_updated: String
   video(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
@@ -681,7 +903,7 @@ type films_de_commande {
   numero: Int
   realisation: String
   technique: String
-  titre: String
+  titre: String!
   user_created: String
   user_updated: String
 }
@@ -742,6 +964,33 @@ input films_de_commande_filter {
   user_updated: string_filter_operators
 }
 
+type liens {
+  id: ID!
+  image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  lien: String
+}
+
+type liens_aggregated {
+  count: liens_aggregated_count
+  countAll: Int
+  countDistinct: liens_aggregated_count
+  group: JSON
+}
+
+type liens_aggregated_count {
+  id: Int
+  image: Int
+  lien: Int
+}
+
+input liens_filter {
+  _and: [liens_filter]
+  _or: [liens_filter]
+  id: string_filter_operators
+  image: directus_files_filter
+  lien: string_filter_operators
+}
+
 input number_filter_operators {
   _between: [GraphQLStringOrFloat]
   _eq: GraphQLStringOrFloat
@@ -755,6 +1004,38 @@ input number_filter_operators {
   _nin: [GraphQLStringOrFloat]
   _nnull: Boolean
   _null: Boolean
+}
+
+type partenariats {
+  id: ID!
+  liste: String
+}
+
+type publications {
+  id: ID!
+  slug: String
+  titre: String!
+}
+
+type publications_aggregated {
+  count: publications_aggregated_count
+  countAll: Int
+  countDistinct: publications_aggregated_count
+  group: JSON
+}
+
+type publications_aggregated_count {
+  id: Int
+  slug: Int
+  titre: Int
+}
+
+input publications_filter {
+  _and: [publications_filter]
+  _or: [publications_filter]
+  id: string_filter_operators
+  slug: string_filter_operators
+  titre: string_filter_operators
 }
 
 type series {
@@ -906,6 +1187,43 @@ input string_filter_operators {
   _nstarts_with: String
   _null: Boolean
   _starts_with: String
+}
+
+type television {
+  description: String
+  id: ID!
+  logo(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+}
+
+type television_aggregated {
+  avg: television_aggregated_fields
+  avgDistinct: television_aggregated_fields
+  count: television_aggregated_count
+  countAll: Int
+  countDistinct: television_aggregated_count
+  group: JSON
+  max: television_aggregated_fields
+  min: television_aggregated_fields
+  sum: television_aggregated_fields
+  sumDistinct: television_aggregated_fields
+}
+
+type television_aggregated_count {
+  description: Int
+  id: Int
+  logo: Int
+}
+
+type television_aggregated_fields {
+  id: Float
+}
+
+input television_filter {
+  _and: [television_filter]
+  _or: [television_filter]
+  description: string_filter_operators
+  id: number_filter_operators
+  logo: directus_files_filter
 }
 
 type vimeo_metadata {

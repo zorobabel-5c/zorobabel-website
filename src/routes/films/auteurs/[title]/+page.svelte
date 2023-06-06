@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { LayoutData } from '../$houdini';
-	import VimeoIframe from '../../../../components/VimeoIframe.svelte';
-	import { imageFromAssets, decodeTitle, truncate } from '../../../../utils';
+	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
+	import { imageFromAssets, decodeTitle, truncate } from '$lib/utils';
 	export let data: LayoutData;
 
 	$: ({ FilmDAuteurs } = data);

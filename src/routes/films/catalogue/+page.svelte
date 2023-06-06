@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FilmLayout from '../../../components/FilmLayout.svelte';
+	import FilmLayout from '$lib/components/FilmLayout.svelte';
 </script>
 
 <FilmLayout>

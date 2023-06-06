@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { LayoutData } from './$houdini';
-	import FilmLayout from '../../../components/FilmLayout.svelte';
-	import List from '../../../components/List.svelte';
-	import LinkListItem from '../../../components/LinkListItem.svelte';
+	import FilmLayout from '$lib/components/FilmLayout.svelte';
+	import List from '$lib/components/List.svelte';
+	import LinkListItem from '$lib/components/LinkListItem.svelte';
 
 	export let data: LayoutData;
 

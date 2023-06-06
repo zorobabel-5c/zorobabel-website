@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { HomepageFilms$result } from '$houdini';
-	import { imageFromAssets } from '../utils/assets';
-	import { isAtelier, isAuteur, isEvenement } from '../utils/guards';
-	import { getTitle, encodeTitle } from '../utils';
+	import { imageFromAssets } from '$lib/utils';
+	import { isAtelier, isAuteur, isEvenement } from '$lib/utils';
+	import { getTitle, encodeTitle } from '$lib/utils';
 
 	export let entry:
 		| HomepageFilms$result['evenements'][number]

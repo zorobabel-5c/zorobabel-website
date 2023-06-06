@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { encodeTitle } from '../utils/string';
+	import { encodeTitle } from '$lib/utils';
 
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';

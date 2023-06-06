@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import Afiche from '../components/Afiche.svelte';
-	import HomepageEntry from '../components/HomepageEntry.svelte';
-	import { pickRandom, sortByDateCreated } from '../utils/array';
+	import Afiche from '$lib/components/Afiche.svelte';
+	import HomepageEntry from '$lib/components/HomepageEntry.svelte';
+	import { pickRandom, sortByDateCreated } from '$lib/utils';
 	import type { PageData } from './$houdini';
 
 	export let data: PageData;

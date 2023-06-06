@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { LayoutData } from '../../../$houdini';
-	import VimeoIframe from '../../../../../../components/VimeoIframe.svelte';
-	import { decodeTitle } from '../../../../../../utils/string';
+	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
+	import { decodeTitle } from '$lib/utils';
 	export let data: LayoutData;
 
 	$: ({ SeriesPage } = data);

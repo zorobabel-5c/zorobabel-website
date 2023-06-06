@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { getTitle, truncate, getAndEncodeTitle } from '../utils';
+	import { getTitle, truncate, getAndEncodeTitle } from '$lib/utils';
 
-	import { compose } from '../utils/fn';
+	import { compose } from '$lib/utils';
 
 	import { page } from '$app/stores';
-	import { imageFromAssets } from '../utils/assets';
-	import type { Titled } from '../utils/types';
+	import { imageFromAssets } from '$lib/utils';
+	import type { Titled } from '$lib/utils';
 
 	type T = $$Generic<Titled>;
 
@@ -18,7 +18,7 @@
 
 <a
 	href={getLink(item)}
-	class:text-red-500={decodeURI($page.url.pathname).endsWith(getLink(item).replace(/^[.]+/, ''))}
+	class:text-red-500={$page.url.pathname.endsWith(getLink(item).replace(/^[.]+/, ''))}
 >
 	<div class="flex gap-2 items-center px-2">
 		{#if logoSrc}

@@ -1,9 +1,6 @@
 <script lang="ts">
-	import FilmLayout from '../../../components/FilmLayout.svelte';
-</script>
+	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 
-<FilmLayout>
-	<div slot="content">
-		<h1>diffusion</h1>
-	</div>
-</FilmLayout>
+	$: browser && goto(`/films/diffusion/prix`);
+</script>

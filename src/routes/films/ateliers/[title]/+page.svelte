@@ -1,13 +1,17 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import type { LayoutData } from '../$houdini';
-	import VimeoIframe from '../../../../components/VimeoIframe.svelte';
-	import { decodeTitle } from '../../../../utils/string';
+	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
+	import { decodeTitle } from '$lib/utils';
 	export let data: LayoutData;
 
 	$: ({ FilmDAteliers } = data);
 	$: ({ films = [] } = $FilmDAteliers.data! ?? {});
 	$: currentFilm = films.find((f) => f.titre === decodeTitle($page.params.title));
+	$: browser &&
+		console.table({ title: decodeTitle($page.params.title), param: $page.params.title });
+	$: browser && console.table(films.map((f) => f.titre));
 </script>
 
 {#if !$FilmDAteliers.fetching}

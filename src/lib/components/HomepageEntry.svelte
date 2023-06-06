@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { HomepageFilms$result } from '$houdini';
-	import { isAuteur, isEpisode, isFilmDAtelier } from '../utils/guards';
-	import { getTitle, encodeTitle } from '../utils';
+	import { isAuteur, isEpisode, isFilmDAtelier } from '$lib/utils';
+	import { getTitle, encodeTitle } from '$lib/utils';
 
 	export let entry:
 		| HomepageFilms$result['films_d_ateliers'][number]

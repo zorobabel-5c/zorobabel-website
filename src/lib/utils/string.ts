@@ -19,12 +19,15 @@ export function removePrefix(str: string, prefix: string): string {
 
 export function encodeTitle(str: Nullable<string>): string {
 	if (!str) return '';
-	if (str.match(/\s{2,}|--{2,}/)) return encodeURI(str);
-	const final = str.replaceAll('-', '--').replace(/\s/g, '-');
-	return encodeURI(final);
+	if (str.match(/\s{2,}|--{2,}|\s-|-\s/))
+		return encodeURIComponent(str).replaceAll('-', '--').replace(/\s/g, '-');
+	return encodeURIComponent(str.replaceAll('-', '--').replace(/\s/g, '-'));
 }
 
 export function decodeTitle(str: Nullable<string>): string {
 	if (!str) return '';
-	return decodeURI(str).replaceAll('--', '%20').replaceAll('-', ' ').replaceAll('%20', '-');
+	return decodeURIComponent(str)
+		.replaceAll('--', '%20')
+		.replaceAll('-', ' ')
+		.replaceAll('%20', '-');
 }

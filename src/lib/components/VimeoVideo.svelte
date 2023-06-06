@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getVideoIframe } from '../utils/vimeo';
+	import { getVideoIframe } from '$lib/utils';
 
 	export let src: string;
 	$: details = getVideoIframe(src);
