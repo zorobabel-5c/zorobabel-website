@@ -20,7 +20,7 @@
 			<List
 				items={series}
 				let:item
-				getKey={(s) => s.titre}
+				getKey={getSlug}
 				classes="mb-8 relative"
 				shouldScrollIntoView={false}
 			>
@@ -39,11 +39,11 @@
 					<img src={imageFromAssets(item.logo?.id)} alt="logo" class="w-10" />
 					<span>{truncate(item.titre)}</span>
 				</div>
-				{#if isActive === item.titre}
+				{#if isActive === item.slug}
 					<List
 						items={item.episodes ?? []}
 						let:item={subItem}
-						getKey={(e) => e?.titre}
+						getKey={getSlug}
 						classes="overflow-y-scroll ml-10 lg:max-h-[80vh] md:max-h-[40vh]  grid content-start gap-4"
 						pathIndex={5}
 					>
