@@ -1,0 +1,11 @@
+query AteliersQuery {
+	ateliers(sort: "-date_created") {
+		titre
+		type_d_atelier
+		date_created
+		description
+		affiche {
+			id
+		}
+	}
+}

@@ -1,6 +1,6 @@
 import { describe, test, assert as viteAssert } from 'vitest';
-import { zip, interleave, zipWithNext } from './array';
-import { assert, property, array, string, integer } from 'fast-check';
+import { zip, interleave, zipWithNext, groupBy } from './array';
+import { assert, property, array, string, integer, object, record, nat } from 'fast-check';
 
 describe('Array fns', () => {
 	test('zip', () => {
@@ -53,6 +53,17 @@ describe('Array fns', () => {
 						a
 					);
 				}
+			})
+		);
+	});
+	test('groupBy', () => {
+		assert(
+			property(array(record({ id: string(), age: nat(30), name: string() })), (items) => {
+				const result = groupBy(items, (item) => item.age);
+				viteAssert.equal(Object.keys(result).length, new Set(items.map((i) => i.age)).size);
+				Object.entries(result).forEach(([key, value]) => {
+					viteAssert.isTrue(value.every((val) => val.age === parseInt(key)));
+				});
 			})
 		);
 	});

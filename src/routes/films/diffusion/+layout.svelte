@@ -12,7 +12,7 @@
 			<li class:text-red-500={$page.url.pathname.endsWith('/festivals')}>
 				<a href="./festivals">festivals</a>
 			</li>
-			<li class:text-red-500={$page.url.pathname.endsWith('/événements')}>
+			<li class:text-red-500={$page.url.pathname.endsWith('nements')}>
 				<a href="./événements">
 					<p>événements</p>
 					<p>events</p>

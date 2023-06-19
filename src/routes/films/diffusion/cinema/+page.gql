@@ -1,0 +1,9 @@
+query CinemaQuery {
+	cinema {
+		affiche {
+			id
+		}
+		description
+		titre
+	}
+}

@@ -43,12 +43,12 @@ type Films_d_auteur {
   public: String
   realisation: String
   scenario: String
+  slug: String
   son: String
   synopsis_en: String
   synopsis_fr: String
   titre_english: String
   titre_original: String!
-  urlslug: String
   user_created: String
   user_updated: String
   video(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
@@ -116,12 +116,12 @@ type Films_d_auteur_aggregated_count {
   public: Int
   realisation: Int
   scenario: Int
+  slug: Int
   son: Int
   synopsis_en: Int
   synopsis_fr: Int
   titre_english: Int
   titre_original: Int
-  urlslug: Int
   user_created: Int
   user_updated: Int
   video: Int
@@ -173,12 +173,12 @@ input Films_d_auteur_filter {
   public: string_filter_operators
   realisation: string_filter_operators
   scenario: string_filter_operators
+  slug: string_filter_operators
   son: string_filter_operators
   synopsis_en: string_filter_operators
   synopsis_fr: string_filter_operators
   titre_english: string_filter_operators
   titre_original: string_filter_operators
-  urlslug: string_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
   video: vimeo_metadata_filter
@@ -813,6 +813,7 @@ type films_d_ateliers {
   online: Boolean
   partenariats: String
   public: String
+  slug: String
   synopsis_fr: String
   technique: String
   titre: String!
@@ -851,6 +852,7 @@ type films_d_ateliers_aggregated_count {
   online: Int
   partenariats: Int
   public: Int
+  slug: Int
   synopsis_fr: Int
   technique: Int
   titre: Int
@@ -881,6 +883,7 @@ input films_d_ateliers_filter {
   online: boolean_filter_operators
   partenariats: string_filter_operators
   public: string_filter_operators
+  slug: string_filter_operators
   synopsis_fr: string_filter_operators
   technique: string_filter_operators
   titre: string_filter_operators
@@ -1012,6 +1015,8 @@ type partenariats {
 }
 
 type publications {
+  couverture(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  description: String
   id: ID!
   slug: String
   titre: String!
@@ -1025,6 +1030,8 @@ type publications_aggregated {
 }
 
 type publications_aggregated_count {
+  couverture: Int
+  description: Int
   id: Int
   slug: Int
   titre: Int
@@ -1033,6 +1040,8 @@ type publications_aggregated_count {
 input publications_filter {
   _and: [publications_filter]
   _or: [publications_filter]
+  couverture: directus_files_filter
+  description: string_filter_operators
   id: string_filter_operators
   slug: string_filter_operators
   titre: string_filter_operators

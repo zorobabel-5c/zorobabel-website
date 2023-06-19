@@ -56,3 +56,15 @@ function random<T>(first: T[]): T {
 	const index = Math.floor(Math.random() * first.length);
 	return first[index];
 }
+
+export function groupBy<T, R extends PropertyKey>(
+	items: T[],
+	mapper: (arg: T) => R
+): Record<R, T[]> {
+	const keys = [...new Set(items.map((a) => mapper(a)))];
+	const result = {} as Record<R, T[]>;
+	keys.forEach((key) => {
+		result[key] = items.filter((a) => mapper(a) === key);
+	});
+	return result;
+}

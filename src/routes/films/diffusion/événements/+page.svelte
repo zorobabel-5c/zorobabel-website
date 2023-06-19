@@ -6,7 +6,7 @@
 	export let data: PageData;
 
 	$: ({ EvenementFilms } = data);
-	$: ({ evenements_films } = $EvenementFilms.data!);
+	$: ({ evenements_films = [] } = $EvenementFilms.data! ?? {});
 </script>
 
 {#if !$EvenementFilms.fetching}

@@ -1,0 +1,8 @@
+query TelevisionQuery {
+	television {
+		logo {
+			id
+		}
+		description
+	}
+}
