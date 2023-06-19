@@ -1,6 +1,12 @@
 """ISO8601 Date values"""
 scalar Date
 
+enum EventEnum {
+  create
+  delete
+  update
+}
+
 type Films_d_auteur {
   affiche(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
   animation: String
@@ -187,6 +193,12 @@ input Films_d_auteur_filter {
   voix: string_filter_operators
 }
 
+type Films_d_auteur_mutated {
+  data: Films_d_auteur
+  event: EventEnum
+  key: ID!
+}
+
 """BigInt value"""
 scalar GraphQLBigInt
 
@@ -276,6 +288,12 @@ input Prix_film_awarded_filter {
 
 union Prix_film_awarded_item_union = Films_d_auteur | episodes | films_d_ateliers | films_de_commande | series
 
+type Prix_film_awarded_mutated {
+  data: Prix_film_awarded
+  event: EventEnum
+  key: ID!
+}
+
 input Prix_filter {
   _and: [Prix_filter]
   _or: [Prix_filter]
@@ -284,6 +302,12 @@ input Prix_filter {
   film_awarded_func: count_function_filter_operators
   id: string_filter_operators
   numero: number_filter_operators
+}
+
+type Prix_mutated {
+  data: Prix
+  event: EventEnum
+  key: ID!
 }
 
 type Query {
@@ -342,6 +366,29 @@ type Query {
   vimeo_metadata_by_id(id: ID!): vimeo_metadata
 }
 
+type Subscription {
+  Films_d_auteur_mutated(event: EventEnum): Films_d_auteur_mutated
+  Prix_film_awarded_mutated(event: EventEnum): Prix_film_awarded_mutated
+  Prix_mutated(event: EventEnum): Prix_mutated
+  ateliers_mutated(event: EventEnum): ateliers_mutated
+  cinema_mutated(event: EventEnum): cinema_mutated
+  coproductions_mutated(event: EventEnum): coproductions_mutated
+  directus_files_mutated(event: EventEnum): directus_files_mutated
+  episodes_mutated(event: EventEnum): episodes_mutated
+  evenements_films_mutated(event: EventEnum): evenements_films_mutated
+  evenements_mutated(event: EventEnum): evenements_mutated
+  festivals_mutated(event: EventEnum): festivals_mutated
+  films_d_ateliers_mutated(event: EventEnum): films_d_ateliers_mutated
+  films_de_commande_mutated(event: EventEnum): films_de_commande_mutated
+  liens_mutated(event: EventEnum): liens_mutated
+  partenariats_mutated(event: EventEnum): partenariats_mutated
+  publications_mutated(event: EventEnum): publications_mutated
+  series_episode_mutated(event: EventEnum): series_episode_mutated
+  series_mutated(event: EventEnum): series_mutated
+  television_mutated(event: EventEnum): television_mutated
+  vimeo_metadata_mutated(event: EventEnum): vimeo_metadata_mutated
+}
+
 type ateliers {
   affiche(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
   date_created: Date
@@ -356,6 +403,7 @@ type ateliers {
   """
   description: String!
   id: ID!
+  slug: String
   titre: String!
   type_d_atelier: String!
   user_created: String
@@ -380,6 +428,7 @@ type ateliers_aggregated_count {
   """
   description: Int
   id: Int
+  slug: Int
   titre: Int
   type_d_atelier: Int
   user_created: Int
@@ -398,10 +447,17 @@ input ateliers_filter {
   date_updated_func: datetime_function_filter_operators
   description: string_filter_operators
   id: string_filter_operators
+  slug: string_filter_operators
   titre: string_filter_operators
   type_d_atelier: string_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
+}
+
+type ateliers_mutated {
+  data: ateliers
+  event: EventEnum
+  key: ID!
 }
 
 input boolean_filter_operators {
@@ -441,6 +497,12 @@ input cinema_filter {
   titre: string_filter_operators
 }
 
+type cinema_mutated {
+  data: cinema
+  event: EventEnum
+  key: ID!
+}
+
 type coproductions {
   description: String
   id: ID!
@@ -469,6 +531,12 @@ input coproductions_filter {
   id: string_filter_operators
   lien: string_filter_operators
   titre_lien: string_filter_operators
+}
+
+type coproductions_mutated {
+  data: coproductions
+  event: EventEnum
+  key: ID!
 }
 
 input count_function_filter_operators {
@@ -590,6 +658,12 @@ input directus_files_filter {
   width: number_filter_operators
 }
 
+type directus_files_mutated {
+  data: directus_files
+  event: EventEnum
+  key: ID!
+}
+
 type episodes {
   annee: Int
   coproduction: String
@@ -607,6 +681,7 @@ type episodes {
   numero: Int
   realisation: String
   series(filter: series_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): series
+  slug: String
   synopsis_en: String
   synopsis_fr: String
   titre: String!
@@ -644,6 +719,7 @@ type episodes_aggregated_count {
   numero: Int
   realisation: Int
   series: Int
+  slug: Int
   synopsis_en: Int
   synopsis_fr: Int
   titre: Int
@@ -677,6 +753,7 @@ input episodes_filter {
   numero: number_filter_operators
   realisation: string_filter_operators
   series: series_filter
+  slug: string_filter_operators
   synopsis_en: string_filter_operators
   synopsis_fr: string_filter_operators
   titre: string_filter_operators
@@ -684,6 +761,12 @@ input episodes_filter {
   user_created: string_filter_operators
   user_updated: string_filter_operators
   video: vimeo_metadata_filter
+}
+
+type episodes_mutated {
+  data: episodes
+  event: EventEnum
+  key: ID!
 }
 
 type evenements {
@@ -702,6 +785,7 @@ type evenements {
   """
   description: String!
   id: ID!
+  slug: String
   titre: String!
   user_created: String
   user_updated: String
@@ -727,6 +811,7 @@ type evenements_aggregated_count {
   """
   description: Int
   id: Int
+  slug: Int
   titre: Int
   user_created: Int
   user_updated: Int
@@ -772,6 +857,12 @@ input evenements_films_filter {
   numero: number_filter_operators
 }
 
+type evenements_films_mutated {
+  data: evenements_films
+  event: EventEnum
+  key: ID!
+}
+
 input evenements_filter {
   _and: [evenements_filter]
   _or: [evenements_filter]
@@ -784,14 +875,27 @@ input evenements_filter {
   date_updated_func: datetime_function_filter_operators
   description: string_filter_operators
   id: string_filter_operators
+  slug: string_filter_operators
   titre: string_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
 }
 
+type evenements_mutated {
+  data: evenements
+  event: EventEnum
+  key: ID!
+}
+
 type festivals {
   id: ID!
   liste: String
+}
+
+type festivals_mutated {
+  data: festivals
+  event: EventEnum
+  key: ID!
 }
 
 type films_d_ateliers {
@@ -892,6 +996,12 @@ input films_d_ateliers_filter {
   video: vimeo_metadata_filter
 }
 
+type films_d_ateliers_mutated {
+  data: films_d_ateliers
+  event: EventEnum
+  key: ID!
+}
+
 type films_de_commande {
   annee: Int
   date_created: Date
@@ -905,6 +1015,7 @@ type films_de_commande {
   logo(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
   numero: Int
   realisation: String
+  slug: String
   technique: String
   titre: String!
   user_created: String
@@ -935,6 +1046,7 @@ type films_de_commande_aggregated_count {
   logo: Int
   numero: Int
   realisation: Int
+  slug: Int
   technique: Int
   titre: Int
   user_created: Int
@@ -961,10 +1073,17 @@ input films_de_commande_filter {
   logo: directus_files_filter
   numero: number_filter_operators
   realisation: string_filter_operators
+  slug: string_filter_operators
   technique: string_filter_operators
   titre: string_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
+}
+
+type films_de_commande_mutated {
+  data: films_de_commande
+  event: EventEnum
+  key: ID!
 }
 
 type liens {
@@ -994,6 +1113,12 @@ input liens_filter {
   lien: string_filter_operators
 }
 
+type liens_mutated {
+  data: liens
+  event: EventEnum
+  key: ID!
+}
+
 input number_filter_operators {
   _between: [GraphQLStringOrFloat]
   _eq: GraphQLStringOrFloat
@@ -1012,6 +1137,12 @@ input number_filter_operators {
 type partenariats {
   id: ID!
   liste: String
+}
+
+type partenariats_mutated {
+  data: partenariats
+  event: EventEnum
+  key: ID!
 }
 
 type publications {
@@ -1047,6 +1178,12 @@ input publications_filter {
   titre: string_filter_operators
 }
 
+type publications_mutated {
+  data: publications
+  event: EventEnum
+  key: ID!
+}
+
 type series {
   date_created: Date
   date_created_func: datetime_functions
@@ -1062,6 +1199,7 @@ type series {
   """Voir le numéro du précédent film d'auteur"""
   numero: Int
   realisation: String
+  slug: String
   synopsis_en: String
   synopsis_fr: String
   titre: String!
@@ -1100,6 +1238,7 @@ type series_aggregated_count {
   """Voir le numéro du précédent film d'auteur"""
   numero: Int
   realisation: Int
+  slug: Int
   synopsis_en: Int
   synopsis_fr: Int
   titre: Int
@@ -1156,6 +1295,12 @@ input series_episode_filter {
 
 union series_episode_item_union = episodes
 
+type series_episode_mutated {
+  data: series_episode
+  event: EventEnum
+  key: ID!
+}
+
 input series_filter {
   _and: [series_filter]
   _or: [series_filter]
@@ -1171,6 +1316,7 @@ input series_filter {
   logo: directus_files_filter
   numero: number_filter_operators
   realisation: string_filter_operators
+  slug: string_filter_operators
   synopsis_en: string_filter_operators
   synopsis_fr: string_filter_operators
   titre: string_filter_operators
@@ -1178,6 +1324,12 @@ input series_filter {
   user_created: string_filter_operators
   user_updated: string_filter_operators
   video_bande_annonce: vimeo_metadata_filter
+}
+
+type series_mutated {
+  data: series
+  event: EventEnum
+  key: ID!
 }
 
 input string_filter_operators {
@@ -1233,6 +1385,12 @@ input television_filter {
   description: string_filter_operators
   id: number_filter_operators
   logo: directus_files_filter
+}
+
+type television_mutated {
+  data: television
+  event: EventEnum
+  key: ID!
 }
 
 type vimeo_metadata {
@@ -1291,4 +1449,10 @@ input vimeo_metadata_filter {
   video_id: string_filter_operators
   width: number_filter_operators
   zorobabel_link: string_filter_operators
+}
+
+type vimeo_metadata_mutated {
+  data: vimeo_metadata
+  event: EventEnum
+  key: ID!
 }

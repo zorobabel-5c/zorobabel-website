@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { encodeTitle } from '$lib/utils';
-
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 
@@ -22,7 +20,7 @@
 
 <ul class={classes}>
 	{#each items as item}
-		<li data-list-item-key={encodeTitle(getKey(item))}>
+		<li data-list-item-key={getKey(item)}>
 			<slot {item} />
 		</li>
 	{/each}

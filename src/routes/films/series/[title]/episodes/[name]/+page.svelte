@@ -2,15 +2,12 @@
 	import { page } from '$app/stores';
 	import type { LayoutData } from '../../../$houdini';
 	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
-	import { decodeTitle } from '$lib/utils';
 	export let data: LayoutData;
 
 	$: ({ SeriesPage } = data);
 	$: ({ series = [] } = $SeriesPage.data! ?? {});
-	$: currentSeries = series.find((s) => s.titre === decodeTitle($page.params.title));
-	$: currentEpisode = currentSeries?.episodes?.find(
-		(e) => e?.titre === decodeTitle($page.params.name)
-	);
+	$: currentSeries = series.find((s) => s.slug === $page.params.title);
+	$: currentEpisode = currentSeries?.episodes?.find((e) => e?.slug === $page.params.name);
 </script>
 
 {#if !$SeriesPage.fetching}

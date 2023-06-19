@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { getTitle, truncate, getAndEncodeTitle } from '$lib/utils';
+	import { getTitle, truncate, getSlug } from '$lib/utils';
 
 	import { compose } from '$lib/utils';
 
 	import { page } from '$app/stores';
 	import { imageFromAssets } from '$lib/utils';
-	import type { Titled } from '$lib/utils';
+	import type { Sluggified, Titled } from '$lib/utils';
 
-	type T = $$Generic<Titled>;
+	type T = $$Generic<Sluggified & Titled>;
 
 	export let item: T;
-	export let getLink: (item: T) => string = (it) => `./${getAndEncodeTitle(it)}`;
+	export let getLink: (item: T) => string = (it) => `./${getSlug(it)}`;
 	export let getProcessedTitle: (item: T) => string = compose(getTitle, truncate);
 	export let getLogoId: (item: T) => string | undefined;
 	const logoSrc = imageFromAssets(getLogoId(item));

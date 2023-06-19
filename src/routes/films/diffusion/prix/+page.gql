@@ -10,6 +10,7 @@ query PrixQuery {
 						id
 					}
 					title: titre_original
+					slug
 				}
 				... on films_d_ateliers {
 					__typename
@@ -18,6 +19,7 @@ query PrixQuery {
 						id
 					}
 					title: titre
+					slug
 				}
 				... on films_de_commande {
 					__typename
@@ -26,6 +28,7 @@ query PrixQuery {
 						id
 					}
 					title: titre
+					slug
 				}
 				... on series {
 					__typename
@@ -34,6 +37,7 @@ query PrixQuery {
 						id
 					}
 					title: titre
+					slug
 				}
 				... on episodes {
 					__typename
@@ -42,6 +46,7 @@ query PrixQuery {
 						id
 					}
 					title: titre
+					slug
 				}
 			}
 		}

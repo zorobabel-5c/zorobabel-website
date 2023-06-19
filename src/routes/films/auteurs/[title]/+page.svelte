@@ -2,12 +2,12 @@
 	import { page } from '$app/stores';
 	import type { LayoutData } from '../$houdini';
 	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
-	import { imageFromAssets, decodeTitle, truncate } from '$lib/utils';
+	import { imageFromAssets } from '$lib/utils';
 	export let data: LayoutData;
 
 	$: ({ FilmDAuteurs } = data);
 	$: ({ films = [] } = $FilmDAuteurs.data! ?? {});
-	$: currentFilm = films.find((f) => f.titre_original === decodeTitle($page.params.title));
+	$: currentFilm = films.find((f) => f.slug === $page.params.title);
 </script>
 
 {#if $FilmDAuteurs.data}

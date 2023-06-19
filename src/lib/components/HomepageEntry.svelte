@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { HomepageFilms$result } from '$houdini';
-	import { isAuteur, isEpisode, isFilmDAtelier } from '$lib/utils';
-	import { getTitle, encodeTitle } from '$lib/utils';
+	import { getSlug, isAuteur, isEpisode, isFilmDAtelier } from '$lib/utils';
+	import { getTitle } from '$lib/utils';
 
 	export let entry:
 		| HomepageFilms$result['films_d_ateliers'][number]
@@ -10,11 +10,11 @@
 	export let index: number;
 	$: title = getTitle(entry);
 	$: url = isAuteur(entry)
-		? `/films/auteurs/${encodeTitle(title)}`
+		? `/films/auteurs/${getSlug(entry)}`
 		: isEpisode(entry)
-		? `/films/series/${encodeTitle(entry.series?.titre)}/episodes/${encodeTitle(title)}`
+		? `/films/series/${getSlug(entry.series)}/episodes/${getSlug(entry)}`
 		: isFilmDAtelier(entry)
-		? `/films/ateliers/${encodeTitle(title)}`
+		? `/films/ateliers/${getSlug(entry)}`
 		: '';
 </script>
 

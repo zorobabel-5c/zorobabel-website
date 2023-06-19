@@ -4,6 +4,7 @@ query FilmDAuteurs {
 		lien_video
 		titre_original
 		titre_english
+		slug
 		date_created
 		video {
 			height

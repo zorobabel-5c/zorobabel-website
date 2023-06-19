@@ -7,6 +7,7 @@ query HomepageFilms {
 		id
 		titre
 		lien_video
+		slug
 		date_created
 		video {
 			height
@@ -38,6 +39,7 @@ query HomepageFilms {
 		in_progress
 		titre_original
 		titre_english
+		slug
 		date_created
 		affiche {
 			id
@@ -56,6 +58,7 @@ query HomepageFilms {
 		id
 		lien_video
 		date_created
+		slug
 		titre
 		titre_english
 		numero
@@ -69,6 +72,7 @@ query HomepageFilms {
 		}
 		series {
 			titre
+			slug
 		}
 	}
 
@@ -76,6 +80,7 @@ query HomepageFilms {
 	evenements {
 		__typename
 		id
+		slug
 		affiche {
 			id
 		}
@@ -85,6 +90,7 @@ query HomepageFilms {
 	ateliers {
 		__typename
 		id
+		slug
 		affiche {
 			id
 		}

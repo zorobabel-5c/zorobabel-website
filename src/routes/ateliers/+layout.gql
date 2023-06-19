@@ -1,6 +1,7 @@
 query AteliersQuery {
 	ateliers(sort: "-date_created") {
 		titre
+		slug
 		type_d_atelier
 		date_created
 		description

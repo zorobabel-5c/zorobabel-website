@@ -15,6 +15,7 @@ query FilmDAteliers {
 		synopsis_fr
 		technique
 		titre
+		slug
 		user_created
 		video {
 			html

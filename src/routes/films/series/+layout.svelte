@@ -3,12 +3,12 @@
 	import FilmLayout from '$lib/components/FilmLayout.svelte';
 	import List from '$lib/components/List.svelte';
 	import { page } from '$app/stores';
-	import { decodeTitle, getAndEncodeTitle, removePrefix, truncate } from '$lib/utils';
+	import { getSlug, removePrefix, truncate } from '$lib/utils';
 	import LinkListItem from '$lib/components/LinkListItem.svelte';
 	import { imageFromAssets } from '$lib/utils';
 
 	export let data: LayoutData;
-	let isActive = decodeTitle($page.params.title);
+	let isActive = $page.params.title;
 
 	$: ({ SeriesPage } = data);
 	$: ({ series = [] } = $SeriesPage.data! ?? {});
@@ -26,13 +26,13 @@
 			>
 				<div
 					class="sticky top-0 cursor-pointer font-semibold flex gap-2 items-center mb-4 py-1 px-4 bg-white"
-					class:shadow-sm={isActive === item.titre}
+					class:shadow-sm={isActive === item.slug}
 					on:click={() => {
-						isActive = item.titre;
+						isActive = getSlug(item);
 					}}
 					on:keydown={(e) => {
 						if (e.key === 'Tab' || e.key === 'Enter') {
-							isActive = item.titre;
+							isActive = getSlug(item);
 						}
 					}}
 				>
@@ -51,8 +51,7 @@
 							<LinkListItem
 								item={subItem}
 								getLogoId={(f) => f.logo?.id}
-								getLink={(ep) =>
-									`/films/series/${getAndEncodeTitle(item)}/episodes/${getAndEncodeTitle(ep)}`}
+								getLink={(ep) => `/films/series/${getSlug(item)}/episodes/${getSlug(ep)}`}
 								getProcessedTitle={(ep) => truncate(removePrefix(ep.titre, item.titre))}
 							/>
 						{/if}

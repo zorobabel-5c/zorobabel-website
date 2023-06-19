@@ -1,6 +1,6 @@
 import { compose } from './fn';
 import { encodeTitle } from './string';
-import type { Nullable, Titled } from './types';
+import type { Nullable, Sluggified, Titled } from './types';
 
 export function getTitle(titled: Nullable<Titled>): string {
 	if (!titled) return '';
@@ -11,4 +11,8 @@ export function getTitle(titled: Nullable<Titled>): string {
 	return '';
 }
 
-export const getAndEncodeTitle = compose(getTitle, encodeTitle);
+export function getSlug(sluggified: Sluggified): string {
+	return sluggified?.slug ?? '';
+}
+
+const getAndEncodeTitle = compose(getTitle, encodeTitle);

@@ -2,7 +2,7 @@
 	import type { HomepageFilms$result } from '$houdini';
 	import { imageFromAssets } from '$lib/utils';
 	import { isAtelier, isAuteur, isEvenement } from '$lib/utils';
-	import { getTitle, encodeTitle } from '$lib/utils';
+	import { getTitle, getSlug } from '$lib/utils';
 
 	export let entry:
 		| HomepageFilms$result['evenements'][number]
@@ -16,7 +16,7 @@
 		: isAuteur(entry)
 		? '/films/auteurs/'
 		: '';
-	$: url = `${baseUrl}${encodeTitle(title)}`;
+	$: url = `${baseUrl}${getSlug(entry)}`;
 </script>
 
 <div class="group overflow-hidden mb-1 relative cursor-pointer">
