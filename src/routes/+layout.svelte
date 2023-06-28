@@ -39,7 +39,11 @@
 			class:hidden={!showSideNav}
 			on:click={toggleSideNav}
 		>
-			<li><a href="/">zorobabel</a></li>
+			<li>
+				<a href="/zorobabel" class:text-red-500={$page.url.pathname.startsWith('/zorobabel')}>
+					<p>zorobabel</p>
+				</a>
+			</li>
 			<li>
 				<a href="/films" class:text-red-500={$page.url.pathname.startsWith('/films')}>films</a>
 			</li>
