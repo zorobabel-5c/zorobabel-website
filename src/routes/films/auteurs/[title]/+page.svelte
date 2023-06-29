@@ -40,9 +40,21 @@
 			</div>
 		{/if}
 		<div class="grid grid-cols-3 mt-6">
-			<img src={imageFromAssets(currentFilm?.image_1)} class="object-cover h-full" alt="first" />
-			<img src={imageFromAssets(currentFilm?.image_2)} class="object-cover h-full" alt="second" />
-			<img src={imageFromAssets(currentFilm?.image_3)} class="object-cover h-full" alt="third" />
+			<img
+				src={imageFromAssets(currentFilm?.image_1) + '?width=270&quality=30'}
+				class="object-cover h-full"
+				alt="first"
+			/>
+			<img
+				src={imageFromAssets(currentFilm?.image_2) + '?width=270&quality=30'}
+				class="object-cover h-full"
+				alt="second"
+			/>
+			<img
+				src={imageFromAssets(currentFilm?.image_3) + '?width=270&quality=30'}
+				class="object-cover h-full"
+				alt="third"
+			/>
 		</div>
 		<h1 class="text-2xl mt-6 mb-4">
 			<span>{currentFilm?.titre_original} {currentFilm?.titre_english ? '-' : ''} </span>
@@ -88,7 +100,7 @@
 				<span>{currentFilm?.ville} - {currentFilm?.annee}</span>
 			</li>
 			<li>
-				<img src={imageFromAssets(currentFilm?.affiche)} alt="afiche" />
+				<img src={imageFromAssets(currentFilm?.affiche) + '?width=800&quality=30'} alt="afiche" />
 			</li>
 		</ul>
 	</section>
