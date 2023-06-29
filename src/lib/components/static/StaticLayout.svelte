@@ -10,7 +10,6 @@
 				<slot name="sidemenu" />
 			</ul>
 		</nav>
-		<div class="lg:hidden md:block h-[1px] bg-gray-800 w-[90%] my-8" />
 	</aside>
 	<main class="max-w-[600px] pl-4">
 		<slot name="content" />
