@@ -1,0 +1,5 @@
+query CarreQuery {
+	carre_des_auteurs {
+		contenu
+	}
+}

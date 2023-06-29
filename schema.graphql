@@ -323,6 +323,7 @@ type Query {
   ateliers(filter: ateliers_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ateliers!]!
   ateliers_aggregated(filter: ateliers_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ateliers_aggregated!]!
   ateliers_by_id(id: ID!): ateliers
+  carre_des_auteurs: carre_des_auteurs
   cinema(filter: cinema_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [cinema!]!
   cinema_aggregated(filter: cinema_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [cinema_aggregated!]!
   cinema_by_id(id: ID!): cinema
@@ -358,6 +359,7 @@ type Query {
   series_episode(filter: series_episode_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_episode!]!
   series_episode_aggregated(filter: series_episode_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_episode_aggregated!]!
   series_episode_by_id(id: ID!): series_episode
+  start: start
   television(filter: television_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [television!]!
   television_aggregated(filter: television_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [television_aggregated!]!
   television_by_id(id: ID!): television
@@ -371,6 +373,7 @@ type Subscription {
   Prix_film_awarded_mutated(event: EventEnum): Prix_film_awarded_mutated
   Prix_mutated(event: EventEnum): Prix_mutated
   ateliers_mutated(event: EventEnum): ateliers_mutated
+  carre_des_auteurs_mutated(event: EventEnum): carre_des_auteurs_mutated
   cinema_mutated(event: EventEnum): cinema_mutated
   coproductions_mutated(event: EventEnum): coproductions_mutated
   directus_files_mutated(event: EventEnum): directus_files_mutated
@@ -385,6 +388,7 @@ type Subscription {
   publications_mutated(event: EventEnum): publications_mutated
   series_episode_mutated(event: EventEnum): series_episode_mutated
   series_mutated(event: EventEnum): series_mutated
+  start_mutated(event: EventEnum): start_mutated
   television_mutated(event: EventEnum): television_mutated
   vimeo_metadata_mutated(event: EventEnum): vimeo_metadata_mutated
 }
@@ -465,6 +469,23 @@ input boolean_filter_operators {
   _neq: Boolean
   _nnull: Boolean
   _null: Boolean
+}
+
+type carre_des_auteurs {
+  contenu: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_created: String
+  user_updated: String
+}
+
+type carre_des_auteurs_mutated {
+  data: carre_des_auteurs
+  event: EventEnum
+  key: ID!
 }
 
 type cinema {
@@ -1328,6 +1349,20 @@ input series_filter {
 
 type series_mutated {
   data: series
+  event: EventEnum
+  key: ID!
+}
+
+type start {
+  contenu: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_updated: String
+}
+
+type start_mutated {
+  data: start
   event: EventEnum
   key: ID!
 }
