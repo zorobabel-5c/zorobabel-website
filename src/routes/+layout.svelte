@@ -6,7 +6,7 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<main class="px-[10vw]">
+<main class="max-w-[1300px] mx-auto">
 	<nav class="flex border-b relative border-gray-800 border-solid mb-8 pt-4">
 		<a href="/">
 			<img
@@ -54,14 +54,16 @@
 				</a>
 			</li>
 			<li>
-				<a href="/ateliers" class:text-red-500={$page.url.pathname.startsWith('/ateliers')}
-					>ateliers</a
-				>
+				<a href="/ateliers" class:text-red-500={$page.url.pathname.startsWith('/ateliers')}>
+					<p>ateliers</p>
+					<p>workshops</p>
+				</a>
 			</li>
 			<li>
-				<a href="/événements" class:text-red-500={$page.url.pathname.startsWith('/événements')}
-					>événements</a
-				>
+				<a href="/événements" class:text-red-500={$page.url.pathname.startsWith('/événements')}>
+					<p>événements</p>
+					<p>events</p>
+				</a>
 			</li>
 			<li id="search">
 				<button class="w-6">
