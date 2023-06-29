@@ -29,7 +29,11 @@
 			</p>
 		</div>
 		{#if entry.affiche}
-			<img src={imageFromAssets(entry.affiche)} alt="todo" class="w-full object-cover" />
+			<img
+				src={imageFromAssets(entry.affiche) + '?width=770&quality=30'}
+				alt="todo"
+				class="w-full object-cover"
+			/>
 		{/if}
 	</a>
 </div>
