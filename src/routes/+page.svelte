@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import Afiche from '$lib/components/Afiche.svelte';
+	import Affiche from '$lib/components/Affiche.svelte';
 	import HomepageEntry from '$lib/components/HomepageEntry.svelte';
 	import { pickRandom, sortByDateCreated } from '$lib/utils';
 	import type { PageData } from './$houdini';
@@ -25,7 +25,7 @@
 		<HomepageEntry entry={random} index={0} />
 		{#each combined as entry}
 			{#if entry.affiche?.id}
-				<Afiche {entry} />
+				<Affiche {entry} />
 			{/if}
 		{/each}
 	</section>
