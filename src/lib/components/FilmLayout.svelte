@@ -8,17 +8,17 @@
 	>
 		<nav
 			id="sidenav"
-			class="lg:border-r border-solid border-gray-800"
+			class="lg:border-r border-solid border-gray-800 text-center"
 			data-sveltekit-preload-data="tap"
 		>
-			<ul class="[&>li]:mb-8 overflow-y-scroll lg:h-[calc(100vh-120px)] md:h-[calc(50vh-60px)]">
+			<ul class="[&>li]:mb-8   overflow-y-scroll lg:h-[calc(100vh-120px)] md:h-[calc(50vh-60px)]">
 				<li>
 					<a
 						href="/films/auteurs"
 						class:text-red-500={$page.url.pathname.startsWith('/films/auteurs')}
 					>
 						<p>films d'auteur</p>
-						<p>author's films</p>
+						<p class="italic">author's films</p>
 					</a>
 				</li>
 				<li>
@@ -27,7 +27,7 @@
 						class:text-red-500={$page.url.pathname.startsWith('/films/series')}
 					>
 						<p>séries créatives</p>
-						<p>creative series</p>
+						<p class="italic">creative series</p>
 					</a>
 				</li>
 				<li>
@@ -36,7 +36,7 @@
 						class:text-red-500={$page.url.pathname.startsWith('/films/ateliers')}
 					>
 						<p>films d’atelier</p>
-						<p>workshop's films</p>
+						<p class="italic">workshop's films</p>
 					</a>
 				</li>
 				<li>
@@ -50,7 +50,7 @@
 				<li>
 					<a href="/films/liens" class:text-red-500={$page.url.pathname.startsWith('/films/liens')}>
 						<p>liens</p>
-						<p>links</p>
+						<p class="italic">links</p>
 					</a>
 				</li>
 				<li>

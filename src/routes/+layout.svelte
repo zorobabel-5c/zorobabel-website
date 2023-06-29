@@ -35,7 +35,7 @@
 			class="md:hidden left-0 top-0 h-[100vh] w-[100vw] fixed opacity-0 z-10"
 		/>
 		<ul
-			class="md:flex md:justify-around md:items-center md:pt-4 md:w-full md:h-[unset] md:flex-row md:relative flex-col absolute right-0 top-0 bg-white w-[clamp(200px,60vw,300px)] z-20 h-[50vh] justify-start shadow-sm [&>li]:mb-4 [&>li]:px-4"
+			class="md:flex md:justify-around md:items-center md:pt-4 md:w-full md:h-[unset] md:flex-row md:relative flex-col text-center absolute right-0 top-0 bg-white w-[clamp(200px,60vw,300px)] z-20 h-[50vh] justify-start shadow-sm [&>li]:mb-4 [&>li]:px-4"
 			class:hidden={!showSideNav}
 			on:click={toggleSideNav}
 		>
@@ -50,19 +50,19 @@
 			<li>
 				<a href="/appels" class:text-red-500={$page.url.pathname.startsWith('/appels')}>
 					<p>appels à projet</p>
-					<p>calls for proposal</p>
+					<p class="italic">calls for proposal</p>
 				</a>
 			</li>
 			<li>
 				<a href="/ateliers" class:text-red-500={$page.url.pathname.startsWith('/ateliers')}>
 					<p>ateliers</p>
-					<p>workshops</p>
+					<p class="italic">workshops</p>
 				</a>
 			</li>
 			<li>
 				<a href="/événements" class:text-red-500={$page.url.pathname.startsWith('/événements')}>
 					<p>événements</p>
-					<p>events</p>
+					<p class="italic">events</p>
 				</a>
 			</li>
 			<li id="search">

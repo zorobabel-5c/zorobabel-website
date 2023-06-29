@@ -5,7 +5,7 @@
 
 <FilmLayout>
 	<svelte:fragment slot="nav">
-		<ul class="ml-4">
+		<ul class="ml-4 text-center">
 			<li class:text-red-500={$page.url.pathname.endsWith('/prix')}>
 				<a href="./prix">prix</a>
 			</li>
