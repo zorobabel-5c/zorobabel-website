@@ -16,7 +16,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="equipe" class:text-red-500={$page.url.pathname.startsWith('/zorobabel/l-equipe')}>
+			<a href="equipe" class:text-red-500={$page.url.pathname.startsWith('/zorobabel/equipe')}>
 				<p>l'équipe</p>
 				<p class="italic">the team</p>
 			</a>
