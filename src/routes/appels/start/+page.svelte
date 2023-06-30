@@ -7,5 +7,5 @@
 </script>
 
 {#if !$StartQuery.fetching}
-	<div class="overflow-y-scroll max-h-[85vh]">{@html start?.contenu ?? ''}</div>
+	<div>{@html start?.contenu ?? ''}</div>
 {/if}

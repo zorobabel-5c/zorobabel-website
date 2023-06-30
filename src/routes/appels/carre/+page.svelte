@@ -7,5 +7,5 @@
 </script>
 
 {#if !$CarreQuery.fetching}
-	<div class="overflow-y-scroll max-h-[85vh]">{@html carre_des_auteurs?.contenu ?? ''}</div>
+	<div>{@html carre_des_auteurs?.contenu ?? ''}</div>
 {/if}
