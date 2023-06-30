@@ -1,4 +1,4 @@
-query AteliersQuery {
+query StagesQuery {
 	ateliers(sort: "-date_created") {
 		titre
 		slug

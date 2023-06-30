@@ -4,12 +4,12 @@
 
 	export let data: LayoutData;
 
-	$: ({ AteliersQuery } = data);
-	$: ({ ateliers = [] } = $AteliersQuery.data! ?? {});
+	$: ({ SoirsQuery } = data);
+	$: ({ ateliers = [] } = $SoirsQuery.data! ?? {});
 	$: soirs = ateliers.filter((atelier) => atelier.type_d_atelier === 'soir');
 </script>
 
-{#if !$AteliersQuery.fetching}
+{#if !$SoirsQuery.fetching}
 	{#each soirs as item}
 		<div class="pb-8">
 			<img

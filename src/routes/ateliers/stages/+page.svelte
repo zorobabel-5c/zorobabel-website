@@ -4,13 +4,13 @@
 
 	export let data: LayoutData;
 
-	$: ({ AteliersQuery } = data);
-	$: ({ ateliers = [] } = $AteliersQuery.data! ?? {});
-	$: workshops = ateliers.filter((atelier) => atelier.type_d_atelier === 'enfants');
+	$: ({ StagesQuery } = data);
+	$: ({ ateliers = [] } = $StagesQuery.data! ?? {});
+	$: stages = ateliers.filter((atelier) => atelier.type_d_atelier === 'enfants');
 </script>
 
-{#if !$AteliersQuery.fetching}
-	{#each workshops as item}
+{#if !$StagesQuery.fetching}
+	{#each stages as item}
 		<div class="pb-8">
 			<img
 				src={imageFromAssets(item.affiche) + '?width=770&quality=30'}
