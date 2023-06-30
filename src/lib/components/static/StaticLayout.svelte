@@ -11,7 +11,7 @@
 			</ul>
 		</nav>
 	</aside>
-	<main class="max-w-[600px] pl-4 [&_p]:pb-5">
+	<main class="max-w-[600px] pl-4 [&_p]:pb-5 [&_a]:text-red-500">
 		<slot name="content" />
 	</main>
 </section>
