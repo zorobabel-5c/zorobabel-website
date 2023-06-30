@@ -1,12 +1,12 @@
 {
 	"name": "zorobabel",
-	"version": "0.0.1",
+	"version": "0.0.4",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"build:image": "docker build . -t zorobabel/svelte-app",
-		"run:image": "docker run -p 3000:3000 -d zorobabel/svelte-app",
+		"build:image": "docker build . -t ruihildt/zorobabel",
+		"run:image": "docker run -p 3000:3000 -d ruihildt/zorobabel",
 		"start": "node build",
 		"preview": "vite preview",
 		"generate": "npx houdini pull-schema && npx houdini generate",
