@@ -320,6 +320,7 @@ type Query {
   Prix_film_awarded(filter: Prix_film_awarded_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Prix_film_awarded!]!
   Prix_film_awarded_aggregated(filter: Prix_film_awarded_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Prix_film_awarded_aggregated!]!
   Prix_film_awarded_by_id(id: ID!): Prix_film_awarded
+  a_propos: a_propos
   ateliers(filter: ateliers_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ateliers!]!
   ateliers_aggregated(filter: ateliers_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ateliers_aggregated!]!
   ateliers_by_id(id: ID!): ateliers
@@ -327,6 +328,7 @@ type Query {
   cinema(filter: cinema_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [cinema!]!
   cinema_aggregated(filter: cinema_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [cinema_aggregated!]!
   cinema_by_id(id: ID!): cinema
+  contact: contact
   coproductions(filter: coproductions_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [coproductions!]!
   coproductions_aggregated(filter: coproductions_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [coproductions_aggregated!]!
   coproductions_by_id(id: ID!): coproductions
@@ -346,6 +348,8 @@ type Query {
   films_de_commande(filter: films_de_commande_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_de_commande!]!
   films_de_commande_aggregated(filter: films_de_commande_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_de_commande_aggregated!]!
   films_de_commande_by_id(id: ID!): films_de_commande
+  l_equipe: l_equipe
+  le_logo: le_logo
   liens(filter: liens_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [liens!]!
   liens_aggregated(filter: liens_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [liens_aggregated!]!
   liens_by_id(id: ID!): liens
@@ -372,9 +376,11 @@ type Subscription {
   Films_d_auteur_mutated(event: EventEnum): Films_d_auteur_mutated
   Prix_film_awarded_mutated(event: EventEnum): Prix_film_awarded_mutated
   Prix_mutated(event: EventEnum): Prix_mutated
+  a_propos_mutated(event: EventEnum): a_propos_mutated
   ateliers_mutated(event: EventEnum): ateliers_mutated
   carre_des_auteurs_mutated(event: EventEnum): carre_des_auteurs_mutated
   cinema_mutated(event: EventEnum): cinema_mutated
+  contact_mutated(event: EventEnum): contact_mutated
   coproductions_mutated(event: EventEnum): coproductions_mutated
   directus_files_mutated(event: EventEnum): directus_files_mutated
   episodes_mutated(event: EventEnum): episodes_mutated
@@ -383,6 +389,8 @@ type Subscription {
   festivals_mutated(event: EventEnum): festivals_mutated
   films_d_ateliers_mutated(event: EventEnum): films_d_ateliers_mutated
   films_de_commande_mutated(event: EventEnum): films_de_commande_mutated
+  l_equipe_mutated(event: EventEnum): l_equipe_mutated
+  le_logo_mutated(event: EventEnum): le_logo_mutated
   liens_mutated(event: EventEnum): liens_mutated
   partenariats_mutated(event: EventEnum): partenariats_mutated
   publications_mutated(event: EventEnum): publications_mutated
@@ -391,6 +399,23 @@ type Subscription {
   start_mutated(event: EventEnum): start_mutated
   television_mutated(event: EventEnum): television_mutated
   vimeo_metadata_mutated(event: EventEnum): vimeo_metadata_mutated
+}
+
+type a_propos {
+  contenu: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_created: String
+  user_updated: String
+}
+
+type a_propos_mutated {
+  data: a_propos
+  event: EventEnum
+  key: ID!
 }
 
 type ateliers {
@@ -520,6 +545,23 @@ input cinema_filter {
 
 type cinema_mutated {
   data: cinema
+  event: EventEnum
+  key: ID!
+}
+
+type contact {
+  contenu: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_created: String
+  user_updated: String
+}
+
+type contact_mutated {
+  data: contact
   event: EventEnum
   key: ID!
 }
@@ -1103,6 +1145,40 @@ input films_de_commande_filter {
 
 type films_de_commande_mutated {
   data: films_de_commande
+  event: EventEnum
+  key: ID!
+}
+
+type l_equipe {
+  contenu: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_created: String
+  user_updated: String
+}
+
+type l_equipe_mutated {
+  data: l_equipe
+  event: EventEnum
+  key: ID!
+}
+
+type le_logo {
+  contenu: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_created: String
+  user_updated: String
+}
+
+type le_logo_mutated {
+  data: le_logo
   event: EventEnum
   key: ID!
 }
