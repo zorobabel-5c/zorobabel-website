@@ -1,0 +1,9 @@
+query PublicationsQuery {
+	publications {
+		titre
+		description
+		couverture {
+			id
+		}
+	}
+}
