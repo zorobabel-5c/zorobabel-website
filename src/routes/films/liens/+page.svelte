@@ -1,9 +1,26 @@
 <script lang="ts">
-	import FilmLayout from '$lib/components/FilmLayout.svelte';
+	import FilmsSingleNavLayout from '$lib/components/FilmsSingleNavLayout.svelte';
+	import { imageFromAssets } from '$lib/utils';
+	import type { PageData } from './$houdini';
+
+	export let data: PageData;
+
+	$: ({ LiensQuery } = data);
+	$: ({ liens } = $LiensQuery.data! ?? {});
 </script>
 
-<FilmLayout>
-	<div slot="content">
-		<h1>Links</h1>
+<FilmsSingleNavLayout>
+	<div slot="content" class="grid gap-8 grid-cols-3 mt-6">
+		{#if !$LiensQuery.fetching}
+			{#each liens as item}
+				<a href={item.lien}>
+					<img
+						src={imageFromAssets(item.image) + '?width=270&quality=30'}
+						class="object-cover h-full"
+						alt={item.lien}
+					/>
+				</a>
+			{/each}
+		{/if}
 	</div>
-</FilmLayout>
+</FilmsSingleNavLayout>
