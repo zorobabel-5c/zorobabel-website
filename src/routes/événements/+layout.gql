@@ -1,0 +1,10 @@
+query EventsQuery {
+	evenements {
+		titre
+		description
+		date_de_peremption
+		affiche {
+			id
+		}
+	}
+}
