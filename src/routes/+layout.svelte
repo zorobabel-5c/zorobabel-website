@@ -60,7 +60,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="/événements" class:text-red-500={$page.url.pathname.startsWith('/événements')}>
+				<a href="/evenements" class:text-red-500={$page.url.pathname.startsWith('/evenements')}>
 					<p>événements</p>
 					<p class="italic">events</p>
 				</a>

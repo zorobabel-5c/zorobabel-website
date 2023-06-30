@@ -6,7 +6,7 @@
 <StaticLayout>
 	<svelte:fragment slot="sidemenu">
 		<li>
-			<a href="stages" class:text-red-500={$page.url.pathname.startsWith('/événements')}>
+			<a href="stages" class:text-red-500={$page.url.pathname.startsWith('/evenements')}>
 				<p>événements</p>
 			</a>
 		</li>

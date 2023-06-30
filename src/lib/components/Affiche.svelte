@@ -10,7 +10,7 @@
 		| HomepageFilms$result['auteurs'][number];
 	$: title = getTitle(entry);
 	$: baseUrl = isEvenement(entry)
-		? `/événements/`
+		? `/evenements/`
 		: isAtelier(entry)
 		? `/ateliers/`
 		: isAuteur(entry)

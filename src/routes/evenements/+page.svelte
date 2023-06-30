@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import StaticLayout from '$lib/components/static/StaticLayout.svelte';
 	import { imageFromAssets } from '$lib/utils';
-	import type { LayoutData } from './$houdini';
+	import type { LayoutData } from '../événements/$houdini';
 
 	export let data: LayoutData;
 
@@ -13,7 +13,7 @@
 <StaticLayout>
 	<svelte:fragment slot="sidemenu">
 		<li>
-			<a href="événements" class:text-red-500={$page.url.pathname.startsWith('événements')}>
+			<a href="evenements" class:text-red-500={$page.url.pathname.startsWith('evenements')}>
 				<p>événements</p>
 			</a>
 		</li>
