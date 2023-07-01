@@ -37,7 +37,7 @@
 					}}
 				>
 					<img src={imageFromAssets(item.logo?.id)} alt="logo" class="w-10" />
-					<span>{truncate(item.titre)}</span>
+					<span class="font-bold">{truncate(item.titre)}</span>
 				</div>
 				{#if isActive === item.slug}
 					<List
