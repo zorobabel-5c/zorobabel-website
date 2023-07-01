@@ -1,5 +1,0 @@
-query EquipeQuery {
-	l_equipe {
-		contenu
-	}
-}

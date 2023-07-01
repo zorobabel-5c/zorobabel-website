@@ -1,4 +1,4 @@
-<section id="zorobabel" class="grid lg:grid-cols-[211px_1fr] md:grid-cols-[250px_1fr]">
+<section id="zorobabel" class="grid lg:grid-cols-[211px_1fr] md:grid-cols-[250px_1fr] ">
 	<aside
 		class="grid lg:grid-cols-[1fr] md:lg:grid-cols-[1fr] lg:border-none md:border-r border-solid border-gray-800 md:mr-4"
 	>

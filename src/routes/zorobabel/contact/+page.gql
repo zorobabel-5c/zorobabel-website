@@ -1,5 +1,11 @@
-query ContactQuery {
+query ProposQuery {
+	a_propos {
+		contenu
+	}
 	contact {
+		contenu
+	}
+	l_equipe {
 		contenu
 	}
 }

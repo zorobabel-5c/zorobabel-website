@@ -11,12 +11,12 @@
 			</a>
 		</li>
 		<li>
-			<a href="a-propos" class:text-red-500={$page.url.pathname.startsWith('/zorobabel/a-propos')}>
+			<a href="contact#a-propos" class:text-red-500={$page.url.pathname.endsWith('#a-propos')}>
 				<p>à propos</p>
 			</a>
 		</li>
 		<li>
-			<a href="equipe" class:text-red-500={$page.url.pathname.startsWith('/zorobabel/equipe')}>
+			<a href="contact#equipe" class:text-red-500={$page.url.pathname.startsWith('#equipe')}>
 				<p>l'équipe</p>
 				<p class="italic">the team</p>
 			</a>
