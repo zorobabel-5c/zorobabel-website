@@ -11,7 +11,7 @@
 </script>
 
 {#if !$SeriesPage.fetching}
-	<h1 class="text-2xl">
+	<h1 class="text-xl font-josefin uppercase">
 		<span>{currentSeries?.titre} {currentSeries?.titre_english ? '-' : ''} </span><span
 			class="italic font-thin">{currentSeries?.titre_english}</span
 		>
