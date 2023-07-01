@@ -43,6 +43,7 @@
 
 - [ ] Remove the always active scrollbar
 - [ ] Fix the 'todo' displayed as an alt for images
+- [ ] There's a bug in flows, where if the video is already there (for exameple in series), itwill error instead of applying existing vimeo data
 
 # Optimization
 
