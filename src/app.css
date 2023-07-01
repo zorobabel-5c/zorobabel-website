@@ -5,3 +5,13 @@
 html {
 	scroll-behavior: smooth;
 }
+
+@layer base {
+	@font-face {
+		font-family: 'Josefin Sans';
+		src: local('Josefin Sans'), local('Josefin-Sans'), local('josefin sans'), local('josefin-sans'),
+			url('/fonts/JosefinSans-Regular.woff'), url('/fonts/JosefinSans-Regular.woff2');
+		font-weight: normal;
+		font-display: swap;
+	}
+}
