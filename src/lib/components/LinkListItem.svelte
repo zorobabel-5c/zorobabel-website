@@ -22,7 +22,7 @@
 >
 	<div class="flex gap-2 items-center px-2">
 		{#if logoSrc}
-			<img src={logoSrc + '?width=40'} alt="logo" class="w-10" />
+			<img src={logoSrc + '?width=32'} alt="logo" class="w-8" />
 		{/if}
 		<span>{getProcessedTitle(item)}</span>
 	</div>

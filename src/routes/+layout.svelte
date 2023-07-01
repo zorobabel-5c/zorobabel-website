@@ -6,13 +6,15 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<main class="max-w-[1300px] mx-auto">
-	<nav class="flex border-b relative border-gray-800 border-solid mb-8 pt-4">
+<main class="max-w-[900px] mx-auto">
+	<nav
+		class="flex items-center border-b relative font-josefin border-gray-800 border-solid mb-8 pt-4"
+	>
 		<a href="/">
 			<img
 				src="https://backend-zorobabel.5c.be/assets/62c21e86-8e74-4f41-afd0-a243b80f7b5a"
 				alt=""
-				class="aspect-square w-[70px]"
+				class="aspect-square w-[50px]"
 			/>
 		</a>
 		<div class="flex-1" />

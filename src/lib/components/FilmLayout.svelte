@@ -1,17 +1,22 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+
+	$: uppercasify =
+		$page.url.pathname.startsWith('/films/auteurs') ||
+		$page.url.pathname.startsWith('/films/series') ||
+		$page.url.pathname.startsWith('/films/ateliers');
 </script>
 
 <section id="films" class="grid lg:grid-cols-[500px_1fr] md:grid-cols-[250px_1fr]">
 	<aside
-		class="grid lg:grid-cols-[1fr_1.5fr] md:lg:grid-cols-[1fr] lg:border-none md:border-r border-solid border-gray-800 md:mr-4"
+		class="grid lg:grid-cols-[1fr_1.5fr] md:lg:grid-cols-[1fr] lg:border-none md:border-r border-solid border-gray-800 md:mr-4 font-josefin"
 	>
 		<nav
 			id="sidenav"
 			class="lg:border-r border-solid border-gray-800 text-center"
 			data-sveltekit-preload-data="tap"
 		>
-			<ul class="[&>li]:mb-8   overflow-y-scroll lg:h-[calc(100vh-120px)] md:h-[calc(50vh-60px)]">
+			<ul class="[&>li]:mb-12 overflow-y-scroll lg:h-[calc(100vh-120px)] md:h-[calc(50vh-60px)]">
 				<li>
 					<a
 						href="/films/auteurs"
@@ -66,7 +71,9 @@
 		<div class="lg:hidden md:block h-[1px] bg-gray-800 w-[90%] my-8" />
 		<nav
 			id="second_sidenav"
-			class="lg:border-r border-solid border-gray-800 lg:mr-4 [&>ul>li]:mb-8 lg:[&>ul]:h-[calc(100vh-120px)] [&>ul]:md:h-[calc(50vh-60px)] [&>ul]:overflow-y-scroll"
+			class:uppercase={uppercasify}
+			class:text-[11px]={uppercasify}
+			class="lg:border-r border-solid border-gray-800 lg:mr-4 [&>ul>li]:mb-2 lg:[&>ul]:h-[calc(100vh-120px)] [&>ul]:md:h-[calc(50vh-60px)] [&>ul]:overflow-y-scroll"
 		>
 			<slot name="nav" />
 		</nav>
