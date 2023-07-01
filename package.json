@@ -1,12 +1,16 @@
 {
 	"name": "zorobabel",
-	"version": "0.0.4",
+	"version": "0.0.7",
 	"private": true,
+	"config": {
+		"imageRepo": "ruihildt/zorobabel"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"build:image": "docker build . -t ruihildt/zorobabel",
-		"run:image": "docker run -p 3000:3000 -d ruihildt/zorobabel",
+		"docker:build": "docker build . --no-cache -t $npm_package_config_imageRepo:$npm_package_version",
+		"docker:push": "docker push ruihildt/zorobabel:$npm_package_version",
+		"docker:run": "docker run -p 3000:3000 -d ruihildt/zorobabel",
 		"start": "node build",
 		"preview": "vite preview",
 		"generate": "npx houdini pull-schema && npx houdini generate",
