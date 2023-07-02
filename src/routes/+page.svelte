@@ -21,7 +21,7 @@
 </script>
 
 {#if !$HomepageFilms.fetching}
-	<section class="xl:columns-4 lg:columns-3 md:columns-2 sm:columns-1 gap-0 font-josefin">
+	<section class=" lg:columns-4 md:columns-3 sm:columns-2 gap-0 font-josefin">
 		<HomepageEntry entry={random} index={0} />
 		{#each combined as entry}
 			{#if entry.affiche?.id}

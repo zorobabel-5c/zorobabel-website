@@ -10,7 +10,7 @@
 </script>
 
 <FilmsSingleNavLayout>
-	<div slot="content" class="grid gap-8 grid-cols-3 mt-6">
+	<div slot="content" class="grid gap-1 grid-cols-6 mt-6">
 		{#if !$LiensQuery.fetching}
 			{#each liens as item}
 				<a href={item.lien}>

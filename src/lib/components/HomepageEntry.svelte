@@ -28,7 +28,7 @@
 			</p>
 		</div>
 		<img
-			src={entry.video?.thumbnail_url + '?width=770&quality=30'}
+			src={entry.video?.thumbnail_url + '?width=300&quality=30'}
 			alt="todo"
 			class:aspect-video={index % 2 !== 0}
 			class:aspect-square={index % 2 === 0}

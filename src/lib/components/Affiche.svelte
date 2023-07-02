@@ -30,7 +30,7 @@
 		</div>
 		{#if entry.affiche}
 			<img
-				src={imageFromAssets(entry.affiche) + '?width=770&quality=30'}
+				src={imageFromAssets(entry.affiche) + '?width=300&quality=30'}
 				alt="todo"
 				class="w-full object-cover"
 			/>

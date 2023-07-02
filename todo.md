@@ -1,12 +1,12 @@
 # Menus
 
-- [ ] films > diffusion > evenement link is broken
 - [ ] Apply a mt-[-4px] margin to english string (we want them close to the french string)
 - [ ] films > diffusion: second nav items should have a mb-12 applied to them
-- [ ] films > series: Fix italic / bold for Second nav series title (Murmuziek should be super bold)
+- [ ] films > series: Fix italic / bold for Second nav series title (Murmuziek should be black)
 - [ ] Fix the width of the first nav to be less wide
 - [ ] Fix the width of the second nav to be less wide
 - [ ] Make the search icon smaller
+- [x] films > diffusion > evenement link is broken
 
 # Homepage
 

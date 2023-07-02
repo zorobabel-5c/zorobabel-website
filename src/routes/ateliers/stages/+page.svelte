@@ -13,7 +13,7 @@
 	{#each stages as item}
 		<div class="pb-8">
 			<img
-				src={imageFromAssets(item.affiche) + '?width=770&quality=30'}
+				src={imageFromAssets(item.affiche) + '?width=573&quality=30'}
 				alt="todo"
 				class="w-full object-cover"
 			/>

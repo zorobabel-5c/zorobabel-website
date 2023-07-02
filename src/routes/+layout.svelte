@@ -6,7 +6,7 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<main class="max-w-[900px] mx-auto">
+<main class="max-w-[800px] mx-auto">
 	<nav
 		class="flex items-center border-b relative font-josefin border-gray-800 border-solid mb-8 pt-4"
 	>
@@ -68,7 +68,7 @@
 				</a>
 			</li>
 			<li id="search">
-				<button class="w-6">
+				<button class="w-4">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						xmlns:xlink="http://www.w3.org/1999/xlink"

@@ -7,6 +7,16 @@ module.exports = {
 				josefin: ['Josefin Sans']
 				// jost: ['Jost']
 			}
+		},
+		screens: {
+			sm: '400px',
+			// => @media (min-width: 400px) { ... }
+
+			md: '600px',
+			// => @media (min-width: 600px) { ... }
+
+			lg: '800px'
+			// => @media (min-width: 800px) { ... }
 		}
 	},
 	plugins: []
