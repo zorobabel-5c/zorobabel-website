@@ -1,10 +1,10 @@
 {
 	"name": "zorobabel",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"private": true,
 	"config": {
 		"imageRepo": "ruihildt/zorobabel",
-		"cloudonAppId": " 444bfd8b-3c71-4ece-9842-cf8c0dee35c7"
+		"cloudonAppId": "444bfd8b-3c71-4ece-9842-cf8c0dee35c7"
 	},
 	"scripts": {
 		"dev": "vite dev",

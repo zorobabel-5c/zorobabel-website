@@ -52,7 +52,7 @@
 								item={subItem}
 								getLogoId={(f) => f.logo?.id}
 								getLink={(ep) => `/films/series/${getSlug(item)}/episodes/${getSlug(ep)}`}
-								getProcessedTitle={(ep) => truncate(removePrefix(ep.titre, item.titre), 52)}
+								getProcessedTitle={(ep) => truncate(removePrefix(ep.titre, item.titre), 51)}
 							/>
 						{/if}
 					</List>
