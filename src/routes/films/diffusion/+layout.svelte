@@ -13,7 +13,7 @@
 				<a href="./festivals">festivals</a>
 			</li>
 			<li class:text-red-500={$page.url.pathname.endsWith('/evenements')}>
-				<a href="./événements">
+				<a href="./evenements">
 					<p>événements</p>
 					<p>events</p>
 				</a>

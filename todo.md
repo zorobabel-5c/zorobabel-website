@@ -23,7 +23,7 @@
 # Ateliers / Evenements
 
 - [x] Fix styling of all pages
-- [ ] Hide past events automatically
+- [ ] Hide past events automatically and show "Nothing to show for now"
 - [ ] Find a way to create unique links for events
 
 # Search
@@ -45,6 +45,7 @@
 ## Series page
 
 - [ ] Make clicking on series title show the series page
+- [ ] On opening, Murmuziek details are displaye don the side and its episodes are visible
 
 ## Others
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import List from '$lib/components/List.svelte';
 	import { imageFromAssets } from '$lib/utils';
-	import type { PageData } from './$houdini';
+	import type { PageData } from '../événements/$houdini';
 
 	export let data: PageData;
 

@@ -7,9 +7,9 @@
 		$page.url.pathname.startsWith('/films/ateliers');
 </script>
 
-<section id="films" class="grid lg:grid-cols-[500px_1fr] md:grid-cols-[250px_1fr]">
+<section id="films" class="grid lg:grid-cols-[380px_1fr] md:grid-cols-[250px_1fr]">
 	<aside
-		class="grid lg:grid-cols-[1fr_1.5fr] md:lg:grid-cols-[1fr] lg:border-none md:border-r border-solid border-gray-800 md:mr-4 font-josefin"
+		class="grid lg:grid-cols-[130px_1fr] md:lg:grid-cols-[1fr] lg:border-none md:border-r border-solid border-gray-800  font-josefin"
 	>
 		<nav
 			id="sidenav"

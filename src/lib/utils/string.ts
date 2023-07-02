@@ -1,6 +1,6 @@
 import type { Nullable } from './types';
 
-export function truncate(str: string, len = 30): string {
+export function truncate(str: string, len = 50): string {
 	if (str.length > len) {
 		return str.slice(0, len) + '...';
 	}
