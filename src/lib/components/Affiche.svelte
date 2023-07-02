@@ -19,7 +19,7 @@
 	$: url = `${baseUrl}${getSlug(entry)}`;
 </script>
 
-<div class="group overflow-hidden mb-1 relative cursor-pointer">
+<div class="group overflow-hidden relative cursor-pointer">
 	<a href={title ? url : '#'}>
 		<div
 			class="absolute h-full w-full bg-black opacity-80 hidden group-hover:flex justify-center items-center"

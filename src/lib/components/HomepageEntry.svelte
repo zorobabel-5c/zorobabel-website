@@ -18,7 +18,7 @@
 		: '';
 </script>
 
-<div class="group rounded-md overflow-hidden mb-1 relative cursor-pointer">
+<div class="group overflow-hidden relative cursor-pointer font-josefin">
 	<a href={url}>
 		<div
 			class="absolute h-full w-full bg-black opacity-80 hidden group-hover:flex justify-center items-center"
@@ -35,4 +35,9 @@
 			class="w-full object-cover"
 		/>
 	</a>
+	<p class="py-2">
+		film du catalogue: <span class="italic"
+			>{!isEpisode(entry) ? title : `${getTitle(entry.series)} - EP${entry.numero} ${title}`}</span
+		>
+	</p>
 </div>
