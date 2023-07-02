@@ -37,7 +37,7 @@
 					}}
 				>
 					<img src={imageFromAssets(item.logo?.id)} alt="logo" class="w-10" />
-					<span class="font-bold">{truncate(item.titre)}</span>
+					<span class="font-bold">{truncate(item.titre, 40)}</span>
 				</div>
 				{#if isActive === item.slug}
 					<List
@@ -52,7 +52,7 @@
 								item={subItem}
 								getLogoId={(f) => f.logo?.id}
 								getLink={(ep) => `/films/series/${getSlug(item)}/episodes/${getSlug(ep)}`}
-								getProcessedTitle={(ep) => truncate(removePrefix(ep.titre, item.titre))}
+								getProcessedTitle={(ep) => truncate(removePrefix(ep.titre, item.titre), 52)}
 							/>
 						{/if}
 					</List>
