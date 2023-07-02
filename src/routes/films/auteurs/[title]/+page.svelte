@@ -30,7 +30,7 @@
 			<span />
 		</div>
 		<VimeoIframe video={currentFilm?.video} />
-		<div class="columns-2 text-lg">
+		<div class="columns-2">
 			<p>{currentFilm?.synopsis_fr ?? ''}</p>
 			<p>{currentFilm?.synopsis_en ?? ''}</p>
 		</div>

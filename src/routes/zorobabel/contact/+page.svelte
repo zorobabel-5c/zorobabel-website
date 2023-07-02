@@ -8,8 +8,9 @@
 
 {#if !$ProposQuery.fetching}
 	<div id="contact">{@html contact?.contenu ?? ''}</div>
-	<!-- svelte-ignore a11y-missing-attribute -->
+	<div id="a-propos">{@html a_propos?.contenu ?? ''}</div>
 	<iframe
+		title="map"
 		width="100%"
 		height="350"
 		frameborder="0"
@@ -18,6 +19,5 @@
 		marginwidth="0"
 		src="https://www.openstreetmap.org/export/embed.html?bbox=4.321864843368531%2C50.81766617771769%2C4.32863473892212%2C50.82108574264538&amp;layer=hot&amp;marker=50.81937599148283%2C4.325249791145325"
 	/><br />
-	<div id="a-propos">{@html a_propos?.contenu ?? ''}</div>
 	<div id="equipe">{@html l_equipe?.contenu ?? ''}</div>
 {/if}

@@ -17,9 +17,7 @@
 				alt="todo"
 				class="w-full object-cover"
 			/>
-			<h1>
-				{item.titre}
-			</h1>
+			<h1 class="my-4">{item.titre}</h1>
 			<p>{@html item.description}</p>
 		</div>
 	{/each}

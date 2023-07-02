@@ -18,11 +18,11 @@
 
 # zorobabel / appels a projets
 
-- [ ] Fix styling of all pages
+- [x] Fix styling of all pages
 
 # Ateliers / Evenements
 
-- [ ] Fix styling of all pages
+- [x] Fix styling of all pages
 - [ ] Hide past events automatically
 - [ ] Find a way to create unique links for events
 

@@ -7,9 +7,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <main class="max-w-[800px] mx-auto">
-	<nav
-		class="flex items-center border-b relative font-josefin border-gray-800 border-solid mb-8 pt-4"
-	>
+	<nav class="flex items-center border-b relative font-josefin border-gray-800 border-solid mb-6">
 		<a href="/">
 			<img
 				src="https://backend-zorobabel.5c.be/assets/62c21e86-8e74-4f41-afd0-a243b80f7b5a"

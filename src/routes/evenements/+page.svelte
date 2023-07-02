@@ -6,6 +6,14 @@
 
 	export let data: LayoutData;
 
+	function formatDate(date_de_peremption: string) {
+		const date = new Date(date_de_peremption);
+		const day = date.getDate().toString().padStart(2, '0');
+		const month = (date.getMonth() + 1).toString().padStart(2, '0');
+		const year = date.getFullYear().toString();
+		return `${day}/${month}/${year}`;
+	}
+
 	$: ({ EventsQuery } = data);
 	$: ({ evenements = [] } = $EventsQuery.data! ?? {});
 </script>
@@ -21,17 +29,18 @@
 	<div slot="content">
 		{#if !$EventsQuery.fetching}
 			{#each evenements as item}
-				<div class="pb-8">
+				<div class="border-b border-black mb-5">
 					<img
 						src={imageFromAssets(item.affiche) + '?width=573&quality=30'}
 						alt="todo"
 						class="w-full object-cover"
 					/>
-					<h1>
-						{item.titre}
-					</h1>
-					<p>{@html item.description}</p>
-					<p>{item.date_de_peremption}</p>
+					<div class="my-4">
+						<h1>
+							{item.titre} <span class="font-josefin">- {formatDate(item.date_de_peremption)}</span>
+						</h1>
+					</div>
+					{@html item.description}
 				</div>
 			{/each}
 		{/if}

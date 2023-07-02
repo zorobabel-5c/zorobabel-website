@@ -78,7 +78,7 @@
 			<slot name="nav" />
 		</nav>
 	</aside>
-	<main>
+	<main class="text-sm">
 		<slot name="content" />
 	</main>
 </section>
