@@ -11,7 +11,7 @@
 			</ul>
 		</nav>
 	</aside>
-	<main class=" pl-4 [&_p]:pb-5 [&_a]:text-red-500 text-sm [&_h1]:font-bold [&_h2]:font-bold">
+	<main class="[&_p]:pb-5 [&_a]:text-red-500 text-sm [&_h1]:font-bold [&_h2]:font-bold">
 		<slot name="content" />
 	</main>
 </section>

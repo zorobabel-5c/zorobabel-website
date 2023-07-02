@@ -11,27 +11,25 @@
 
 {#if !$FilmDAteliers.fetching}
 	{#if currentFilm?.titre}
-		<h1 class="text-2xl text-center">
+		<h1 class="text-center font-josefin uppercase">
 			{currentFilm?.titre}
 		</h1>
 	{/if}
-	<div class="my-4 text-center">
-		<span>{currentFilm?.public},</span>
-		<span>{currentFilm?.technique},</span>
-		<span>{currentFilm?.duree_minutes}'</span>
-		<span>{currentFilm?.duree_secondes}",</span>
-		{#if currentFilm?.annee}
-			<span>{currentFilm.annee}</span>
-		{/if}
+	<div class="text-center">
+		<span
+			>{currentFilm?.public}, {currentFilm?.technique}, {currentFilm?.duree_minutes}8’{currentFilm?.duree_secondes}’’,
+			{#if currentFilm?.annee}
+				{currentFilm.annee}.
+			{/if}
+		</span>
 		{#if currentFilm?.partenariats}
-			<span>{@html currentFilm.partenariats}</span>
+			<p>{@html currentFilm.partenariats}</p>
 		{/if}
-		<span />
 	</div>
 	<VimeoIframe video={currentFilm?.video} />
-	<!-- {#if currentFilm?.synopsis_fr}
+	{#if currentFilm?.synopsis_fr}
 		<div>
 			<p>{currentFilm?.synopsis_fr}</p>
 		</div>
-	{/if} -->
+	{/if}
 {/if}

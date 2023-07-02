@@ -31,7 +31,7 @@
 			{#each evenements as item}
 				<div class="border-b border-black mb-5">
 					<img
-						src={imageFromAssets(item.affiche) + '?width=638&quality=30'}
+						src={imageFromAssets(item.affiche) + '?width=654&quality=30'}
 						alt="todo"
 						class="w-full object-cover"
 					/>
