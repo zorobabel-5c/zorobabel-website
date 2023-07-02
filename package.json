@@ -3,13 +3,15 @@
 	"version": "0.0.7",
 	"private": true,
 	"config": {
-		"imageRepo": "ruihildt/zorobabel"
+		"imageRepo": "ruihildt/zorobabel",
+		"cloudonAppId": " 444bfd8b-3c71-4ece-9842-cf8c0dee35c7"
 	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
 		"docker:build": "docker build . --no-cache -t $npm_package_config_imageRepo:$npm_package_version",
 		"docker:push": "docker push ruihildt/zorobabel:$npm_package_version",
+		"cloudron:update": "cloudron update --app $npm_package_config_cloudonAppId --image $npm_package_config_imageRepo:$npm_package_version",
 		"docker:run": "docker run -p 3000:3000 -d ruihildt/zorobabel",
 		"start": "node build",
 		"preview": "vite preview",

@@ -6,12 +6,15 @@
 - [ ] Fix the width of the first nav to be less wide
 - [ ] Fix the width of the second nav to be less wide
 - [ ] Make the search icon smaller
+- [ ] On hover, change to red
+- [ ] Fix the responsive menu
 - [x] films > diffusion > evenement link is broken
 
 # Homepage
 
 - [ ] When clicking on the video, there should be modal with the player + arrows left and right to go to previous/next video
 - [ ] Make the overlay josefin font extralight
+- [ ] When the video is an episode, routing is wrong, example of a result: `https://zorobabel.5c.be/films/series/les-24-heures-de-l-animation/episodes/24h-the-circle-square-project-clochard-d-assaut` or `https://zorobabel.5c.be/films/series/les-24-heures-de-l-animation/episodes/c-est-dans-la-boite`
 
 # zorobabel / appels a projets
 
