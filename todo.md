@@ -27,7 +27,7 @@
 
 - [ ] Hide past events automatically and show "Nothing to show for now"
 - [ ] Fix data loading in Ateliers (1 request per type, where we should have only 1 and then filter)
-- [ ] Find a way to create unique links for events
+- [ ] BONUS Find a way to create unique links for events
 - [x] Fix styling of all pages
 
 # Search
@@ -40,9 +40,6 @@
 
 # Films
 
-- [ ] Verify all items types are displayed correct fields
-- [ ] Verify styling for all items types
-- [x] all films page should be in descending order (reverse chronological)
 - [ ] liens: show dark transparent on hover to show images are clickable
 - [ ] In /films/auteurs/ all films appear (completed or not) But only IF the following data are filled:
 - Statut;
@@ -57,6 +54,9 @@
 - Synopsis anglais;
 - Image 1
 - [ ] BONUS liens: Add title and display them as overlay like on the homepage (requires backend change)
+- [x] Verify all items types are displayed correct fields
+- [x] Verify styling for all items types
+- [x] all films page should be in descending order (reverse chronological)
 - [x] diffusion > television > canal text is not in front of image
 
 ## Catalogue (PDF 20)

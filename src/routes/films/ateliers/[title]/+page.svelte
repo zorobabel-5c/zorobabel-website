@@ -17,7 +17,7 @@
 	{/if}
 	<div class="text-center">
 		<span
-			>{currentFilm?.public}, {currentFilm?.technique}, {currentFilm?.duree_minutes}8’{currentFilm?.duree_secondes}’’,
+			>{currentFilm?.public}, {currentFilm?.technique}, {currentFilm?.duree_minutes}’{currentFilm?.duree_secondes}’’,
 			{#if currentFilm?.annee}
 				{currentFilm.annee}.
 			{/if}

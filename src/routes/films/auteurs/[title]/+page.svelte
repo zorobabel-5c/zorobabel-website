@@ -19,7 +19,7 @@
 		</h1>
 		<div class="text-center">
 			<span>{currentFilm?.realisation}</span>
-			<span>, {currentFilm?.duree_minutes}8’{currentFilm?.duree_secondes}’’</span>
+			<span>, {currentFilm?.duree_minutes}’{currentFilm?.duree_secondes}’’</span>
 			{#if currentFilm?.annee}
 				<span>, {currentFilm.annee}.</span>
 			{/if}

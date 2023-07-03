@@ -11,11 +11,22 @@
 </script>
 
 {#if !$SeriesPage.fetching}
-	<h1 class="text-xl font-josefin uppercase">
-		<span>{currentSeries?.titre} {currentSeries?.titre_english ? '-' : ''} </span><span
-			class="italic font-thin">{currentSeries?.titre_english}</span
-		>
+	<h1 class="text-center font-josefin uppercase">
+		<span>{currentEpisode?.titre} {currentEpisode?.titre_english ? '-' : ''} </span>
+		<span class="italic">{currentEpisode?.titre_english}</span>
 	</h1>
+	<div class="text-center">
+		<span>{currentEpisode?.realisation}</span>
+		<span>, {currentEpisode?.duree_minutes}’{currentEpisode?.duree_secondes}’’</span>
+		{#if currentEpisode?.annee}
+			<span>, {currentEpisode.annee}.</span>
+		{/if}
+		{#if currentEpisode?.coproduction}
+			<span class="[&>p]:inline">
+				In coproduction with {@html currentEpisode.coproduction}
+			</span>
+		{/if}
+	</div>
 	<VimeoIframe video={currentEpisode?.video} />
 	<div class="columns-2">
 		<p>{currentEpisode?.synopsis_fr}</p>
