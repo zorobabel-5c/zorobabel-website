@@ -1,5 +1,5 @@
 query FilmDAuteurs {
-	films: Films_d_auteur(sort: "-date_created", filter: { video: { id: { _nnull: true } } }) {
+	films: Films_d_auteur(sort: "-numero", filter: { video: { id: { _nnull: true } } }) {
 		id
 		lien_video
 		titre_original

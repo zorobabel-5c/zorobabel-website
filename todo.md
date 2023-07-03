@@ -40,11 +40,10 @@
 
 # Films
 
-- [ ] all films page should be in descending order (reverse chronological)
 - [ ] Verify all items types are displayed correct fields
 - [ ] Verify styling for all items types
+- [x] all films page should be in descending order (reverse chronological)
 - [ ] liens: show dark transparent on hover to show images are clickable
-- [ ] BONUS liens: Add title and display them as overlay like on the homepage (requires backend change)
 - [ ] In /films/auteurs/ all films appear (completed or not) But only IF the following data are filled:
 - Statut;
 - Numéro;
@@ -57,6 +56,7 @@
 - Synopsis français;
 - Synopsis anglais;
 - Image 1
+- [ ] BONUS liens: Add title and display them as overlay like on the homepage (requires backend change)
 - [x] diffusion > television > canal text is not in front of image
 
 ## Catalogue (PDF 20)

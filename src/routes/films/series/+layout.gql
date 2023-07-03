@@ -1,5 +1,5 @@
 query SeriesPage {
-	series {
+	series(sort: "-numero") {
 		date_created
 		id
 		image_remplacement {
@@ -23,7 +23,7 @@ query SeriesPage {
 			thumbnail_height
 			height
 		}
-		episodes {
+		episodes(sort: "-numero") {
 			annee
 			coproduction
 			date_created

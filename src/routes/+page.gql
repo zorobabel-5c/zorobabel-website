@@ -1,6 +1,6 @@
 query HomepageFilms {
 	films_d_ateliers(
-		sort: "-date_created"
+		sort: "-numero"
 		filter: { _and: [{ video: { id: { _nnull: true } } }, { online: { _eq: true } }] }
 	) {
 		__typename
@@ -19,7 +19,7 @@ query HomepageFilms {
 		}
 	}
 	auteurs: Films_d_auteur(
-		sort: "-date_created"
+		sort: "-numero"
 		filter: {
 			_and: [
 				{ video: { id: { _nnull: true } } }
@@ -53,7 +53,7 @@ query HomepageFilms {
 			thumbnail_height
 		}
 	}
-	episodes(sort: "-date_created", filter: { video: { id: { _nnull: true } } }) {
+	episodes(sort: "-numero", filter: { video: { id: { _nnull: true } } }) {
 		__typename
 		id
 		lien_video
