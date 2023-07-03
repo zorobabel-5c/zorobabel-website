@@ -73,7 +73,7 @@
 			id="second_sidenav"
 			class:uppercase={uppercasify}
 			class:text-[11px]={uppercasify}
-			class="lg:border-r border-solid border-gray-800 lg:mr-4 [&>ul>li]:mb-2 lg:[&>ul]:h-[calc(100vh-120px)] [&>ul]:md:h-[calc(50vh-60px)] [&>ul]:overflow-y-scroll"
+			class="lg:border-r border-solid border-gray-800 [&>ul>li]:mb-12 lg:mr-4 lg:[&>ul]:h-[calc(100vh-120px)] [&>ul]:md:h-[calc(50vh-60px)] [&>ul]:overflow-y-scroll"
 		>
 			<slot name="nav" />
 		</nav>
