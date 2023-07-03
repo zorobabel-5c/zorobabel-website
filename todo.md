@@ -2,6 +2,7 @@
 
 - [ ] On hover, change to red
 - [ ] Fix the responsive menu
+- [ ] Sticky top menu + sticky sidenav menus
 - [x] Fix the width of the first nav to be less wide
 - [x] Fix the width of the second nav to be less wide
 - [x] Make the search icon smaller
@@ -20,10 +21,12 @@
 
 - [ ] IKE >> When clicking on the video, there should be modal with the player + arrows left and right to go to previous/next video
 - [ ] IKE >> When the video is an episode, routing is sometimes wrong, example of a result: `https://zorobabel.5c.be/films/series/les-24-heures-de-l-animation/episodes/24h-the-circle-square-project-clochard-d-assaut` or `https://zorobabel.5c.be/films/series/les-24-heures-de-l-animation/episodes/c-est-dans-la-boite`
+- [ ] In / only completed films d'auteur appears and all mandatory fields are completed (Based on this, 'Conte sauvage' should appear on homepage but does not)
 
 # Ateliers / Evenements
 
 - [ ] Hide past events automatically and show "Nothing to show for now"
+- [ ] Fix data loading in Ateliers (1 request per type, where we should have only 1 and then filter)
 - [ ] Find a way to create unique links for events
 - [x] Fix styling of all pages
 
@@ -37,11 +40,29 @@
 
 # Films
 
+- [ ] all films page should be in descending order (reverse chronological)
 - [ ] Verify all items types are displayed correct fields
 - [ ] Verify styling for all items types
 - [ ] liens: show dark transparent on hover to show images are clickable
 - [ ] BONUS liens: Add title and display them as overlay like on the homepage (requires backend change)
+- [ ] In /films/auteurs/ all films appear (completed or not) But only IF the following data are filled:
+- Statut;
+- Numéro;
+- Logo;
+- Titre original
+- Titre anglais;
+- Minutes;
+- Secondes;
+- Réalisation;
+- Synopsis français;
+- Synopsis anglais;
+- Image 1
 - [x] diffusion > television > canal text is not in front of image
+
+## Catalogue (PDF 20)
+
+- [ ] All films, completed or not (auteurs, séries, atelier, commande))
+-
 
 ## Series page
 
@@ -53,6 +74,7 @@
 - [ ] Remove the always active scrollbar appearing sometimes
 - [ ] IKE >> Fix the 'todo' displayed as an alt for images
 - [ ] There's a bug in flows, where if the video is already there (for example in series), it will error instead of applying existing vimeo data
+- [ ] Add page titles
 
 # Optimization
 
