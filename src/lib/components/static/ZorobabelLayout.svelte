@@ -18,13 +18,13 @@
 		<li>
 			<a href="contact#equipe" class:text-red-500={$page.url.pathname.startsWith('#equipe')}>
 				<p>l'équipe</p>
-				<p class="italic">the team</p>
+				<p class="italic -mt-1">the team</p>
 			</a>
 		</li>
 		<li>
 			<a href="logo" class:text-red-500={$page.url.pathname.startsWith('/zorobabel/logo')}>
 				<p>le logo</p>
-				<p class="italic">the logo</p>
+				<p class="italic -mt-1">the logo</p>
 			</a>
 		</li>
 	</svelte:fragment>

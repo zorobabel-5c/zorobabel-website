@@ -8,13 +8,13 @@
 		<li>
 			<a href="/films/auteurs" class:text-red-500={$page.url.pathname.startsWith('/films/auteurs')}>
 				<p>films d'auteur</p>
-				<p class="italic">author's films</p>
+				<p class="italic -mt-1">author's films</p>
 			</a>
 		</li>
 		<li>
 			<a href="/films/series" class:text-red-500={$page.url.pathname.startsWith('/films/series')}>
 				<p>séries créatives</p>
-				<p class="italic">creative series</p>
+				<p class="italic -mt-1">creative series</p>
 			</a>
 		</li>
 		<li>
@@ -23,7 +23,7 @@
 				class:text-red-500={$page.url.pathname.startsWith('/films/ateliers')}
 			>
 				<p>films d’atelier</p>
-				<p class="italic">workshop's films</p>
+				<p class="italic -mt-1">workshop's films</p>
 			</a>
 		</li>
 		<li>
@@ -37,7 +37,7 @@
 		<li>
 			<a href="/films/liens" class:text-red-500={$page.url.pathname.startsWith('/films/liens')}>
 				<p>liens</p>
-				<p class="italic">links</p>
+				<p class="italic -mt-1">links</p>
 			</a>
 		</li>
 		<li>

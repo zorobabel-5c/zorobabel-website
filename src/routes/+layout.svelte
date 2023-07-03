@@ -50,19 +50,19 @@
 			<li>
 				<a href="/appels" class:text-red-500={$page.url.pathname.startsWith('/appels')}>
 					<p>appels à projet</p>
-					<p class="italic">calls for proposal</p>
+					<p class="italic -mt-1">calls for proposal</p>
 				</a>
 			</li>
 			<li>
 				<a href="/ateliers" class:text-red-500={$page.url.pathname.startsWith('/ateliers')}>
 					<p>ateliers</p>
-					<p class="italic">workshops</p>
+					<p class="italic -mt-1">workshops</p>
 				</a>
 			</li>
 			<li>
 				<a href="/evenements" class:text-red-500={$page.url.pathname.startsWith('/evenements')}>
 					<p>événements</p>
-					<p class="italic">events</p>
+					<p class="italic -mt-1">events</p>
 				</a>
 			</li>
 			<li id="search">
