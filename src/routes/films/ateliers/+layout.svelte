@@ -13,7 +13,7 @@
 {#if !$FilmDAteliers.fetching}
 	<FilmLayout>
 		<svelte:fragment slot="nav">
-			<List items={films} let:item getKey={(f) => f.titre}>
+			<List items={films} let:item getKey={(f) => f.titre} classes="grid content-start gap-2">
 				<LinkListItem {item} getLogoId={(f) => f.logo?.id} />
 			</List>
 		</svelte:fragment>

@@ -39,9 +39,9 @@
 
 - [ ] Verify all items types are displayed correct fields
 - [ ] Verify styling for all items types
-- [ ] diffusion > television > canal text is not in front of image
 - [ ] liens: show dark transparent on hover to show images are clickable
 - [ ] BONUS liens: Add title and display them as overlay like on the homepage (requires backend change)
+- [x] diffusion > television > canal text is not in front of image
 
 ## Series page
 

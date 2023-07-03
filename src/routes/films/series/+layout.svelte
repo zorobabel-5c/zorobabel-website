@@ -44,7 +44,7 @@
 						items={item.episodes ?? []}
 						let:item={subItem}
 						getKey={getSlug}
-						classes="overflow-y-scroll ml-10 lg:max-h-[80vh] md:max-h-[40vh]  grid content-start gap-4"
+						classes="overflow-y-scroll ml-10 lg:max-h-[80vh] md:max-h-[40vh]  grid content-start gap-2"
 						pathIndex={5}
 					>
 						{#if subItem?.titre}

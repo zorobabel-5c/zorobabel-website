@@ -13,7 +13,9 @@
 	<List items={television} let:item getKey={(_) => null} shouldScrollIntoView={false}>
 		<div class="flex gap-4 mb-4 items-start">
 			<img src={imageFromAssets(item.logo)} alt="logo" class="w-20" />
-			<p>{@html item.description}</p>
+			<div class="self-center">
+				{@html item.description}
+			</div>
 		</div>
 	</List>
 {/if}
