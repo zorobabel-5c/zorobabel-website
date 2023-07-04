@@ -8,7 +8,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <main class="max-w-[800px] mx-auto">
 	<nav
-		class="flex items-center border-b sticky top-0 w-[800px] font-josefin border-gray-800 border-solid mb-6 bg-white"
+		class="flex items-center sticky top-0 z-10 w-[800px] bg-white font-josefin mb-6 border-b border-gray-800 border-solid"
 	>
 		<a href="/">
 			<img
