@@ -1,7 +1,7 @@
 # Menus
 
 - [ ] Fix the responsive menu
-- [ ] sticky sidenav menus
+- [ ] IKE >> sticky sidenav menus
 - [x] On hover, change links to red
 - [x] Sticky top menu
 - [x] Fix the width of the first nav to be less wide
@@ -71,16 +71,16 @@
 
 ## Others
 
-- [ ] Remove the always active scrollbar appearing sometimes
 - [ ] IKE >> Fix the 'todo' displayed as an alt for images
+- [ ] IKE >> Add page titles
+- [ ] Remove the always active scrollbar appearing sometimes
 - [ ] There's a bug in flows, where if the video is already there (for example in series), it will error instead of applying existing vimeo data
-- [ ] Add page titles
 
 # Optimization
 
-- [ ] Load all images at their maximal size
+- [ ] Review all breakpoint sizes
 - [ ] Make sure images elements take their final space if images are not downloaded yet, so there's less jumping around
-- [ ] Create these images server side (in Zorobabel backend)
+- [ ] Load all images at their maximal size or create these images through Directus
 - [ ] Create a CI/CD pipeline to build the website on demand (add a button in the backend interface?)
 
 # zorobabel / appels a projets
