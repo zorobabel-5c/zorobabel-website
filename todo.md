@@ -1,8 +1,9 @@
 # Menus
 
-- [ ] On hover, change to red
+- [ ] On hover, change links to red
 - [ ] Fix the responsive menu
-- [ ] Sticky top menu + sticky sidenav menus
+- [ ] sticky sidenav menus
+- [x] Sticky top menu
 - [x] Fix the width of the first nav to be less wide
 - [x] Fix the width of the second nav to be less wide
 - [x] Make the search icon smaller
@@ -62,7 +63,6 @@
 ## Catalogue (PDF 20)
 
 - [ ] All films, completed or not (auteurs, séries, atelier, commande))
--
 
 ## Series page
 

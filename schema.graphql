@@ -1449,12 +1449,16 @@ input string_filter_operators {
   _ends_with: String
   _eq: String
   _icontains: String
+  _iends_with: String
   _in: [String]
+  _istarts_with: String
   _ncontains: String
   _nempty: Boolean
   _nends_with: String
   _neq: String
+  _niends_with: String
   _nin: [String]
+  _nistarts_with: String
   _nnull: Boolean
   _nstarts_with: String
   _null: Boolean

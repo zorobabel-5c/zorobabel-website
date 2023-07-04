@@ -7,7 +7,9 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <main class="max-w-[800px] mx-auto">
-	<nav class="flex items-center border-b relative font-josefin border-gray-800 border-solid mb-6">
+	<nav
+		class="flex items-center border-b sticky top-0 w-[800px] font-josefin border-gray-800 border-solid mb-6 bg-white"
+	>
 		<a href="/">
 			<img
 				src="https://backend-zorobabel.5c.be/assets/62c21e86-8e74-4f41-afd0-a243b80f7b5a"
@@ -85,7 +87,7 @@
 		</ul>
 		<br />
 	</nav>
-	<section id="content">
+	<section id="content" class="pb-[76px] sticky top-50">
 		<slot />
 	</section>
 </main>
