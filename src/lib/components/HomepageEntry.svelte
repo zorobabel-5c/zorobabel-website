@@ -23,9 +23,9 @@
 		<div
 			class="absolute h-full w-full bg-black opacity-80 hidden group-hover:flex justify-center items-center"
 		>
-			<p class="font-extralight text-lg text-white text-center text-ellipsis px-2">
+			<span class="font-extralight text-lg text-white text-center text-ellipsis px-2">
 				{!isEpisode(entry) ? title : `${getTitle(entry.series)} - EP${entry.numero} ${title}`}
-			</p>
+			</span>
 		</div>
 		<img
 			src={entry.video?.thumbnail_url + '?width=300&quality=30'}

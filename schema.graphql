@@ -1187,6 +1187,7 @@ type liens {
   id: ID!
   image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
   lien: String
+  titre: String
 }
 
 type liens_aggregated {
@@ -1200,6 +1201,7 @@ type liens_aggregated_count {
   id: Int
   image: Int
   lien: Int
+  titre: Int
 }
 
 input liens_filter {
@@ -1208,6 +1210,7 @@ input liens_filter {
   id: string_filter_operators
   image: directus_files_filter
   lien: string_filter_operators
+  titre: string_filter_operators
 }
 
 type liens_mutated {

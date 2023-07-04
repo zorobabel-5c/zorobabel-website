@@ -51,3 +51,7 @@ html {
 		font-weight: black;
 	}*/
 }
+
+li > a:hover {
+	color: rgb(239 68 68 / 1);
+}

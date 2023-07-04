@@ -87,7 +87,7 @@
 		</ul>
 		<br />
 	</nav>
-	<section id="content" class="pb-[76px] sticky top-50">
+	<section id="content" class="pb-5">
 		<slot />
 	</section>
 </main>

@@ -1,8 +1,8 @@
 # Menus
 
-- [ ] On hover, change links to red
 - [ ] Fix the responsive menu
 - [ ] sticky sidenav menus
+- [x] On hover, change links to red
 - [x] Sticky top menu
 - [x] Fix the width of the first nav to be less wide
 - [x] Fix the width of the second nav to be less wide
@@ -22,7 +22,7 @@
 
 - [ ] IKE >> When clicking on the video, there should be modal with the player + arrows left and right to go to previous/next video
 - [ ] IKE >> When the video is an episode, routing is sometimes wrong, example of a result: `https://zorobabel.5c.be/films/series/les-24-heures-de-l-animation/episodes/24h-the-circle-square-project-clochard-d-assaut` or `https://zorobabel.5c.be/films/series/les-24-heures-de-l-animation/episodes/c-est-dans-la-boite`
-- [ ] In / only completed films d'auteur appears and all mandatory fields are completed (Based on this, 'Conte sauvage' should appear on homepage but does not)
+- [x] In / only completed films d'auteur appears and all mandatory fields are completed
 
 # Ateliers / Evenements
 
@@ -41,7 +41,6 @@
 
 # Films
 
-- [ ] liens: show dark transparent on hover to show images are clickable
 - [ ] In /films/auteurs/ all films appear (completed or not) But only IF the following data are filled:
 - Statut;
 - Numéro;
@@ -54,7 +53,8 @@
 - Synopsis français;
 - Synopsis anglais;
 - Image 1
-- [ ] BONUS liens: Add title and display them as overlay like on the homepage (requires backend change)
+- [x] liens: show dark transparent on hover to show images are clickable
+- [x] BONUS liens: Add title and display them as overlay like on the homepage (requires backend change)
 - [x] Verify all items types are displayed correct fields
 - [x] Verify styling for all items types
 - [x] all films page should be in descending order (reverse chronological)
@@ -62,7 +62,7 @@
 
 ## Catalogue (PDF 20)
 
-- [ ] All films, completed or not (auteurs, séries, atelier, commande))
+- [ ] (TODO after # Films is completed) All films, completed or not (auteurs, séries, atelier, commande)
 
 ## Series page
 
