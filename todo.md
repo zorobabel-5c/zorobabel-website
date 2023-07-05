@@ -18,7 +18,6 @@
 
 # Fonts
 
-- [ ] IKE >> Fix imports of black/thin/italic: only regular works right now
 - [ ] films > series: Fix italic / bold for Second nav series title (Murmuziek should be black)
 - [ ] Make the overlay josefin font extralight on homepage
 - [ ] Review font choice in every page

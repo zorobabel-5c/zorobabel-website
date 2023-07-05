@@ -13,43 +13,24 @@ html {
 			url('/fonts/JosefinSans-Regular.woff') format('woff');
 		font-weight: normal;
 	}
-	,
 	@font-face {
 		font-family: 'Josefin Sans';
 		src: local('Josefin Sans Bold'), url('/fonts/JosefinSans-Bold.woff2') format('woff2'),
 			url('/fonts/JosefinSans-Bold.woff') format('woff');
 		font-weight: bold;
 	}
-	,
 	@font-face {
 		font-family: 'Josefin Sans';
 		src: local('Josefin Sans Black'), url('/fonts/Jost-Black.woff2') format('woff2'),
 			url('/fonts/Jost-Black.woff') format('woff');
 		font-weight: 900;
 	}
-	/*, Italic or black is not applied for some reason! using 'italic' class is not using this
-	and 'font-italic' or 'font-black' do nothing
-
 	@font-face {
 		font-family: 'Josefin Sans';
 		src: local('Josefin Sans Italic'), url('/fonts/JosefinSans-Italic.woff2') format('woff2'),
 			url('/fonts/JosefinSans-Italic.woff') format('woff');
 		font-style: italic;
 	}
-	,
-	@font-face {
-		font-family: 'Josefin Sans';
-		src: local('Josefin Sans Black'), url('/fonts/Jost-Black.woff2') format('woff2'),
-			url('/fonts/Jost-Black.woff') format('woff');
-		font-weight: bold;
-	}
-	,
-	@font-face {
-		font-family: 'Jost';
-		src: local('Jost'), url('/fonts/Jost-Black.woff2') format('woff2'),
-			url('/fonts/Jost-Black.woff') format('woff');
-		font-weight: black;
-	}*/
 }
 
 li > a:hover {
