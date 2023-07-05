@@ -2,14 +2,6 @@
 
 - [ ] IKE >> sticky sidenav menus
 - [ ] Fix the responsive menu
-- [x] On hover, change links to red
-- [x] Sticky top menu
-- [x] Fix the width of the first nav to be less wide
-- [x] Fix the width of the second nav to be less wide
-- [x] Make the search icon smaller
-- [x] films > diffusion: second nav items should have a mb-12 applied to them
-- [x] Apply a mt-[-4px] margin to english string (we want them close to the french string)
-- [x] films > diffusion > evenement link is broken
 
 # Fonts
 
@@ -22,14 +14,10 @@
 
 - [ ] IKE >> When clicking on the video, there should be modal with the player + arrows left and right to go to previous/next video
 - [ ] IKE >> When the video is an episode, routing is sometimes wrong, example of a result: `https://zorobabel.5c.be/films/series/les-24-heures-de-l-animation/episodes/24h-the-circle-square-project-clochard-d-assaut` or `https://zorobabel.5c.be/films/series/les-24-heures-de-l-animation/episodes/c-est-dans-la-boite`
-- [x] In / only completed films d'auteur appears and all mandatory fields are completed
 
 # Ateliers / Evenements
 
 - [ ] BONUS Find a way to create unique links for events
-- [x] Hide past events automatically and show "Nothing to show for now"
-- [x] Fix data loading in Ateliers (1 request per type, where we should have only 1 and then filter)
-- [x] Fix styling of all pages
 
 # Search
 
@@ -54,12 +42,6 @@
 - Synopsis français;
 - Synopsis anglais;
 - Image 1
-- [x] liens: show dark transparent on hover to show images are clickable
-- [x] BONUS liens: Add title and display them as overlay like on the homepage (requires backend change)
-- [x] Verify all items types are displayed correct fields
-- [x] Verify styling for all items types
-- [x] all films page should be in descending order (reverse chronological)
-- [x] diffusion > television > canal text is not in front of image
 
 ## Catalogue (PDF 20)
 
@@ -83,7 +65,3 @@
 - [ ] Make sure images elements take their final space if images are not downloaded yet, so there's less jumping around
 - [ ] Load all images at their maximal size or create these images through Directus
 - [ ] Create a CI/CD pipeline to build the website on demand (add a button in the backend interface?)
-
-# zorobabel / appels a projets
-
-- [x] Fix styling of all pages
