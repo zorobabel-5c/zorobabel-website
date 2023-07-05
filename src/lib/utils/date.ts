@@ -7,11 +7,8 @@ export const formatDate = (date_de_peremption: string) => {
 };
 
 export const isPastDate = (date_de_peremption: string) => {
-	console.log(date_de_peremption);
-
 	const date = new Date(date_de_peremption);
 	const now = new Date(currentDate());
-
 	return date >= now;
 };
 

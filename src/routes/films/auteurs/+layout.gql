@@ -1,5 +1,21 @@
 query FilmDAuteurs {
-	films: Films_d_auteur(sort: "-numero", filter: { video: { id: { _nnull: true } } }) {
+	films: Films_d_auteur(
+		sort: "-numero"
+		filter: {
+			video: { id: { _nnull: true } }
+			numero: { _nnull: true }
+			logo: { id: { _nnull: true } }
+			synopsis_fr: { _nnull: true }
+			synopsis_en: { _nnull: true }
+			image_1: { id: { _nnull: true } }
+			duree_secondes: { _nnull: true }
+			duree_minutes: { _nnull: true }
+			titre_original: { _nnull: true }
+			titre_english: { _nnull: true }
+			realisation: { _nnull: true }
+			in_progress: { _neq: true }
+		}
+	) {
 		id
 		lien_video
 		titre_original

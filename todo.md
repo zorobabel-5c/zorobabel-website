@@ -30,7 +30,7 @@
 
 # Films
 
-- [ ] In /films/auteurs/ all films appear (completed or not) But only IF the following data are filled:
+- [x] In /films/auteurs/ all films appear (completed or not) But only IF the following data are filled:
 - Statut;
 - Numéro;
 - Logo;
