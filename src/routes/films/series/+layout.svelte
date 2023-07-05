@@ -14,6 +14,10 @@
 	$: ({ series = [] } = $SeriesPage.data! ?? {});
 </script>
 
+<svelte:head>
+	<title>zorobabel - series</title>
+</svelte:head>
+
 {#if !$SeriesPage.fetching}
 	<FilmLayout>
 		<svelte:fragment slot="nav">

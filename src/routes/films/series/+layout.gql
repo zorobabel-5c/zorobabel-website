@@ -23,7 +23,7 @@ query SeriesPage {
 			thumbnail_height
 			height
 		}
-		episodes(sort: "-numero") {
+		episodes(sort: "-numero", limit: -1) {
 			annee
 			coproduction
 			date_created
