@@ -2,5 +2,5 @@
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 
-	$: browser && goto(`/ateliers/cours-du-soir`);
+	$: browser && goto(`/ateliers/stages`);
 </script>

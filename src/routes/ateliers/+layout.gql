@@ -1,0 +1,12 @@
+query AteliersQuery {
+	ateliers(sort: "-date_de_peremption") {
+		titre
+		slug
+		type_d_atelier
+		date_de_peremption
+		description
+		affiche {
+			id
+		}
+	}
+}

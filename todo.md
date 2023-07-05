@@ -1,7 +1,7 @@
 # Menus
 
-- [ ] Fix the responsive menu
 - [ ] IKE >> sticky sidenav menus
+- [ ] Fix the responsive menu
 - [x] On hover, change links to red
 - [x] Sticky top menu
 - [x] Fix the width of the first nav to be less wide
@@ -26,17 +26,18 @@
 
 # Ateliers / Evenements
 
-- [ ] Hide past events automatically and show "Nothing to show for now"
-- [ ] Fix data loading in Ateliers (1 request per type, where we should have only 1 and then filter)
 - [ ] BONUS Find a way to create unique links for events
+- [x] Hide past events automatically and show "Nothing to show for now"
+- [x] Fix data loading in Ateliers (1 request per type, where we should have only 1 and then filter)
 - [x] Fix styling of all pages
 
 # Search
 
-- [ ] Create a search page
-- [ ] With a simple search field and submit
-- [ ] Search in all pages/items
-- [ ] Display a list with where it appears and some context (x word before after?) and link to the page
+- [ ] IKE >> Create a search page
+- [ ] IKE >> With a simple search field and submit
+- [ ] IKE >> Search in all pages/items
+- [ ] IKE >> Display a list with link to the page
+- [ ] Show where it appears and some context (x word before after?)
 - [ ] Bold the word in the context
 
 # Films

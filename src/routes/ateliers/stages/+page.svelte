@@ -1,24 +1,19 @@
 <script lang="ts">
-	import { imageFromAssets } from '$lib/utils';
-	import type { LayoutData } from './$houdini';
+	import Events from '$lib/components/Events.svelte';
+	import { isPastDate } from '$lib/utils/date';
+	import type { LayoutData } from '../$houdini';
 
 	export let data: LayoutData;
 
-	$: ({ StagesQuery } = data);
-	$: ({ ateliers = [] } = $StagesQuery.data! ?? {});
-	$: stages = ateliers.filter((atelier) => atelier.type_d_atelier === 'enfants');
+	$: ({ AteliersQuery } = data);
+	$: ({ ateliers = [] } = $AteliersQuery.data! ?? {});
+	$: events = ateliers
+		.filter((atelier) => atelier.type_d_atelier === 'enfants')
+		.filter((atelier) => isPastDate(atelier.date_de_peremption));
+
+	let message = `Il n'y a pas de stage programmé.`;
 </script>
 
-{#if !$StagesQuery.fetching}
-	{#each stages as item}
-		<div class="pb-8">
-			<img
-				src={imageFromAssets(item.affiche) + '?width=654&quality=30'}
-				alt="todo"
-				class="w-full object-cover"
-			/>
-			<h1 class="my-4">{item.titre}</h1>
-			<p>{@html item.description}</p>
-		</div>
-	{/each}
+{#if !$AteliersQuery.fetching}
+	<Events {events} noEventMessage={message} />
 {/if}

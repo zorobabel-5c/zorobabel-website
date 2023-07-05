@@ -1,21 +1,16 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import StaticLayout from '$lib/components/static/StaticLayout.svelte';
-	import { imageFromAssets } from '$lib/utils';
-	import type { LayoutData } from '../événements/$houdini';
+	import Events from '$lib/components/Events.svelte';
+
+	import type { LayoutData } from '../evenements/$houdini';
+	import { isPastDate } from '$lib/utils/date';
 
 	export let data: LayoutData;
 
-	function formatDate(date_de_peremption: string) {
-		const date = new Date(date_de_peremption);
-		const day = date.getDate().toString().padStart(2, '0');
-		const month = (date.getMonth() + 1).toString().padStart(2, '0');
-		const year = date.getFullYear().toString();
-		return `${day}/${month}/${year}`;
-	}
-
 	$: ({ EventsQuery } = data);
 	$: ({ evenements = [] } = $EventsQuery.data! ?? {});
+	$: events = evenements.filter((evenement) => isPastDate(evenement.date_de_peremption));
 </script>
 
 <StaticLayout>
@@ -28,21 +23,7 @@
 	</svelte:fragment>
 	<div slot="content">
 		{#if !$EventsQuery.fetching}
-			{#each evenements as item}
-				<div class="border-b border-black mb-5">
-					<img
-						src={imageFromAssets(item.affiche) + '?width=654&quality=30'}
-						alt="todo"
-						class="w-full object-cover"
-					/>
-					<div class="my-4">
-						<h1>
-							{item.titre} <span class="font-josefin">- {formatDate(item.date_de_peremption)}</span>
-						</h1>
-					</div>
-					{@html item.description}
-				</div>
-			{/each}
+			<Events {events} />
 		{/if}
 	</div>
 </StaticLayout>
