@@ -1,0 +1,54 @@
+query Search($value: String!) {
+	Films_d_auteur(search: $value) {
+		__typename
+		id
+		slug
+		title: titre_original
+		synopsis_fr
+	}
+	films_d_ateliers(search: $value) {
+		__typename
+		id
+		slug
+		title: titre
+		synopsis_fr
+	}
+	series(search: $value) {
+		__typename
+		id
+		slug
+		title: titre
+		synopsis_fr
+	}
+	episodes(search: $value) {
+		__typename
+		id
+		slug
+		title: titre
+		synopsis_fr
+		series {
+			__typename
+			id
+			slug
+			title: titre
+		}
+	}
+	films_de_commande(search: $value) {
+		__typename
+		id
+		slug
+		title: titre
+	}
+	ateliers(search: $value) {
+		__typename
+		id
+		slug
+		title: titre
+	}
+	evenements(search: $value) {
+		__typename
+		id
+		slug
+		title: titre
+	}
+}

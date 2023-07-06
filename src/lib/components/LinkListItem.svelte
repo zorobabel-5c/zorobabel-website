@@ -12,7 +12,7 @@
 	export let item: T;
 	export let getLink: (item: T) => string = (it) => `./${getSlug(it)}`;
 	export let getProcessedTitle: (item: T) => string = compose(getTitle, truncate);
-	export let getLogoId: (item: T) => string | undefined;
+	export let getLogoId: (item: T) => string | undefined = () => '';
 	const logoSrc = imageFromAssets(getLogoId(item));
 </script>
 

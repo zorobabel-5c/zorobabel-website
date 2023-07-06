@@ -1,12 +1,44 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
+	import { SearchStore } from '$houdini';
+	import List from '$lib/components/List.svelte';
+	import { getTitle, truncate } from '$lib/utils';
+	import LinkListItem from '$lib/components/LinkListItem.svelte';
+
 	let showSideNav = false;
 	let toggleSideNav = () => (showSideNav = !showSideNav);
+	const searchStore = new SearchStore();
+	let searchValue = '';
+	const search = () => {
+		if (searchValue.length > 0) {
+			searchStore.fetch({ variables: { value: searchValue } });
+		}
+	};
+	let showSearch = false;
+
+	$: ({
+		films_d_ateliers,
+		films_de_commande,
+		Films_d_auteur,
+		series,
+		episodes,
+		ateliers,
+		evenements
+	} = $searchStore.data! ?? {});
+	$: empty = [
+		films_d_ateliers,
+		films_de_commande,
+		Films_d_auteur,
+		series,
+		episodes,
+		ateliers,
+		evenements
+	].every((a) => a?.length === 0);
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<main class="max-w-[800px] mx-auto">
+<main class="max-w-[800px] mx-auto relative">
 	<nav
 		class="flex items-center sticky top-0 z-10 w-[800px] bg-white font-josefin mb-6 border-b border-gray-800 border-solid"
 	>
@@ -68,7 +100,7 @@
 				</a>
 			</li>
 			<li id="search">
-				<button class="w-4">
+				<button class="w-4" on:click={() => (showSearch = true)}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -90,4 +122,105 @@
 	<section id="content" class="pb-5">
 		<slot />
 	</section>
+	{#if showSearch}
+		<section id="search" class="h-full w-full absolute z-10 bg-[#000000d6] top-0 left-0 text-white">
+			<button
+				id="search_close"
+				on:click={() => (showSearch = false)}
+				class="top-8 right-[10%] absolute z-20 [&>span]:absolute [&>span]:inline-block [&>span]:w-[50px] [&>span]:h-1 [&>span]:bg-white"
+			>
+				<span class="rotate-45" />
+				<span class="-rotate-45" />
+			</button>
+			<div
+				class="flex border-b-white border-b-2 border-solid px-8 py-4 bg-[#000000b8] sticky top-0"
+			>
+				<!-- svelte-ignore a11y-autofocus -->
+				<form
+					on:submit={(e) => {
+						e.preventDefault();
+						search();
+					}}
+					class="w-[90%]"
+				>
+					<input
+						type="search"
+						name="search"
+						id="search_input"
+						bind:value={searchValue}
+						autofocus={showSearch}
+						class="flex-1 text-2xl bg-transparent text-white outline-none w-full"
+					/>
+				</form>
+				<!-- <button
+					type="button"
+					class="py-[10px] px-8 bg-white rounded-lg text-black"
+					on:click={search}>Search</button
+				> -->
+			</div>
+			{#if !$searchStore.fetching}
+				<div class="overflow-y-scroll h-[min(100%,90vh)]">
+					<List
+						let:item={film}
+						items={Films_d_auteur}
+						shouldScrollIntoView={false}
+						getKey={getTitle}
+					>
+						<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearch = false)}>
+							<a href={`/films/auteurs/${film.slug}`}
+								>{film.title} -
+
+								<i class="text-sm">{truncate(film.synopsis_fr ?? '', 60)}</i>
+							</a>
+						</p>
+					</List>
+					<List
+						let:item={film}
+						items={films_d_ateliers}
+						shouldScrollIntoView={false}
+						getKey={getTitle}
+					>
+						<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearch = false)}>
+							<a href={`/films/ateliers/${film.slug}`}
+								>{film.title} -
+
+								<i class="text-sm">{truncate(film.synopsis_fr ?? '', 60)}</i>
+							</a>
+						</p>
+					</List>
+					<List let:item={serie} items={series} shouldScrollIntoView={false} getKey={getTitle}>
+						<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearch = false)}>
+							<a href={`/films/series/${serie.slug}`}
+								>{serie.title} -
+
+								<i class="text-sm">{truncate(serie.synopsis_fr ?? '', 60)}</i>
+							</a>
+						</p>
+					</List>
+					<!-- {#each  films_de_commande as film}
+					<a href={`/films/commande/${film.slug}`}>{film.title}</a>
+				{/each} -->
+					<List let:item={episode} items={episodes} shouldScrollIntoView={false} getKey={getTitle}>
+						<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearch = false)}>
+							<a href={`/films/series/${episode.series?.slug}/episodes/${episode.slug}`}
+								>{episode.title} -
+								<i class="text-sm">{truncate(episode.synopsis_fr ?? '', 60)}</i>
+							</a>
+						</p>
+					</List>
+					<List let:item={event} items={evenements} shouldScrollIntoView={false} getKey={getTitle}>
+						<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearch = false)}>
+							<a href={`/evenements#${event.id}`}>{event.title}</a>
+						</p>
+					</List>
+				</div>
+			{:else if empty}
+				<p class="py-2 px-8"><i>No results for search query</i></p>
+				<!-- {:else if $searchStore.fetching && searchValue.length > 0}
+				<p class="py-2 px-8 hover:text-red-500"><i>Please wait...</i></p> -->
+			{:else}
+				<p class="py-2 px-8"><i>Try searching for series, films and etc.</i></p>
+			{/if}
+		</section>
+	{/if}
 </main>
