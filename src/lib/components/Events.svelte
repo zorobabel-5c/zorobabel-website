@@ -17,19 +17,20 @@
 
 <div>
 	{#if events.length > 0}
-		{#each events as item}
+		{#each events as event}
 			<div class="border-b border-black mb-5">
 				<img
-					src={imageFromAssets(item.affiche) + '?width=654&quality=30'}
-					alt="todo"
+					src={imageFromAssets(event.affiche) + '?width=654&quality=30'}
+					alt="affiche de l'événement '{event.titre}'"
 					class="w-full object-cover"
 				/>
 				<div class="my-4">
-					<h1>
-						{item.titre} <span class="font-josefin">- {formatDate(item.date_de_peremption)}</span>
+					<h1 class="">
+						{event.titre}
+						<span class="font-light">- {formatDate(event.date_de_peremption)}</span>
 					</h1>
 				</div>
-				{@html item.description}
+				{@html event.description}
 			</div>
 		{/each}
 	{:else}

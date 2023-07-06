@@ -12,12 +12,6 @@
 - [ ] IKE >> Make clicking on series title show the series page
 - [ ] IKE >> On opening, Murmuziek details are displayed on the side and its episodes are visible (menu is open)
 
-# Fonts
-
-- [ ] films > series: Fix italic / bold for Second nav series title (Murmuziek should be black)
-- [ ] Make the overlay josefin font extralight on homepage
-- [ ] Review font choice in every page
-
 # Menus
 
 - [ ] Fix the responsive menu
@@ -33,10 +27,12 @@
 
 ## Others
 
-- [ ] Add page titles
-- [ ] Fix the 'todo' displayed as an alt for images
-- [ ] Remove the always active scrollbar appearing sometimes
 - [ ] There's a bug in flows, where if the video is already there (for example in series), it will error instead of applying existing vimeo data
+
+## Films
+
+- [ ] diffusion second nav should be narrower
+- [ ] liens are missing second nav with coprod + partenariats
 
 # Optimization
 

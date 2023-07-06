@@ -1,13 +1,17 @@
 <script lang="ts">
-	import FilmsSingleNavLayout from '$lib/components/FilmsSingleNavLayout.svelte';
 	import { imageFromAssets } from '$lib/utils';
 	import type { PageData } from './$houdini';
+
+	import FilmsSingleNavLayout from '$lib/components/FilmsSingleNavLayout.svelte';
+	import PageHead from '$lib/components/PageHead.svelte';
 
 	export let data: PageData;
 
 	$: ({ LiensQuery } = data);
 	$: ({ liens } = $LiensQuery.data! ?? {});
 </script>
+
+<PageHead head={'liens'} />
 
 <FilmsSingleNavLayout>
 	<div slot="content" class="grid gap-1 grid-cols-6 mt-6">
@@ -25,7 +29,7 @@
 						<img
 							src={imageFromAssets(item.image) + '?width=270&quality=30'}
 							class="object-cover h-full"
-							alt={item.lien}
+							alt="logo de '{item.titre}'"
 						/>
 					</a>
 				</div>

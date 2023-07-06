@@ -1,8 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import type { LayoutData } from '../$houdini';
-	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
 	import { imageFromAssets } from '$lib/utils';
+	import type { LayoutData } from '../$houdini';
+
+	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
+	import PageHead from '$lib/components/PageHead.svelte';
+
 	export let data: LayoutData;
 
 	$: ({ FilmDAuteurs } = data);
@@ -10,11 +13,13 @@
 	$: currentFilm = films.find((f) => f.slug === $page.params.title);
 </script>
 
+<PageHead head={currentFilm?.titre_original} />
+
 {#if $FilmDAuteurs.data}
 	<section class="overflow-y-scroll h-[calc(100vh-120px)]">
 		<h1 class="text-center font-josefin uppercase">
 			<span>{currentFilm?.titre_original} {currentFilm?.titre_english ? '-' : ''} </span><span
-				class="italic">{currentFilm?.titre_english}</span
+				class="italic font-light">{currentFilm?.titre_english}</span
 			>
 		</h1>
 		<div class="text-center">
@@ -43,22 +48,22 @@
 			<img
 				src={imageFromAssets(currentFilm?.image_1) + '?width=270&quality=30'}
 				class="object-cover h-full"
-				alt="first"
+				alt="image 1 du film '{currentFilm?.titre_original}'"
 			/>
 			<img
 				src={imageFromAssets(currentFilm?.image_2) + '?width=270&quality=30'}
 				class="object-cover h-full"
-				alt="second"
+				alt="image 2 du film '{currentFilm?.titre_original}'"
 			/>
 			<img
 				src={imageFromAssets(currentFilm?.image_3) + '?width=270&quality=30'}
 				class="object-cover h-full"
-				alt="third"
+				alt="image 3 du film '{currentFilm?.titre_original}'"
 			/>
 		</div>
 		<h1 class="font-josefin text-lg mt-3 mb-2">
 			<span>{currentFilm?.titre_original} {currentFilm?.titre_english ? '-' : ''} </span>
-			<span>{currentFilm?.titre_english}</span>
+			<span class="italic">{currentFilm?.titre_english}</span>
 		</h1>
 		<ul class="mb-4 grid gap-2">
 			<li><b>Réalisation :</b> <span>{currentFilm?.realisation}</span></li>
@@ -103,7 +108,10 @@
 				<span>{currentFilm?.ville} - {currentFilm?.annee}</span>
 			</li>
 			<li>
-				<img src={imageFromAssets(currentFilm?.affiche) + '?width=800&quality=30'} alt="afiche" />
+				<img
+					src={imageFromAssets(currentFilm?.affiche) + '?width=800&quality=30'}
+					alt="affiche du film '{currentFilm?.titre_original}'"
+				/>
 			</li>
 		</ul>
 	</section>

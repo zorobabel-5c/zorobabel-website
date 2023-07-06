@@ -16,7 +16,7 @@
 			class="lg:border-r border-solid border-gray-800 text-center"
 			data-sveltekit-preload-data="tap"
 		>
-			<ul class="[&>li]:mb-12 overflow-y-scroll lg:h-[calc(100vh-120px)] md:h-[calc(50vh-60px)]">
+			<ul class="[&>li]:mb-12 lg:h-[calc(100vh-120px)] md:h-[calc(50vh-60px)]">
 				<li>
 					<a
 						href="/films/auteurs"

@@ -1,7 +1,9 @@
 <script lang="ts">
-	import Events from '$lib/components/Events.svelte';
 	import { isPastDate } from '$lib/utils/date';
 	import type { LayoutData } from '../$houdini';
+
+	import Events from '$lib/components/Events.svelte';
+	import PageHead from '$lib/components/PageHead.svelte';
 
 	export let data: LayoutData;
 
@@ -13,6 +15,8 @@
 
 	let message = `Il n'y a pas de stage programmé.`;
 </script>
+
+<PageHead head={'stages enfants'} />
 
 {#if !$AteliersQuery.fetching}
 	<Events {events} noEventMessage={message} />

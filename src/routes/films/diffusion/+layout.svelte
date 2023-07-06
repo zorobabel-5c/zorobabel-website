@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import FilmLayout from '$lib/components/FilmLayout.svelte';
+	import PageHead from '$lib/components/PageHead.svelte';
 </script>
+
+<PageHead head={'diffusion'} />
 
 <FilmLayout>
 	<svelte:fragment slot="nav">

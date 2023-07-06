@@ -1,10 +1,14 @@
 <script lang="ts">
 	import type { PageData } from '../a-propos/$houdini';
+	import PageHead from '$lib/components/PageHead.svelte';
+
 	export let data: PageData;
 
 	$: ({ ProposQuery } = data);
 	$: ({ a_propos, l_equipe, contact } = $ProposQuery.data! ?? {});
 </script>
+
+<PageHead head={'à propos'} />
 
 {#if !$ProposQuery.fetching}
 	<div id="contact">{@html contact?.contenu ?? ''}</div>

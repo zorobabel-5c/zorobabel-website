@@ -23,13 +23,13 @@
 		<div
 			class="absolute h-full w-full bg-black opacity-80 hidden group-hover:flex justify-center items-center"
 		>
-			<span class="font-extralight text-lg text-white text-center text-ellipsis px-2">
+			<span class="text-lg text-white text-center text-ellipsis px-2">
 				{!isEpisode(entry) ? title : `${getTitle(entry.series)} - EP${entry.numero} ${title}`}
 			</span>
 		</div>
 		<img
 			src={entry.video?.thumbnail_url + '?width=300&quality=30'}
-			alt="todo"
+			alt="affiche du film '{title}'"
 			class:aspect-video={index % 2 !== 0}
 			class:aspect-square={index % 2 === 0}
 			class="w-full object-cover"

@@ -4,6 +4,23 @@
 
 html {
 	scroll-behavior: smooth;
+	scrollbar-color: rgb(0, 0, 0, 0.3) white;
+	scrollbar-width: 5pxs;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+	width: 3px;
+}
+
+*::-webkit-scrollbar-track {
+	background: white;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: white;
+	border-radius: 20px;
+	border: 3px solid rgb(0, 0, 0, 0.3);
 }
 
 @layer base {
@@ -21,14 +38,22 @@ html {
 	}
 	@font-face {
 		font-family: 'Josefin Sans';
-		src: local('Josefin Sans Black'), url('/fonts/Jost-Black.woff2') format('woff2'),
-			url('/fonts/Jost-Black.woff') format('woff');
-		font-weight: 900;
+		src: local('Josefin Sans Light'), url('/fonts/JosefinSans-Light.woff2') format('woff2'),
+			url('/fonts/JosefinSans-Light.woff') format('woff');
+		font-weight: 300;
 	}
 	@font-face {
 		font-family: 'Josefin Sans';
 		src: local('Josefin Sans Italic'), url('/fonts/JosefinSans-Italic.woff2') format('woff2'),
 			url('/fonts/JosefinSans-Italic.woff') format('woff');
+		font-style: italic;
+	}
+	@font-face {
+		font-family: 'Josefin Sans';
+		src: local('Josefin Sans Light Italic'),
+			url('/fonts/JosefinSans-LightItalic.woff2') format('woff2'),
+			url('/fonts/JosefinSans-LightItalic.woff') format('woff');
+		font-weight: 300;
 		font-style: italic;
 	}
 }

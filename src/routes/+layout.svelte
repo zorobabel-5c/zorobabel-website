@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
+
 	import { SearchStore } from '$houdini';
 	import List from '$lib/components/List.svelte';
 	import { getTitle, truncate } from '$lib/utils';
@@ -39,12 +40,12 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <main class="max-w-[800px] mx-auto relative">
 	<nav
-		class="flex items-center sticky top-0 z-10 w-[800px] bg-white font-josefin mb-6 border-b border-gray-800 border-solid"
+		class="flex items-center sticky top-0 z-10 w-[800px] bg-white font-josefin font-normal mb-6 border-b border-gray-800 border-solid"
 	>
 		<a href="/">
 			<img
 				src="https://backend-zorobabel.5c.be/assets/62c21e86-8e74-4f41-afd0-a243b80f7b5a"
-				alt=""
+				alt="logo de zorobabel"
 				class="aspect-square w-[50px]"
 			/>
 		</a>
@@ -118,7 +119,7 @@
 		</ul>
 		<br />
 	</nav>
-	<section id="content" class="pb-5">
+	<section id="content">
 		<slot />
 	</section>
 	{#if showSearch}

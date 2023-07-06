@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { LayoutData } from '../../../$houdini';
+
 	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
+	import PageHead from '$lib/components/PageHead.svelte';
+
 	export let data: LayoutData;
 
 	$: ({ SeriesPage } = data);
@@ -9,6 +12,8 @@
 	$: currentSeries = series.find((s) => s.slug === $page.params.title);
 	$: currentEpisode = currentSeries?.episodes?.find((e) => e?.slug === $page.params.name);
 </script>
+
+<PageHead head={currentEpisode?.titre} />
 
 {#if !$SeriesPage.fetching}
 	<h1 class="text-center font-josefin uppercase">

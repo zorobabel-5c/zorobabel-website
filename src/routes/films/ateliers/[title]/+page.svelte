@@ -1,13 +1,18 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { LayoutData } from '../$houdini';
+
 	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
+	import PageHead from '$lib/components/PageHead.svelte';
+
 	export let data: LayoutData;
 
 	$: ({ FilmDAteliers } = data);
 	$: ({ films = [] } = $FilmDAteliers.data! ?? {});
 	$: currentFilm = films.find((f) => f.slug === $page.params.title);
 </script>
+
+<PageHead head={currentFilm?.titre} />
 
 {#if !$FilmDAteliers.fetching}
 	{#if currentFilm?.titre}

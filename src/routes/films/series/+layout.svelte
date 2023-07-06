@@ -40,7 +40,11 @@
 						}
 					}}
 				>
-					<img src={imageFromAssets(item.logo?.id)} alt="logo" class="w-10" />
+					<img
+						src={imageFromAssets(item.logo?.id)}
+						alt="logo de la série '{item.titre}'"
+						class="w-10"
+					/>
 					<span class="font-bold">{truncate(item.titre, 40)}</span>
 				</div>
 				{#if isActive === item.slug}
