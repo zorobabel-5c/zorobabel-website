@@ -4,7 +4,6 @@
 	import { SearchStore } from '$houdini';
 	import List from '$lib/components/List.svelte';
 	import { getTitle, truncate } from '$lib/utils';
-	import LinkListItem from '$lib/components/LinkListItem.svelte';
 
 	let showSideNav = false;
 	let toggleSideNav = () => (showSideNav = !showSideNav);

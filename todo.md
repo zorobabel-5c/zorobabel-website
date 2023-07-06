@@ -4,10 +4,6 @@
 
 # Search
 
-- [ ] IKE >> Create a search page
-- [ ] IKE >> With a simple search field and submit
-- [ ] IKE >> Search in all pages/items
-- [ ] IKE >> Display a list with link to the page
 - [ ] Show where it appears and some context (x word before after?)
 - [ ] Bold the word in the context
 
