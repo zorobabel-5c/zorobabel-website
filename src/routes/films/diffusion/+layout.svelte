@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import FilmLayout from '$lib/components/FilmLayout.svelte';
+	import FilmSecondaryLayout from '$lib/components/FilmSecondaryLayout.svelte';
 	import PageHead from '$lib/components/PageHead.svelte';
 </script>
 
 <PageHead head={'diffusion'} />
 
-<FilmLayout>
+<FilmSecondaryLayout>
 	<svelte:fragment slot="nav">
 		<ul class="text-center [&>li]:mb-12">
 			<li class:text-red-500={$page.url.pathname.endsWith('/prix')}>
@@ -35,4 +35,4 @@
 	<div slot="content">
 		<slot />
 	</div>
-</FilmLayout>
+</FilmSecondaryLayout>

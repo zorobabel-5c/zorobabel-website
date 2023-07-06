@@ -1,0 +1,7 @@
+query CoprodQuery {
+	coproductions {
+		description
+		lien
+		titre_lien
+	}
+}
