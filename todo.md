@@ -2,11 +2,6 @@
 
 - [ ] IKE >> When clicking on the video, there should be modal with the player + arrows left and right to go to previous/next video
 
-# Search
-
-- [ ] Show where it appears and some context (x word before after?)
-- [ ] Bold the word in the context
-
 ## Series page
 
 - [ ] IKE >> Make clicking on series title show the series page
@@ -14,12 +9,12 @@
 
 # Menus
 
-- [ ] Fix the responsive menu
-- [ ] Bonus: sticky sidenav menus
+- [ ] IKE Fix the responsive menu
 
-# Ateliers / Evenements
+# Search
 
-- [ ] BONUS Find a way to create unique links for events
+- [ ] Show where it appears and some context (x word before after?)
+- [ ] Bold the word in the context
 
 ## Catalogue (PDF 20)
 
@@ -35,3 +30,8 @@
 - [ ] Make sure images elements take their final space if images are not downloaded yet, so there's less jumping around
 - [ ] Load all images at their maximal size or create these images through Directus
 - [ ] Create a CI/CD pipeline to build the website on demand (add a button in the backend interface?)
+
+# BONUS
+
+- [ ] BONUS Find a way to create unique links for events
+- [ ] Bonus: sticky sidenav menus
