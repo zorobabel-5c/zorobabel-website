@@ -57,6 +57,21 @@ function random<T>(first: T[]): T {
 	return first[index];
 }
 
+function randomMize<T>(first: T[], current: T[] = []): T[] {
+	if (first.length < 2) return [...current, ...first];
+	const index = Math.floor(Math.random() * first.length);
+	const next = [...first];
+	next.splice(index, 1);
+	return randomMize(next, [...current, first[index]]);
+}
+
+export function randomizeMany<T>(first: T[]): T[];
+export function randomizeMany<T, U>(first: T[], second: U[]): Array<T | U>;
+export function randomizeMany<T, U, V>(first: T[], second: U[], third: V[]): Array<T | U | V>;
+export function randomizeMany<T>(...arrays: Array<Array<T>>): T[] {
+	return randomMize(arrays.flat());
+}
+
 export function groupBy<T, R extends PropertyKey>(
 	items: T[],
 	mapper: (arg: T) => R

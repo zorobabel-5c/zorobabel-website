@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { HomepageFilms$result } from '$houdini';
+	import { showBackDrop } from '$lib/store/backdrop';
 	import { getSlug, isAuteur, isEpisode, isFilmDAtelier } from '$lib/utils';
 	import { getTitle } from '$lib/utils';
 
@@ -19,7 +20,8 @@
 </script>
 
 <div class="group overflow-hidden relative cursor-pointer font-josefin">
-	<a href={url}>
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<div on:click={() => showBackDrop.set(true)}>
 		<div
 			class="absolute h-full w-full bg-black opacity-80 hidden group-hover:flex justify-center items-center"
 		>
@@ -34,7 +36,7 @@
 			class:aspect-square={index % 2 === 0}
 			class="w-full object-cover"
 		/>
-	</a>
+	</div>
 	<p class="py-2">
 		film du catalogue: <span class="italic"
 			>{!isEpisode(entry) ? title : `${getTitle(entry.series)} - EP${entry.numero} ${title}`}</span

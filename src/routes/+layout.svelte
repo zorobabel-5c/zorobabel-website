@@ -5,6 +5,7 @@
 	import { SearchStore } from '$houdini';
 	import List from '$lib/components/List.svelte';
 	import { getTitle, truncate } from '$lib/utils';
+	import Close from '$lib/components/Close.svelte';
 
 	let showSideNav = false;
 	let toggleSideNav = () => (showSideNav = !showSideNav);
@@ -124,14 +125,7 @@
 	</section>
 	{#if showSearch}
 		<section id="search" class="h-full w-full absolute z-10 bg-[#000000d6] top-0 left-0 text-white">
-			<button
-				id="search_close"
-				on:click={() => (showSearch = false)}
-				class="top-8 right-[10%] absolute z-20 [&>span]:absolute [&>span]:inline-block [&>span]:w-[50px] [&>span]:h-1 [&>span]:bg-white"
-			>
-				<span class="rotate-45" />
-				<span class="-rotate-45" />
-			</button>
+			<Close on:click={() => (showSearch = false)} />
 			<div
 				class="flex border-b-white border-b-2 border-solid px-8 py-4 bg-[#000000b8] sticky top-0"
 			>

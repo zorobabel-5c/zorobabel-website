@@ -1,11 +1,3 @@
-# Homepage
-
-- [ ] IKE >> When clicking on the video, there should be modal with the player + arrows left and right to go to previous/next video
-
-# Menus
-
-- [ ] IKE Fix the responsive menu
-
 # Search
 
 - [ ] Show where it appears and some context (x word before after?)
