@@ -24,7 +24,9 @@
 <PageHead />
 
 {#if !$HomepageFilms.fetching}
-	<section class=" lg:columns-4 md:columns-3 sm:columns-2 gap-0 font-josefin font-normal">
+	<section
+		class=" lg:columns-4 md:columns-3 sm:columns-2 px-4 sm:px-[unset] gap-0 font-josefin font-normal"
+	>
 		<HomepageEntry entry={random} index={0} />
 		{#each combined as entry}
 			{#if entry.affiche?.id}
