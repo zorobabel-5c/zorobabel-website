@@ -5,7 +5,6 @@
 	import { page } from '$app/stores';
 	import { getSlug, removePrefix, truncate } from '$lib/utils';
 	import LinkListItem from '$lib/components/LinkListItem.svelte';
-	import { imageFromAssets } from '$lib/utils';
 
 	export let data: LayoutData;
 	let isActive = $page.params.title;
@@ -28,25 +27,18 @@
 				classes="mb-8 relative"
 				shouldScrollIntoView={false}
 			>
-				<div
-					class="sticky top-0 cursor-pointer font-semibold flex gap-2 items-center mb-4 py-1 px-4 bg-white"
-					class:shadow-sm={isActive === item.slug}
+				<LinkListItem
+					{item}
+					getLogoId={() => item.logo?.id}
+					getLink={() => `/films/series/${getSlug(item)}`}
+					getProcessedTitle={() => truncate(item.titre, 40)}
 					on:click={() => {
 						isActive = getSlug(item);
 					}}
-					on:keydown={(e) => {
-						if (e.key === 'Tab' || e.key === 'Enter') {
-							isActive = getSlug(item);
-						}
-					}}
-				>
-					<img
-						src={imageFromAssets(item.logo?.id)}
-						alt="logo de la série '{item.titre}'"
-						class="w-10"
-					/>
-					<span class="font-bold">{truncate(item.titre, 40)}</span>
-				</div>
+					className={`sticky top-0 cursor-pointer font-semibold flex gap-2 items-center mb-4 py-1 px-4 bg-white ${
+						isActive === item.slug ? 'shadow-sm' : ''
+					}`}
+				/>
 				{#if isActive === item.slug}
 					<List
 						items={item.episodes ?? []}

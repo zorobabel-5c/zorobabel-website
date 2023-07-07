@@ -2,11 +2,6 @@
 
 - [ ] IKE >> When clicking on the video, there should be modal with the player + arrows left and right to go to previous/next video
 
-## Series page
-
-- [ ] IKE >> Make clicking on series title show the series page
-- [ ] IKE >> On opening, Murmuziek details are displayed on the side and its episodes are visible (menu is open)
-
 # Menus
 
 - [ ] IKE Fix the responsive menu
