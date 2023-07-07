@@ -1,0 +1,54 @@
+query CatalogueSeries {
+	series(sort: "-numero") {
+		date_created
+		id
+		image_remplacement {
+			id
+		}
+		logo {
+			id
+		}
+		numero
+		realisation
+		synopsis_en
+		synopsis_fr
+		titre
+		slug
+		titre_english
+		video_bande_annonce {
+			html
+			thumbnail_url
+			width
+			thumbnail_width
+			thumbnail_height
+			height
+		}
+		episodes(sort: "-numero", limit: -1) {
+			annee
+			coproduction
+			date_created
+			duree_minutes
+			duree_secondes
+			id
+			slug
+			logo {
+				id
+			}
+			numero
+			realisation
+			synopsis_en
+			synopsis_fr
+			titre
+			titre_english
+			video {
+				id
+				html
+				height
+				width
+				thumbnail_width
+				thumbnail_url
+				thumbnail_height
+			}
+		}
+	}
+}

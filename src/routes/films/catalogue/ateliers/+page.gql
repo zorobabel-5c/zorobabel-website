@@ -1,0 +1,16 @@
+query CatalogueAteliers {
+	ateliers: films_d_ateliers(sort: "-numero", limit: -1) {
+		numero
+		titre
+		annee
+		duree_secondes
+		duree_minutes
+		partenariats
+		synopsis_fr
+		technique
+		public
+		logo {
+			id
+		}
+	}
+}

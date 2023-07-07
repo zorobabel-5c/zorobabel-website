@@ -3,18 +3,14 @@
 - [ ] Show where it appears and some context (x word before after?)
 - [ ] Bold the word in the context
 
-## Catalogue (PDF 20)
-
-- [ ] (TODO after # Films is completed) All films, completed or not (auteurs, séries, atelier, commande)
-
 ## Others
 
-- [ ] There's a bug in flows, where if the video is already there (for example in series), it will error instead of applying existing vimeo data
+- [ ] Review video overlay + add title
+- [ ] Review all breakpoint sizes
 
 # Optimization
 
-- [ ] Review all breakpoint sizes
-- [ ] Make sure images elements take their final space if images are not downloaded yet, so there's less jumping around
+- [ ] There's a bug in flows, where if the video is already there (for example in series), it will error instead of applying existing vimeo data
 - [ ] Load all images at their maximal size or create these images through Directus
 - [ ] Create a CI/CD pipeline to build the website on demand (add a button in the backend interface?)
 

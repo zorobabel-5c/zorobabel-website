@@ -1,0 +1,15 @@
+query CatalogueCommandes {
+	commandes: films_de_commande(limit: -1, sort: "-numero") {
+		numero
+		titre
+		realisation
+		technique
+		duree_secondes
+		duree_minutes
+		annee
+		description
+		logo {
+			id
+		}
+	}
+}

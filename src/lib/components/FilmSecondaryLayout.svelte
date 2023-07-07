@@ -9,7 +9,7 @@
 
 <section id="films" class="grid lg:grid-cols-[290px_1fr] md:grid-cols-[250px_1fr]">
 	<aside
-		class="grid lg:grid-cols-[130px_160px] md:lg:grid-cols-[1fr] lg:border-none md:border-r border-solid border-gray-800  font-josefin"
+		class="grid lg:grid-cols-[130px_172px] md:lg:grid-cols-[1fr] lg:border-none md:border-r border-solid border-gray-800  font-josefin"
 	>
 		<nav
 			id="sidenav"

@@ -1,0 +1,18 @@
+query CatalogueAuteurs {
+	auteurs: Films_d_auteur(sort: "-numero", limit: -1) {
+		numero
+		titre_original
+		titre_english
+		realisation
+		format
+		duree_secondes
+		duree_minutes
+		annee
+		synopsis_fr
+		synopsis_en
+		coproduction
+		logo {
+			id
+		}
+	}
+}

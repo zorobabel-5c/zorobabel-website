@@ -21,7 +21,7 @@
 			<li class:text-red-500={$page.url.pathname.endsWith('/partenariats')}>
 				<a href="./partenariats">
 					<p>partenariats</p>
-					<p>partenerships</p>
+					<p>partnerships</p>
 				</a>
 			</li>
 		</ul>
