@@ -33,7 +33,11 @@
 		/>
 	{/if}
 	<div class="columns-2">
-		<p>{currentSeries?.synopsis_fr}</p>
-		<p>{currentSeries?.synopsis_en}</p>
+		{#if currentSeries?.synopsis_fr}
+			<p>{currentSeries.synopsis_fr}</p>
+		{/if}
+		{#if currentSeries?.synopsis_en}
+			<p>{currentSeries?.synopsis_en}</p>
+		{/if}
 	</div>
 {/if}

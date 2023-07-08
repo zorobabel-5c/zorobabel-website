@@ -16,7 +16,7 @@
 			class="lg:border-r border-solid border-gray-800 text-center"
 			data-sveltekit-preload-data="tap"
 		>
-			<ul class="[&>li]:mb-12 lg:h-[calc(100vh-120px)] md:h-[calc(50vh-60px)]">
+			<ul class="lg:[&>li]:mb-12 md:[&>li]:mb-8 lg:h-[calc(100vh-120px)]">
 				<li>
 					<a
 						href="/films/auteurs"
@@ -68,17 +68,17 @@
 				</li>
 			</ul>
 		</nav>
-		<div class="lg:hidden md:block h-[1px] bg-gray-800 w-[90%] my-8" />
+		<div class="lg:hidden md:block h-[1px] bg-gray-800 w-[85%] mx-auto md:my-6" />
 		<nav
 			id="second_sidenav"
 			class:uppercase={uppercasify}
 			class:text-[11px]={uppercasify}
-			class="lg:border-r border-solid border-gray-800 lg:mr-4 lg:[&>ul]:h-[calc(100vh-120px)] [&>ul]:md:h-[calc(50vh-60px)] [&>ul]:overflow-y-scroll"
+			class="lg:border-r border-solid border-gray-800 lg:mr-4 lg:[&>ul]:h-[calc(100vh-120px)] [&>ul]:md:h-[calc(50vh-90px)] [&>ul]:overflow-y-scroll"
 		>
 			<slot name="nav" />
 		</nav>
 	</aside>
-	<main class="text-sm">
+	<main class="text-sm md:mx-2">
 		<slot name="content" />
 	</main>
 </section>
