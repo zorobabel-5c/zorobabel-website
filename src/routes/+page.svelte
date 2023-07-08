@@ -1,15 +1,22 @@
 <script lang="ts">
-	import { pickRandom, randomizeMany, sortByDateCreated } from '$lib/utils';
+	import { randomizeMany, sortByDateCreated } from '$lib/utils';
 	import type { PageData } from './$houdini';
 
 	import Affiche from '$lib/components/Affiche.svelte';
 	import HomepageEntry from '$lib/components/HomepageEntry.svelte';
-	import Close from '$lib/components/Close.svelte';
+	import Close from '$lib/components/icons/Close.svelte';
 	import PageHead from '$lib/components/PageHead.svelte';
 	import { showBackDrop } from '$lib/store/backdrop';
 	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
+	import AngleLeft from '$lib/components/icons/AngleLeft.svelte';
+	import AngleRight from '$lib/components/icons/AngleRight.svelte';
 
 	export let data: PageData;
+	export let showModal: boolean;
+
+	showBackDrop.subscribe((value) => {
+		showModal = value;
+	});
 
 	$: ({ HomepageFilms } = data);
 	$: ({
@@ -48,44 +55,36 @@
 				<Affiche {entry} />
 			{/if}
 		{/each}
-		<div
-			class="w-full h-[100vh] bg-[#000000ad] fixed top-0 left-0 z-50 grid place-content-center"
-			class:hidden={!$showBackDrop}
-		>
-			<Close on:click={() => showBackDrop.set(false)} />
-			<div class="w-[70vw] flex gap-4 [&>button]:self-center [&>button]:p-2 [&>button]:rounded-lg">
-				<button on:click={prev} class="text-white text-2xl hover:bg-[#00000026]">
-					<svg
-						fill="currentColor"
-						height="3rem"
-						viewBox="0 0 52 52"
-						transform="matrix(-1, 0, 0, 1, 0, 0)"
-					>
-						<g>
-							<path
-								d="M14,52a2,2,0,0,1-1.41-3.41L35.17,26,12.59,3.41a2,2,0,0,1,0-2.82,2,2,0,0,1,2.82,0l24,24a2,2,0,0,1,0,2.82l-24,24A2,2,0,0,1,14,52Z"
-							/>
-						</g>
-					</svg>
-				</button>
-				<div class="flex-1">
-					<VimeoIframe video={currentEntry.video} />
+		{#if showModal}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<div
+				class="w-full h-[100vh] bg-[rgb(0,0,0,0.9)] fixed top-0 left-0 z-50 grid place-content-center"
+				on:click|self={() => showBackDrop.set(false)}
+			>
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<div
+					on:click={() => showBackDrop.set(false)}
+					class="op-8 right-[5vw] absolute z-20 cursor-pointer"
+				>
+					<Close classes="text-white w-7 hover:text-red-500" />
 				</div>
-				<button on:click={next} class="text-white text-2xl hover:bg-[#00000026]">
-					<svg
-						fill="currentColor"
-						height="3rem"
-						viewBox="0 0 52 52"
-						transform="matrix(1, 0, 0, 1, 0, 0)"
-					>
-						<g>
-							<path
-								d="M14,52a2,2,0,0,1-1.41-3.41L35.17,26,12.59,3.41a2,2,0,0,1,0-2.82,2,2,0,0,1,2.82,0l24,24a2,2,0,0,1,0,2.82l-24,24A2,2,0,0,1,14,52Z"
-							/>
-						</g>
-					</svg>
-				</button>
+				<div
+					class="lg:w-[700px] md:w-[90vw] flex gap-4 [&>button]:self-center [&>button]:p-2 [&>button]:rounded-lg"
+				>
+					<button on:click={prev} class="text-white hover:text-red-500">
+						<AngleLeft classes="w-5 lg:w-7" />
+					</button>
+					<div class="flex-1">
+						<VimeoIframe video={currentEntry.video} />
+						<p class="text-white text-center">
+							{currentEntry.titre || currentEntry.titre_original}
+						</p>
+					</div>
+					<button on:click={next} class="text-white hover:text-red-500">
+						<AngleRight classes="w-5 lg:w-7" />
+					</button>
+				</div>
 			</div>
-		</div>
+		{/if}
 	</section>
 {/if}

@@ -1,11 +1,5 @@
-# Search
-
-- [ ] Show where it appears and some context (x word before after?)
-- [ ] Bold the word in the context
-
 ## Others
 
-- [ ] Review video overlay + add title
 - [ ] Review all breakpoint sizes
 
 # Optimization
