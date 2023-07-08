@@ -46,7 +46,7 @@
 	<nav
 		class="flex items-center sticky top-0 z-10 bg-white font-josefin font-normal mb-6 border-b border-gray-800 border-solid px-4"
 	>
-		<a href="/">
+		<a href="/" class="z-20" on:click={toggleSideNav}>
 			<img
 				src="https://backend-zorobabel.5c.be/assets/62c21e86-8e74-4f41-afd0-a243b80f7b5a"
 				alt="logo de zorobabel"
@@ -57,7 +57,7 @@
 		<button
 			on:click={toggleSideNav}
 			id="side_nav_toggle"
-			class="sm:hidden [&>span]:inline-block [&>span]:w-8 [&>span]:h-1 [&>span]:bg-gray-900 flex flex-col gap-1 self-center"
+			class="md:hidden [&>span]:inline-block [&>span]:w-8 [&>span]:h-1 [&>span]:bg-gray-900 flex flex-col gap-1 self-center"
 			class:hidden={showSideNav}
 		>
 			<!-- Mobile hamburger menu -->
@@ -70,10 +70,10 @@
 			on:click={toggleSideNav}
 			id="side_nav_backdrop"
 			class:hidden={!showSideNav}
-			class="sm:hidden left-0 top-0 h-[100vh] w-[100vw] fixed opacity-0 z-10"
+			class="md:hidden left-0 top-0 h-[100vh] w-[100vw] fixed opacity-0 z-10"
 		/>
 		<ul
-			class="sm:flex sm:mt-[unset] mt-8 sm:justify-around sm:items-center sm:pt-4 sm:w-full sm:h-[unset] sm:flex-row sm:relative flex-col text-center absolute right-0 top-0 bg-white w-[clamp(200px,60vw,300px)] z-20 h-[50vh] justify-start shadow-sm [&>li]:mb-4 [&>li]:px-4"
+			class="md:flex xs:mt-[unset] mt-8 xs:justify-around xs:items-center xs:pt-4 xs:w-full xs:h-[unset] xs:flex-row xs:relative flex-col text-center absolute right-0 top-0 bg-white w-[clamp(200px,60vw,300px)] z-20 h-[50vh] justify-start shadow-sm [&>li]:mb-4 [&>li]:px-4"
 			class:hidden={!showSideNav}
 			on:click={toggleSideNav}
 		>
