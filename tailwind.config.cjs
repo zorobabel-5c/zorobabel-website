@@ -5,20 +5,17 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				josefin: ['Josefin Sans']
-				// jost: ['Jost']
+			},
+			gridTemplateColumns: {
+				films: '45% minmax(0, 1fr)'
 			}
 		},
 		screens: {
-			xs: '203px',
-			// => @media (min-width: 400px) { ... }
+			xs: '360px',
 			sm: '420px',
-			// => @media (min-width: 400px) { ... }
-
-			md: '600px',
-			// => @media (min-width: 600px) { ... }
-
+			mm: '512px',
+			md: '672px',
 			lg: '800px'
-			// => @media (min-width: 800px) { ... }
 		}
 	},
 	plugins: []
