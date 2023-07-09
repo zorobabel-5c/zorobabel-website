@@ -3,7 +3,7 @@
 	import type { LayoutData } from '../evenements/$houdini';
 	import { isPastDate } from '$lib/utils/date';
 
-	import StaticLayout from '$lib/components/static/StaticLayout.svelte';
+	import BaseLayout from '$lib/components/layouts/BaseLayout.svelte';
 	import Events from '$lib/components/Events.svelte';
 	import PageHead from '$lib/components/PageHead.svelte';
 
@@ -16,7 +16,7 @@
 
 <PageHead head={'événements'} />
 
-<StaticLayout>
+<BaseLayout>
 	<svelte:fragment slot="sidemenu">
 		<li>
 			<a href="evenements" class:text-red-500={$page.url.pathname.startsWith('evenements')}>
@@ -29,4 +29,4 @@
 			<Events {events} />
 		{/if}
 	</div>
-</StaticLayout>
+</BaseLayout>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ZorobabelLayout from '$lib/components/static/ZorobabelLayout.svelte';
+	import ZorobabelLayout from '$lib/components/layouts/ZorobabelLayout.svelte';
 </script>
 
 <ZorobabelLayout>

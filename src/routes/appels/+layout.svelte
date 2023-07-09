@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AppelsLayout from '$lib/components/static/AppelsLayout.svelte';
+	import AppelsLayout from '$lib/components/layouts/AppelsLayout.svelte';
 </script>
 
 <AppelsLayout>

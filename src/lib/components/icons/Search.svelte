@@ -6,7 +6,7 @@
 	version="1.1"
 	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
-	height="1rem"
+	height="1em"
 	fill="currentColor"
 	viewBox="0 0 122.879 119.799"
 	class={classes}

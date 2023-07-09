@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { LayoutData } from './$houdini';
-	import FilmLayout from '$lib/components/FilmLayout.svelte';
+	import FilmLayout from '$lib/components/layouts/FilmLayout.svelte';
 	import List from '$lib/components/List.svelte';
 	import { page } from '$app/stores';
 	import { getSlug, removePrefix, truncate } from '$lib/utils';

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AteliersLayout from '$lib/components/static/AteliersLayout.svelte';
+	import AteliersLayout from '$lib/components/layouts/AteliersLayout.svelte';
 </script>
 
 <AteliersLayout>

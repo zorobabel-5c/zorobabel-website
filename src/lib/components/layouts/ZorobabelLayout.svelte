@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import StaticLayout from '$lib/components/static/StaticLayout.svelte';
+	import BaseLayout from '$lib/components/layouts/BaseLayout.svelte';
 </script>
 
-<StaticLayout>
+<BaseLayout>
 	<svelte:fragment slot="sidemenu">
 		<li>
 			<a href="contact" class:text-red-500={$page.url.pathname.startsWith('/zorobabel/contact')}>
@@ -31,4 +31,4 @@
 	<div slot="content">
 		<slot name="content" />
 	</div>
-</StaticLayout>
+</BaseLayout>

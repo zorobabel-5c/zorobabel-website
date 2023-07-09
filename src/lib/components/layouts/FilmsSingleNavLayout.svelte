@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import StaticLayout from '$lib/components/static/StaticLayout.svelte';
+	import BaseLayout from '$lib/components/layouts/BaseLayout.svelte';
 </script>
 
-<StaticLayout>
+<BaseLayout>
 	<svelte:fragment slot="sidemenu">
 		<li>
 			<a href="/films/auteurs" class:text-red-500={$page.url.pathname.startsWith('/films/auteurs')}>
@@ -52,4 +52,4 @@
 	<div slot="content">
 		<slot name="content" />
 	</div>
-</StaticLayout>
+</BaseLayout>

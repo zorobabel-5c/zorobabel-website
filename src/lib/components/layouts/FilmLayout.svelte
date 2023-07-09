@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 
-	import ArrowDown from './icons/ArrowDown.svelte';
-	import ArrowUp from './icons/ArrowUp.svelte';
+	import ArrowDown from '../icons/ArrowDown.svelte';
+	import ArrowUp from '../icons/ArrowUp.svelte';
 
 	$: uppercasify =
 		$page.url.pathname.startsWith('/films/auteurs') ||
