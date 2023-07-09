@@ -16,7 +16,7 @@
 <PageHead head={currentFilm?.titre_original} />
 
 {#if $FilmDAuteurs.data}
-	<section class="overflow-y-scroll h-[calc(100vh-120px)]">
+	<section class="mm:overflow-y-scroll h-[calc(100vh-120px)]">
 		<h1 class="text-center font-josefin uppercase">
 			<span>{currentFilm?.titre_original} {currentFilm?.titre_english ? '-' : ''} </span><span
 				class="italic font-light">{currentFilm?.titre_english}</span

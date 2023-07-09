@@ -13,7 +13,7 @@
 	>
 		<nav
 			id="sidenav"
-			class="col-span-3 mm:col-span-8 lg:col-span-3 border-r mm:border-[0] border-solid border-gray-800 text-center"
+			class="col-span-3 mm:col-span-8 lg:col-span-3 border-r mm:border-[0] lg:border-r border-solid border-gray-800 text-center"
 			data-sveltekit-preload-data="tap"
 		>
 			<ul class="[&>li]:mb-3 lg:[&>li]:mb-12 mx-2">

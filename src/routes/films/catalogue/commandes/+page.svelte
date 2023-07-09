@@ -14,7 +14,7 @@
 <PageHead head={`films d'auteur (catalogue)`} />
 
 {#if !$CatalogueCommandes.fetching}
-	<section class="overflow-y-scroll h-[calc(100vh-120px)]">
+	<section class="mm:overflow-y-scroll h-[calc(100vh-120px)]">
 		<List items={commandes} let:item getKey={getTitle}>
 			<div class="flex gap-4 mb-4">
 				<div class="min-w-[2.5rem] min-h-[2.5rem]">

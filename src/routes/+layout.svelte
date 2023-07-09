@@ -44,7 +44,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <main class="relative max-w-[800px] mx-auto">
 	<nav
-		class="flex items-center sticky top-0 z-10 bg-white font-josefin font-normal mb-6 border-b border-gray-800 border-solid px-4"
+		class="flex items-center sticky top-0 z-10 bg-white font-josefin font-normal mb-4 border-b border-gray-800 border-solid px-4"
 	>
 		<a href="/" class="z-20" on:click={toggleSideNav}>
 			<img

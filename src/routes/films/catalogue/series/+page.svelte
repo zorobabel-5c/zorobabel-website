@@ -16,7 +16,7 @@
 <PageHead head={`séries créatives (catalogue)`} />
 
 {#if !$CatalogueSeries.fetching}
-	<section class="overflow-y-scroll h-[calc(100vh-120px)]">
+	<section class="mm:overflow-y-scroll h-[calc(100vh-120px)]">
 		<List
 			items={series}
 			let:item
