@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import FilmSecondaryLayout from '$lib/components/FilmSecondaryLayout.svelte';
+	import FilmSecondaryLayout from '$lib/components/layouts/FilmSecondaryLayout.svelte';
 	import PageHead from '$lib/components/PageHead.svelte';
 </script>
 
