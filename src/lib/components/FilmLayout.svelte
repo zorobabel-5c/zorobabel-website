@@ -1,10 +1,38 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import AngleLeft from './icons/AngleLeft.svelte';
+	import AngleRight from './icons/AngleRight.svelte';
+	import ArrowDown from './icons/ArrowDown.svelte';
+	import ArrowUp from './icons/ArrowUp.svelte';
 
 	$: uppercasify =
 		$page.url.pathname.startsWith('/films/auteurs') ||
 		$page.url.pathname.startsWith('/films/series') ||
 		$page.url.pathname.startsWith('/films/ateliers');
+
+	let element: HTMLElement;
+
+	let showTop = false;
+	let showBottom = true;
+
+	function handleScroll() {
+		if (element.scrollTop === 0) {
+			// Scroll is at the start of the element
+			showTop = false;
+		} else {
+			showTop = true;
+		}
+
+		if (element.scrollTop + element.offsetHeight >= element.scrollHeight) {
+			// Scroll is at the end of the element
+			showBottom = false;
+		} else {
+			showBottom = true;
+		}
+	}
+
+	$: showTopIcon = showTop ? 'sticky top-0' : 'hidden';
+	$: showBottomIcon = showBottom ? ' sticky bottom-0' : 'hidden';
 </script>
 
 <section id="films" class="mm:grid mm:grid-cols-8 lg:grid-cols-films">
@@ -74,8 +102,18 @@
 			class:uppercase={uppercasify}
 			class:text-[11px]={uppercasify}
 			class="col-span-5 mm:col-span-8 lg:col-span-5 overflow-y-scroll"
+			bind:this={element}
+			on:scroll={handleScroll}
 		>
+			<div class={showTop ? 'sticky top-0 bg-white flex items-center justify-center' : 'hidden'}>
+				<ArrowUp classes="-mt-[11px]" />
+			</div>
 			<slot name="nav" />
+			<div
+				class={showBottom ? 'sticky bottom-0 bg-white flex items-center justify-center' : 'hidden'}
+			>
+				<ArrowDown classes="-mb-[11px]" />
+			</div>
 		</nav>
 	</aside>
 	<main class="mm:col-span-5 lg:col-start-2 lg:col-end-3 text-sm mx-2">
