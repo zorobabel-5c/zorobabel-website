@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import AngleLeft from './icons/AngleLeft.svelte';
-	import AngleRight from './icons/AngleRight.svelte';
+
 	import ArrowDown from './icons/ArrowDown.svelte';
 	import ArrowUp from './icons/ArrowUp.svelte';
 
@@ -30,9 +29,6 @@
 			showBottom = true;
 		}
 	}
-
-	$: showTopIcon = showTop ? 'sticky top-0' : 'hidden';
-	$: showBottomIcon = showBottom ? ' sticky bottom-0' : 'hidden';
 </script>
 
 <section id="films" class="mm:grid mm:grid-cols-8 lg:grid-cols-films">

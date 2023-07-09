@@ -1,22 +1,17 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-
-	$: uppercasify =
-		$page.url.pathname.startsWith('/films/auteurs') ||
-		$page.url.pathname.startsWith('/films/series') ||
-		$page.url.pathname.startsWith('/films/ateliers');
 </script>
 
-<section id="films" class="grid lg:grid-cols-[300px_1fr] md:grid-cols-[250px_1fr]">
+<section id="films" class="mm:grid mm:grid-cols-8 lg:grid-cols-films">
 	<aside
-		class="grid lg:grid-cols-[130px_175px] md:lg:grid-cols-[1fr] lg:border-none md:border-r border-solid border-gray-800 font-josefin"
+		class="grid grid-cols-8 grid-flow-dense grid-rows-[290px_auto_1fr] lg:grid-rows-1 font-josefin mm:col-span-3 lg:col-span-1 mm:h-[calc(89vh-15px)] mm:border-r border-solid border-gray-800 lg:sticky lg:top-[101px]"
 	>
 		<nav
 			id="sidenav"
-			class="lg:border-r border-solid border-gray-800 text-center"
+			class="col-span-3 mm:col-span-8 lg:col-span-3 border-r mm:border-[0] lg:border-r border-solid border-gray-800 text-center"
 			data-sveltekit-preload-data="tap"
 		>
-			<ul class="lg:[&>li]:mb-12 md:[&>li]:mb-8 lg:h-[calc(100vh-120px)]">
+			<ul class="[&>li]:mb-3 lg:[&>li]:mb-12 mx-2">
 				<li>
 					<a
 						href="/films/auteurs"
@@ -68,17 +63,15 @@
 				</li>
 			</ul>
 		</nav>
-		<div class="lg:hidden md:block h-[1px] bg-gray-800 w-[85%] mx-auto md:my-6" />
+		<div class="col-span-8 mm:col-span-8 lg:hidden my-3 h-[1px] bg-gray-800 w-[90%] mx-auto" />
 		<nav
 			id="second_sidenav"
-			class:uppercase={uppercasify}
-			class:text-[11px]={uppercasify}
-			class="lg:border-r border-solid border-gray-800 lg:mr-4 lg:[&>ul]:h-[calc(100vh-120px)] [&>ul]:md:h-[calc(50vh-90px)] [&>ul]:overflow-y-scroll"
+			class="col-span-5 mm:col-span-8 lg:col-span-5 self-center lg:self-start"
 		>
 			<slot name="nav" />
 		</nav>
 	</aside>
-	<main class="text-sm md:mx-2">
+	<main class="mm:col-span-5 lg:col-start-2 lg:col-end-3 text-sm mx-2">
 		<slot name="content" />
 	</main>
 </section>

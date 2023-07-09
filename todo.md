@@ -11,4 +11,3 @@
 # BONUS
 
 - [ ] BONUS Find a way to create unique links for events
-- [ ] Bonus: sticky sidenav menus

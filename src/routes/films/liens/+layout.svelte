@@ -8,7 +8,7 @@
 
 <FilmSecondaryLayout>
 	<svelte:fragment slot="nav">
-		<ul class="text-center lg:[&>li]:mb-12 md:[&>li]:mb-8">
+		<ul class="[&>li]:mb-3 lg:[&>li]:mb-12 text-center">
 			<li class:text-red-500={$page.url.pathname.endsWith('/liens')}>
 				<a href="./liens">
 					<p>liens</p>
