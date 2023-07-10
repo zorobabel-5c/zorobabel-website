@@ -1,6 +1,7 @@
 # Homepage
 
 - Update filtering logic: no unfinished films (in progress)
+- display all events on top (until their date is passed see date_de_peremption)
 
 # films
 
