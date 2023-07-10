@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { randomizeMany, sortByDateCreated } from '$lib/utils';
+	import { getTitle, randomizeMany, sortByDateCreated } from '$lib/utils';
 	import type { PageData } from './$houdini';
 
 	import Affiche from '$lib/components/Affiche.svelte';
@@ -34,12 +34,10 @@
 	$: next = () => {
 		current = Math.min(current + 1, randomized.length - 1);
 		currentEntry = randomized[current];
-		console.log(current, currentEntry);
 	};
 	$: prev = () => {
 		current = Math.max(current - 1, 0);
 		currentEntry = randomized[current];
-		console.log(current, currentEntry);
 	};
 </script>
 
@@ -77,7 +75,7 @@
 					<div class="flex-1">
 						<VimeoIframe video={currentEntry.video} />
 						<p class="text-white text-center">
-							{currentEntry.titre || currentEntry.titre_original}
+							{getTitle(currentEntry)}
 						</p>
 					</div>
 					<button on:click={next} class="text-white hover:text-red-500">
