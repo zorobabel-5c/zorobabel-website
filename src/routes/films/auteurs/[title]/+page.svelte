@@ -60,6 +60,11 @@
 				</span>
 			{/if}
 		</div>
+		{#if currentFilm?.in_progress}
+			<div class="text-center italic my-4">
+				<p>En cours de réalisation - <span>Work in progress</span></p>
+			</div>
+		{/if}
 		<VimeoIframe video={currentFilm?.video} />
 		<div class="columns-2">
 			<p>{currentFilm?.synopsis_fr ?? ''}</p>
