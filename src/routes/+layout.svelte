@@ -30,6 +30,7 @@
 		ateliers,
 		evenements
 	} = $searchStore.data! ?? {});
+
 	$: empty = [
 		films_d_ateliers,
 		films_de_commande,

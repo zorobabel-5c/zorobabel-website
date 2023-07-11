@@ -1,8 +1,7 @@
 <script lang="ts">
 	import type { HomepageFilms$result } from '$houdini';
 	import { showVideoModal } from '$lib/store/modals';
-	import { getSlug, isAuteur, isEpisode, isFilmDAtelier } from '$lib/utils';
-	import { getTitle } from '$lib/utils';
+	import { getSlug, getTitle, isAuteur, isEpisode, isFilmDAtelier } from '$lib/utils';
 
 	export let entry:
 		| HomepageFilms$result['films_d_ateliers'][number]

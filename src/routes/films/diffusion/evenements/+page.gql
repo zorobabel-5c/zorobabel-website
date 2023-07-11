@@ -1,5 +1,5 @@
 query EvenementFilms {
-	evenements_films(sort: "numero") {
+	evenements_films(sort: "-numero") {
 		numero
 		description
 		logo {
