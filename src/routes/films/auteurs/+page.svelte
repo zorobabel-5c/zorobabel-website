@@ -7,6 +7,6 @@
 	export let data: LayoutData;
 
 	$: ({ FilmDAuteurs } = data);
-	$: ({ films = [] } = $FilmDAuteurs.data! ?? {});
-	$: browser && !$FilmDAuteurs.fetching && goto(`/films/auteurs/${getSlug(films[0]) ?? '404'}`);
+	$: ({ latests = [] } = $FilmDAuteurs.data! ?? {});
+	$: browser && !$FilmDAuteurs.fetching && goto(`/films/auteurs/${getSlug(latests[0]) ?? '404'}`);
 </script>
