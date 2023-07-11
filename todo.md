@@ -5,7 +5,6 @@
 # films
 
 - if a film is no available => display trailer, if trailer not available => display the backup image, if no backup image available => display one of the 3 images => else don't display anything.
-- Make series main image open in a modal
 
 # Prix
 
