@@ -69,7 +69,11 @@
 				<div
 					class="lg:w-[700px] md:w-[90vw] flex gap-4 [&>button]:self-center [&>button]:p-2 [&>button]:rounded-lg"
 				>
-					<button on:click={prev} class="text-white hover:text-red-500">
+					<button
+						on:click={prev}
+						class:invisible={current === 0}
+						class="text-white hover:text-red-500"
+					>
 						<AngleLeft classes="w-5 lg:w-7" />
 					</button>
 					<div class="flex-1">
