@@ -1,6 +1,7 @@
 query PrixQuery {
-	prix: Prix(filter: {}) {
+	prix: Prix(limit: -1) {
 		numero
+		description
 		film_awarded {
 			item {
 				... on Films_d_auteur {
@@ -50,6 +51,5 @@ query PrixQuery {
 				}
 			}
 		}
-		description
 	}
 }

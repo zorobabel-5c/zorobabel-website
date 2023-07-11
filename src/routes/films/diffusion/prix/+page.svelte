@@ -29,7 +29,7 @@
 			description,
 			...film_awarded?.[0]?.item
 		}))
-		.sort((a, b) => a.numero - b.numero);
+		.sort((a, b) => b.numero - a.numero);
 </script>
 
 <PageHead head={'prix'} />
