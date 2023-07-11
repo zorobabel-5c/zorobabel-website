@@ -8,6 +8,18 @@
 - scroll up when clicking on another film from the list
 - if a film is no available => display trailer, if trailer not available => display the backup image, if no backup image available => display one of the 3 images => else don't display anything.
 - open by default with the latet finished film
+- Add En cours de réalisation. Work in progress on top of video
+- Make series main image open in a modal
+
+# Events
+
+- remove date de peremption from the display
+
+# Prix
+
+- make image fixed size (see 11 & 14)
+- reverse sort order
+- make image keep ratio (562px)
 
 # Optimization
 
