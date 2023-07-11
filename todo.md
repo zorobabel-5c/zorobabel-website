@@ -1,16 +1,13 @@
-# Homepage
-
-- display all events on top
-- figure out ordering of films
-
 # films
 
 - if a film is no available => display trailer, if trailer not available => display the backup image, if no backup image available => display one of the 3 images => else don't display anything.
-- check no nulls are rendered
 
-# Prix & Liens
+# Liens & Publications
 
 - order by "-numero"
+
+# Prix
+
 - make image fixed size (see 11 & 14)
 - make image keep ratio (562px)
 
@@ -18,7 +15,3 @@
 
 - [ ] There's a bug in flows, where if the video is already there (for example in series), it will error instead of applying existing vimeo data
 - [ ] Enable caching in Directus
-
-# BONUS
-
-- [ ] BONUS Find a way to create unique links for events
