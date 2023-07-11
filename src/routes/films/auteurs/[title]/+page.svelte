@@ -82,88 +82,117 @@
 				<p>{currentFilm?.prix_obtenus_par_le_film}</p>
 			</div>
 		{/if}
-		<div class="grid grid-cols-3 mt-4 cursor-pointer">
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<img
-				on:click={handleImage}
-				src={imageFromAssets(images[0]) + '?width=270&quality=30'}
-				class="object-cover h-full"
-				alt="image 1 du film '{currentFilm?.titre_original}'"
-				data-list-index={0}
-			/>
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<img
-				on:click={handleImage}
-				data-list-index={1}
-				src={imageFromAssets(images[1]) + '?width=270&quality=30'}
-				class="object-cover h-full"
-				alt="image 2 du film '{currentFilm?.titre_original}'"
-			/>
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<img
-				on:click={handleImage}
-				data-list-index={2}
-				src={imageFromAssets(images[2]) + '?width=270&quality=30'}
-				class="object-cover h-full"
-				alt="image 3 du film '{currentFilm?.titre_original}'"
-			/>
-		</div>
+		{#if currentFilm?.image_1 && currentFilm?.image_2 && currentFilm?.image_3}
+			<div class="grid grid-cols-3 mt-4 cursor-pointer">
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<img
+					on:click={handleImage}
+					src={imageFromAssets(images[0]) + '?width=270&quality=30'}
+					class="object-cover h-full"
+					alt="image 1 du film '{currentFilm?.titre_original}'"
+					data-list-index={0}
+				/>
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<img
+					on:click={handleImage}
+					data-list-index={1}
+					src={imageFromAssets(images[1]) + '?width=270&quality=30'}
+					class="object-cover h-full"
+					alt="image 2 du film '{currentFilm?.titre_original}'"
+				/>
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<img
+					on:click={handleImage}
+					data-list-index={2}
+					src={imageFromAssets(images[2]) + '?width=270&quality=30'}
+					class="object-cover h-full"
+					alt="image 3 du film '{currentFilm?.titre_original}'"
+				/>
+			</div>
+		{/if}
 		<h1 class="font-josefin text-lg mt-3 mb-2">
 			<span>{currentFilm?.titre_original} {currentFilm?.titre_english ? '-' : ''} </span>
 			<span class="italic">{currentFilm?.titre_english}</span>
 		</h1>
 		<ul class="mb-4 grid gap-2">
-			<li><b>Réalisation :</b> <span>{currentFilm?.realisation}</span></li>
-			<li><b>Scénario / <i>Screenplay</i> :</b> <span>{currentFilm?.scenario}</span></li>
-			<li>
-				<b>Langue originale des dialogues / <i>Original language</i> :</b>
-				<span>{currentFilm?.langue_originale}</span>
-			</li>
-			<li>
-				<b>Titre anglais / <i>English title</i> :</b> <span>'{currentFilm?.titre_english}'</span>
-			</li>
-			<li><b>Public / <i>Audience</i> :</b> <span>{currentFilm?.public}</span></li>
-			<li>
-				<p><b>Synopsis / <i>Synopsis</i></b></p>
-				<p>{currentFilm?.synopsis_fr}</p>
-				<p>{currentFilm?.synopsis_en}</p>
-			</li>
-			<li><b>Images / <i>Camera</i> :</b> <span>{currentFilm?.image}</span></li>
-			<li><b>Animation / <i>Animation</i> :</b> <span>{currentFilm?.animation}</span></li>
-			<li><b>Montage / <i>Editing</i> :</b> <span>{currentFilm?.montage}</span></li>
-			<li><b>Son / <i>Sound</i> :</b> <span>{currentFilm?.son}</span></li>
-			<li><b>Voix / <i>Voices</i> :</b> <span>{currentFilm?.voix}</span></li>
-			<li><b>Musique / <i>Music</i> :</b> <span>{currentFilm?.musique}</span></li>
-			<li>
-				<b>Format pour la sélection / <i>Selection format</i> :</b>
-				<span>{currentFilm?.format}</span>
-			</li>
-			<li>
-				<b>Durée / <i>Running time</i> :</b>
-				<span>{currentFilm?.duree_minutes}'{currentFilm?.duree_secondes}"</span>
-			</li>
-			<li>
-				<p><b>Production / <i>Production</i> :</b></p>
-				<span>{currentFilm?.production}</span>
-			</li>
-			<li>
-				<b>Contact :</b>
-				<p>{@html currentFilm?.contact}</p>
-			</li>
-			<li>
-				<b>Année de production / <i>Year of production</i> :</b>
-				<span>{currentFilm?.ville} - {currentFilm?.annee}</span>
-			</li>
-			<li>
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<img
-					on:click={handleImage}
-					data-list-index={3}
-					src={imageFromAssets(images[3]) + '?width=800&quality=30'}
-					alt="affiche du film '{currentFilm?.titre_original}'"
-					class="cursor-pointer"
-				/>
-			</li>
+			{#if currentFilm?.realisation}
+				<li><b>Réalisation :</b> <span>{currentFilm?.realisation}</span></li>
+			{/if}
+			{#if currentFilm?.scenario}
+				<li><b>Scénario / <i>Screenplay</i> :</b> <span>{currentFilm?.scenario}</span></li>
+			{/if}
+			{#if currentFilm?.langue_originale}
+				<li>
+					<b>Langue originale des dialogues / <i>Original language</i> :</b>
+					<span>{currentFilm?.langue_originale}</span>
+				</li>
+			{/if}
+			{#if currentFilm?.titre_english}
+				<li>
+					<b>Titre anglais / <i>English title</i> :</b> <span>'{currentFilm?.titre_english}'</span>
+				</li>
+			{/if}
+			{#if currentFilm?.public}<li>
+					<b>Public / <i>Audience</i> :</b> <span>{currentFilm?.public}</span>
+				</li>{/if}
+			{#if currentFilm?.synopsis_en || currentFilm?.synopsis_fr}<li>
+					<p><b>Synopsis / <i>Synopsis</i><span class="italic">Synopsis</span></b></p>
+					{#if currentFilm?.synopsis_fr}
+						<p>{currentFilm?.synopsis_fr}</p>
+					{/if}{#if currentFilm?.synopsis_en}
+						<p>{currentFilm?.synopsis_en}</p>
+					{/if}
+				</li>{/if}
+			{#if currentFilm?.image}<li>
+					<b>Images / <i>Camera</i> :</b> <span>{currentFilm?.image}</span>
+				</li>{/if}
+			{#if currentFilm?.animation}<li>
+					<b>Animation / <i>Animation</i> :</b> <span>{currentFilm?.animation}</span>
+				</li>{/if}
+			{#if currentFilm?.montage}<li>
+					<b>Montage / <i>Editing</i> :</b> <span>{currentFilm?.montage}</span>
+				</li>{/if}
+			{#if currentFilm?.son}<li>
+					<b>Son / <i>Sound</i> :</b> <span>{currentFilm?.son}</span>
+				</li>{/if}
+			{#if currentFilm?.voix}<li>
+					<b>Voix / <i>Voices</i> :</b> <span>{currentFilm?.voix}</span>
+				</li>{/if}
+			{#if currentFilm?.musique}<li>
+					<b>Musique / <i>Music</i> :</b> <span>{currentFilm?.musique}</span>
+				</li>{/if}
+			{#if currentFilm?.format}<li>
+					<b>Format pour la sélection / <i>Selection format</i> :</b>
+					<span>{currentFilm?.format}</span>
+				</li>{/if}
+			{#if currentFilm?.duree_minutes && currentFilm?.duree_secondes}<li>
+					<b>Durée / <i>Running time</i> :</b>
+					<span>{currentFilm?.duree_minutes}'{currentFilm?.duree_secondes}"</span>
+				</li>{/if}
+			{#if currentFilm?.production}<li>
+					<p><b>Production / <i>Production</i> :</b></p>
+					<span>{currentFilm?.production}</span>
+				</li>{/if}
+			{#if currentFilm?.contact}<li>
+					<b>Contact :</b>
+					<p>{@html currentFilm?.contact}</p>
+				</li>{/if}
+			{#if currentFilm?.ville && currentFilm?.annee}<li>
+					<b>Année de production / <i>Year of production</i> :</b>
+					<span>{currentFilm?.ville} - {currentFilm?.annee}</span>
+				</li>{/if}
+			{#if currentFilm?.affiche}
+				<li>
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<img
+						on:click={handleImage}
+						data-list-index={3}
+						src={imageFromAssets(images[3]) + '?width=800&quality=30'}
+						alt="affiche du film '{currentFilm?.titre_original}'"
+						class="cursor-pointer"
+					/>
+				</li>
+			{/if}
 		</ul>
 	</section>
 	{#if showGalleryModal}
