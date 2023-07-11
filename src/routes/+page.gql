@@ -1,23 +1,4 @@
 query HomepageFilms {
-	films_d_ateliers(
-		sort: "-numero"
-		filter: { _and: [{ video: { id: { _nnull: true } } }, { online: { _eq: true } }] }
-	) {
-		__typename
-		id
-		titre
-		lien_video
-		slug
-		date_created
-		video {
-			height
-			html
-			thumbnail_url
-			width
-			thumbnail_width
-			thumbnail_height
-		}
-	}
 	auteurs: Films_d_auteur(
 		sort: "-numero"
 		filter: {
@@ -41,6 +22,25 @@ query HomepageFilms {
 		affiche {
 			id
 		}
+		video {
+			height
+			html
+			thumbnail_url
+			width
+			thumbnail_width
+			thumbnail_height
+		}
+	}
+	films_d_ateliers(
+		sort: "-numero"
+		filter: { _and: [{ video: { id: { _nnull: true } } }, { online: { _eq: true } }] }
+	) {
+		__typename
+		id
+		titre
+		lien_video
+		slug
+		date_created
 		video {
 			height
 			html
@@ -82,7 +82,7 @@ query HomepageFilms {
 			id
 		}
 		titre
-		date_created
+		date_de_peremption
 	}
 	ateliers {
 		__typename
@@ -92,6 +92,7 @@ query HomepageFilms {
 			id
 		}
 		titre
-		date_created
+		date_de_peremption
+		type_d_atelier
 	}
 }

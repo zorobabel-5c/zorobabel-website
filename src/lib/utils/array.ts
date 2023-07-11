@@ -32,16 +32,17 @@ export function zipWithNext<T>(array: T[]): Array<[T, T]> {
 	return zip(array, array.slice(1));
 }
 
-type Date_Created = {
-	date_created: string | null;
+type Date_Expiry = {
+	date_de_peremption: string | null;
 };
 
-export function sortByDateCreated<T extends Date_Created, U extends Date_Created>(
+export function sortByExpiryDate<T extends Date_Expiry, U extends Date_Expiry>(
 	first: T[],
 	second: U[]
 ): Array<T | U> {
 	return [...first, ...second].sort(
-		(a, b) => new Date(b.date_created ?? 0).getTime() - new Date(a.date_created ?? 0).getTime()
+		(a, b) =>
+			new Date(b.date_de_peremption ?? 0).getTime() - new Date(a.date_de_peremption ?? 0).getTime()
 	);
 }
 

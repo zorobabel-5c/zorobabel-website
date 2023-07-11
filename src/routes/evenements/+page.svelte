@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { LayoutData } from '../evenements/$houdini';
-	import { isPastDate } from '$lib/utils/date';
+	import { isFutureDate } from '$lib/utils/date';
 
 	import BaseLayout from '$lib/components/layouts/BaseLayout.svelte';
 	import Events from '$lib/components/Events.svelte';
@@ -11,7 +11,7 @@
 
 	$: ({ EventsQuery } = data);
 	$: ({ evenements = [] } = $EventsQuery.data! ?? {});
-	$: events = evenements.filter((evenement) => isPastDate(evenement.date_de_peremption));
+	$: events = evenements.filter((evenement) => isFutureDate(evenement.date_de_peremption));
 </script>
 
 <PageHead head={'événements'} />

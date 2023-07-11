@@ -1,12 +1,14 @@
 <script lang="ts">
-	import { getTitle, randomizeMany, sortByDateCreated } from '$lib/utils';
+	import { getTitle, randomizeMany, sortByExpiryDate } from '$lib/utils';
 	import type { PageData } from './$houdini';
+
+	import { showVideoModal } from '$lib/store/modals';
+	import { isFutureDate } from '$lib/utils/date';
 
 	import Affiche from '$lib/components/Affiche.svelte';
 	import HomepageEntry from '$lib/components/HomepageEntry.svelte';
 	import Close from '$lib/components/icons/Close.svelte';
 	import PageHead from '$lib/components/PageHead.svelte';
-	import { showVideoModal } from '$lib/store/modals';
 	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
 	import AngleLeft from '$lib/components/icons/AngleLeft.svelte';
 	import AngleRight from '$lib/components/icons/AngleRight.svelte';
@@ -26,7 +28,9 @@
 		evenements = [],
 		ateliers = []
 	} = $HomepageFilms.data! ?? {});
-	$: combined = sortByDateCreated([...auteurs, ...evenements], ateliers);
+	$: combinedFiltered = sortByExpiryDate(ateliers, evenements).filter((e) =>
+		isFutureDate(e.date_de_peremption)
+	);
 
 	$: randomized = randomizeMany(films_d_ateliers, auteurs, episodes);
 	let current = 0;
@@ -48,7 +52,12 @@
 		class=" lg:columns-4 md:columns-3 sm:columns-2 px-4 sm:px-[unset] gap-0 font-josefin font-normal"
 	>
 		<HomepageEntry entry={currentEntry} index={0} />
-		{#each combined as entry}
+		{#each combinedFiltered as entry}
+			{#if entry.affiche?.id}
+				<Affiche {entry} />
+			{/if}
+		{/each}
+		{#each auteurs as entry}
 			{#if entry.affiche?.id}
 				<Affiche {entry} />
 			{/if}

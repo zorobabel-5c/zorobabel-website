@@ -6,7 +6,7 @@ export const formatDate = (date_de_peremption: string) => {
 	return `${day}/${month}/${year}`;
 };
 
-export const isPastDate = (date_de_peremption: string) => {
+export const isFutureDate = (date_de_peremption: string) => {
 	const date = new Date(date_de_peremption);
 	const now = new Date(currentDate());
 	return date >= now;

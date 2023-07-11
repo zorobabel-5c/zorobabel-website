@@ -9,14 +9,23 @@
 		| HomepageFilms$result['ateliers'][number]
 		| HomepageFilms$result['auteurs'][number];
 	$: title = getTitle(entry);
-	$: baseUrl = isEvenement(entry)
+	$: url = isEvenement(entry)
 		? `/evenements/`
-		: isAtelier(entry)
-		? `/ateliers/`
 		: isAuteur(entry)
-		? '/films/auteurs/'
+		? `/films/auteurs/${getSlug(entry)}`
+		: isAtelier(entry)
+		? atelierUrl(entry)
 		: '';
-	$: url = `${baseUrl}${getSlug(entry)}`;
+
+	let atelierUrl = (entry: HomepageFilms$result['ateliers'][number]) => {
+		if (entry.type_d_atelier === 'enfants') {
+			return `/ateliers/stages`;
+		} else if (entry.type_d_atelier === 'adultes') {
+			return `/ateliers/workshops`;
+		} else if (entry.type_d_atelier === 'soir') {
+			return `/ateliers/cours-du-soir`;
+		}
+	};
 </script>
 
 <div class="group overflow-hidden relative cursor-pointer">
