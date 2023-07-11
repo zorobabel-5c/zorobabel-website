@@ -1,15 +1,17 @@
 # Homepage
 
-- display all events on top (until their date is passed see date_de_peremption)
+- display all events on top
+- figure out ordering of films
 
 # films
 
 - if a film is no available => display trailer, if trailer not available => display the backup image, if no backup image available => display one of the 3 images => else don't display anything.
+- check no nulls are rendered
 
-# Prix
+# Prix & Liens
 
+- order by "-numero"
 - make image fixed size (see 11 & 14)
-- reverse sort order
 - make image keep ratio (562px)
 
 # Optimization
