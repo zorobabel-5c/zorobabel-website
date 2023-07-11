@@ -11,7 +11,7 @@
 	let showSideNav = false;
 	let toggleSideNav = () => (showSideNav = !showSideNav);
 
-	let showSearch = false;
+	let showSearchModal = false;
 	let searchValue = '';
 	const searchStore = new SearchStore();
 
@@ -104,7 +104,7 @@
 				</a>
 			</li>
 			<li id="search">
-				<button class="w-4" on:click={() => (showSearch = true)}>
+				<button class="w-4" on:click={() => (showSearchModal = true)}>
 					<Search classes="hover:text-red-500" />
 				</button>
 			</li>
@@ -114,11 +114,11 @@
 	<section id="content">
 		<slot />
 	</section>
-	{#if showSearch}
+	{#if showSearchModal}
 		<section
 			id="search"
 			class="h-full w-full fixed z-10 top-0 left-0 text-white"
-			on:click|self={() => (showSearch = false)}
+			on:click|self={() => (showSearchModal = false)}
 		>
 			<div class="h-full max-w-[800px] mx-auto bg-[rgb(0,0,0,0.9)]">
 				<div
@@ -137,12 +137,12 @@
 							name="search"
 							id="search_input"
 							bind:value={searchValue}
-							autofocus={showSearch}
+							autofocus={showSearchModal}
 							class="flex-1 bg-transparent text-white outline-none w-full"
 						/>
 					</form>
 					<div
-						on:click={() => (showSearch = false)}
+						on:click={() => (showSearchModal = false)}
 						class="flex justify-center items-center w-[10%] z-20 cursor-pointer"
 					>
 						<Close classes="text-white w-7 hover:text-red-500" />
@@ -156,7 +156,7 @@
 							shouldScrollIntoView={false}
 							getKey={getTitle}
 						>
-							<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearch = false)}>
+							<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearchModal = false)}>
 								<a href={`/films/auteurs/${film.slug}`}
 									>{film.title} -
 
@@ -170,7 +170,7 @@
 							shouldScrollIntoView={false}
 							getKey={getTitle}
 						>
-							<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearch = false)}>
+							<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearchModal = false)}>
 								<a href={`/films/ateliers/${film.slug}`}
 									>{film.title} -
 
@@ -179,7 +179,7 @@
 							</p>
 						</List>
 						<List let:item={serie} items={series} shouldScrollIntoView={false} getKey={getTitle}>
-							<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearch = false)}>
+							<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearchModal = false)}>
 								<a href={`/films/series/${serie.slug}`}
 									>{serie.title} -
 
@@ -196,7 +196,7 @@
 							shouldScrollIntoView={false}
 							getKey={getTitle}
 						>
-							<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearch = false)}>
+							<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearchModal = false)}>
 								<a href={`/films/series/${episode.series?.slug}/episodes/${episode.slug}`}
 									>{episode.title} -
 									<i class="text-sm">{truncate(episode.synopsis_fr ?? '', 60)}</i>
@@ -209,7 +209,7 @@
 							shouldScrollIntoView={false}
 							getKey={getTitle}
 						>
-							<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearch = false)}>
+							<p class="py-2 px-8 hover:text-red-500" on:click={() => (showSearchModal = false)}>
 								<a href={`/evenements#${event.id}`}>{event.title}</a>
 							</p>
 						</List>

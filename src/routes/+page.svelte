@@ -6,7 +6,7 @@
 	import HomepageEntry from '$lib/components/HomepageEntry.svelte';
 	import Close from '$lib/components/icons/Close.svelte';
 	import PageHead from '$lib/components/PageHead.svelte';
-	import { showBackDrop } from '$lib/store/backdrop';
+	import { showVideoModal } from '$lib/store/modals';
 	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
 	import AngleLeft from '$lib/components/icons/AngleLeft.svelte';
 	import AngleRight from '$lib/components/icons/AngleRight.svelte';
@@ -14,7 +14,7 @@
 	export let data: PageData;
 	export let showModal: boolean;
 
-	showBackDrop.subscribe((value) => {
+	showVideoModal.subscribe((value) => {
 		showModal = value;
 	});
 
@@ -57,11 +57,11 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div
 				class="w-full h-[100vh] bg-[rgb(0,0,0,0.9)] fixed top-0 left-0 z-50 grid place-content-center"
-				on:click|self={() => showBackDrop.set(false)}
+				on:click|self={() => showVideoModal.set(false)}
 			>
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<div
-					on:click={() => showBackDrop.set(false)}
+					on:click={() => showVideoModal.set(false)}
 					class="op-8 right-[5vw] absolute z-20 cursor-pointer"
 				>
 					<Close classes="text-white w-7 hover:text-red-500" />

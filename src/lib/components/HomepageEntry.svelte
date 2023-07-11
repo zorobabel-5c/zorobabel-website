@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { HomepageFilms$result } from '$houdini';
-	import { showBackDrop } from '$lib/store/backdrop';
+	import { showVideoModal } from '$lib/store/modals';
 	import { getSlug, isAuteur, isEpisode, isFilmDAtelier } from '$lib/utils';
 	import { getTitle } from '$lib/utils';
 
@@ -21,7 +21,7 @@
 
 <div class="group overflow-hidden relative cursor-pointer font-josefin">
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<div on:click={() => showBackDrop.set(true)}>
+	<div on:click={() => showVideoModal.set(true)}>
 		<div
 			class="absolute h-full w-full bg-black opacity-80 hidden group-hover:flex justify-center items-center"
 		>
