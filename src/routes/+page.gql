@@ -23,12 +23,8 @@ query HomepageFilms {
 		filter: {
 			_and: [
 				{ video: { id: { _nnull: true } } }
-				{
-					_or: [
-						{ in_progress: { _eq: true }, lien_bande_annonce: { _nnull: true } }
-						{ in_progress: { _eq: false }, lien_video: { _nnull: true } }
-					]
-				}
+				{ in_progress: { _eq: false } }
+				{ lien_video: { _nnull: true } }
 			]
 		}
 	) {
