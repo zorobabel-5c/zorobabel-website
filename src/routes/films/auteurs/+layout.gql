@@ -50,12 +50,15 @@ query FilmDAuteurs {
 		}
 		image_1 {
 			id
+			title
 		}
 		image_2 {
 			id
+			title
 		}
 		image_3 {
 			id
+			title
 		}
 		lien_bande_annonce
 		langue_originale
@@ -70,6 +73,7 @@ query FilmDAuteurs {
 		animation
 		affiche {
 			id
+			title
 		}
 	}
 }
