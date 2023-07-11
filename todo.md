@@ -11,10 +11,6 @@
 - Add En cours de réalisation. Work in progress on top of video
 - Make series main image open in a modal
 
-# Events
-
-- remove date de peremption from the display
-
 # Prix
 
 - make image fixed size (see 11 & 14)

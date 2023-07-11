@@ -27,7 +27,6 @@
 				<div class="my-4">
 					<h1 class="">
 						{event.titre}
-						<span class="font-light">- {formatDate(event.date_de_peremption)}</span>
 					</h1>
 				</div>
 				{@html event.description}
