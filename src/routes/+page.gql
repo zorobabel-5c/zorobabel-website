@@ -26,6 +26,7 @@ query HomepageFilms {
 				{ in_progress: { _eq: false } }
 				{ lien_video: { _nnull: true } }
 			]
+			mot_de_passe: { _empty: true }
 		}
 	) {
 		__typename
