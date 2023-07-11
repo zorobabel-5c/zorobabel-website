@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { imageFromAssets } from '$lib/utils';
 	import type { LayoutData } from '../$houdini';
@@ -37,14 +38,20 @@
 		currentIndex++;
 	};
 
-	$: console.log(currentIndex);
+	let titleElement: HTMLElement;
+
+	afterNavigate(() => {
+		if (titleElement) {
+			titleElement.scrollIntoView();
+		}
+	});
 </script>
 
 <PageHead head={currentFilm?.titre_original} />
 
 {#if $FilmDAuteurs.data}
 	<section class="mm:overflow-y-scroll h-[calc(100vh-120px)]">
-		<h1 class="text-center font-josefin uppercase">
+		<h1 class="text-center font-josefin uppercase" bind:this={titleElement}>
 			<span>{currentFilm?.titre_original} {currentFilm?.titre_english ? '-' : ''} </span>
 			<span class="italic font-light">{currentFilm?.titre_english}</span>
 		</h1>
