@@ -36,7 +36,7 @@
 					{/if}
 					{#if item.partenariats}
 						<p class="italic font-semibold">
-							{item.partenariats}
+							{@html item.partenariats}
 						</p>
 					{/if}
 				</div>
