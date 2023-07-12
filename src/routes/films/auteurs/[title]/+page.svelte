@@ -72,7 +72,21 @@
 				<p>En cours de réalisation - <span>Work in progress</span></p>
 			</div>
 		{/if}
-		<VimeoIframe video={currentFilm?.video} />
+		{#if currentFilm?.video}
+			<VimeoIframe video={currentFilm?.video} />
+		{:else if currentFilm?.video_bande_annonce}
+			<VimeoIframe video={currentFilm?.video_bande_annonce} />
+		{:else if currentFilm?.image_de_remplacement}
+			<img
+				src={imageFromAssets(currentFilm?.image_de_remplacement) + '?width=800&quality=30'}
+				alt={currentFilm?.image_de_remplacement.title}
+			/>
+		{:else}
+			<img
+				src={imageFromAssets(currentFilm?.image_1) + '?width=800&quality=30'}
+				alt="image 1 du film '{currentFilm?.titre_original}'"
+			/>
+		{/if}
 		<div class="columns-2">
 			<p>{currentFilm?.synopsis_fr ?? ''}</p>
 			<p>{currentFilm?.synopsis_en ?? ''}</p>

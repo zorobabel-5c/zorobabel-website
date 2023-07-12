@@ -44,7 +44,19 @@ query FilmDAuteurs {
 			id
 			title
 		}
+		image_de_remplacement {
+			id
+			title
+		}
 		lien_bande_annonce
+		video_bande_annonce {
+			height
+			html
+			thumbnail_url
+			width
+			thumbnail_width
+			thumbnail_height
+		}
 		langue_originale
 		in_progress
 		image
