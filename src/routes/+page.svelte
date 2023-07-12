@@ -17,10 +17,6 @@
 	export let data: PageData;
 	export let showModal: boolean;
 
-	showVideoModal.subscribe((value) => {
-		showModal = value;
-	});
-
 	$: ({ HomepageFilms } = data);
 	$: ({
 		films_d_ateliers = [],
@@ -29,12 +25,17 @@
 		evenements = [],
 		ateliers = []
 	} = $HomepageFilms.data! ?? {});
-	$: combinedFiltered = sortByExpiryDate(ateliers, evenements).filter((e) =>
+	$: events = sortByExpiryDate(ateliers, evenements).filter((e) =>
 		isFutureDate(e.date_de_peremption)
 	);
 
+	showVideoModal.subscribe((value) => {
+		showModal = value;
+	});
+
 	$: randomized = randomizeMany(films_d_ateliers, auteurs, episodes);
 	let current = 0;
+
 	$: currentEntry = randomized[current];
 	$: next = () => {
 		current = Math.min(current + 1, randomized.length - 1);
@@ -50,10 +51,11 @@
 
 {#if !$HomepageFilms.fetching}
 	<section
-		class=" lg:columns-4 md:columns-3 sm:columns-2 px-4 sm:px-[unset] gap-0 font-josefin font-normal"
+		id="home-grid"
+		class="lg:columns-4 md:columns-3 sm:columns-2 px-4 sm:px-[unset] gap-0 font-josefin font-normal"
 	>
 		<HomepageEntry entry={currentEntry} index={0} />
-		{#each combinedFiltered as entry}
+		{#each events as entry}
 			{#if entry.affiche?.id}
 				<AfficheEvent {entry} />
 			{/if}
@@ -63,40 +65,40 @@
 				<Affiche {entry} />
 			{/if}
 		{/each}
-		{#if showModal}
+	</section>
+	{#if showModal}
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div
+			class="w-full h-[100vh] bg-[rgb(0,0,0,0.9)] fixed top-0 left-0 z-50 grid place-content-center"
+			on:click|self={() => showVideoModal.set(false)}
+		>
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div
-				class="w-full h-[100vh] bg-[rgb(0,0,0,0.9)] fixed top-0 left-0 z-50 grid place-content-center"
-				on:click|self={() => showVideoModal.set(false)}
+				on:click={() => showVideoModal.set(false)}
+				class="op-8 right-[5vw] absolute z-20 cursor-pointer"
 			>
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<div
-					on:click={() => showVideoModal.set(false)}
-					class="op-8 right-[5vw] absolute z-20 cursor-pointer"
-				>
-					<Close classes="text-white w-7 hover:text-red-500" />
-				</div>
-				<div
-					class="lg:w-[700px] md:w-[90vw] flex gap-4 [&>button]:self-center [&>button]:p-2 [&>button]:rounded-lg"
-				>
-					<button
-						on:click={prev}
-						class:invisible={current === 0}
-						class="text-white hover:text-red-500"
-					>
-						<AngleLeft classes="w-5 lg:w-7" />
-					</button>
-					<div class="flex-1">
-						<VimeoIframe video={currentEntry.video} />
-						<p class="text-white text-center">
-							{getTitle(currentEntry)}
-						</p>
-					</div>
-					<button on:click={next} class="text-white hover:text-red-500">
-						<AngleRight classes="w-5 lg:w-7" />
-					</button>
-				</div>
+				<Close classes="text-white w-7 hover:text-red-500" />
 			</div>
-		{/if}
-	</section>
+			<div
+				class="lg:w-[700px] md:w-[90vw] flex gap-4 [&>button]:self-center [&>button]:p-2 [&>button]:rounded-lg"
+			>
+				<button
+					on:click={prev}
+					class:invisible={current === 0}
+					class="text-white hover:text-red-500"
+				>
+					<AngleLeft classes="w-5 lg:w-7" />
+				</button>
+				<div class="flex-1">
+					<VimeoIframe video={currentEntry.video} />
+					<p class="text-white text-center">
+						{getTitle(currentEntry)}
+					</p>
+				</div>
+				<button on:click={next} class="text-white hover:text-red-500">
+					<AngleRight classes="w-5 lg:w-7" />
+				</button>
+			</div>
+		</div>
+	{/if}
 {/if}

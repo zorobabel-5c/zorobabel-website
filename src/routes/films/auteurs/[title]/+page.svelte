@@ -72,16 +72,28 @@
 				<p>En cours de réalisation - <span>Work in progress</span></p>
 			</div>
 		{/if}
-		{#if currentFilm?.video}
-			<VimeoIframe video={currentFilm?.video} />
-		{:else if currentFilm?.video_bande_annonce}
-			<VimeoIframe video={currentFilm?.video_bande_annonce} />
-		{:else if currentFilm?.image_de_remplacement}
+		{#if currentFilm?.mot_de_passe}
+			{#if currentFilm?.video_bande_annonce?.html}
+				<VimeoIframe video={currentFilm?.video_bande_annonce} />
+			{:else if currentFilm?.image_de_remplacement}
+				<img
+					src={imageFromAssets(currentFilm?.image_de_remplacement) + '?width=800&quality=30'}
+					alt={currentFilm?.image_de_remplacement.title}
+				/>
+			{:else if currentFilm?.image_1}
+				<img
+					src={imageFromAssets(currentFilm?.image_1) + '?width=800&quality=30'}
+					alt="image 1 du film '{currentFilm?.titre_original}'"
+				/>
+			{/if}
+		{:else if !currentFilm?.video && !currentFilm?.video_bande_annonce}
 			<img
 				src={imageFromAssets(currentFilm?.image_de_remplacement) + '?width=800&quality=30'}
-				alt={currentFilm?.image_de_remplacement.title}
+				alt="image du film '{currentFilm?.titre_original}'"
 			/>
-		{:else}
+		{:else if currentFilm?.video?.html}
+			<VimeoIframe video={currentFilm?.video} />
+		{:else if currentFilm?.image_1}
 			<img
 				src={imageFromAssets(currentFilm?.image_1) + '?width=800&quality=30'}
 				alt="image 1 du film '{currentFilm?.titre_original}'"
@@ -150,7 +162,7 @@
 					<b>Public / <i>Audience</i> :</b> <span>{currentFilm?.public}</span>
 				</li>{/if}
 			{#if currentFilm?.synopsis_en || currentFilm?.synopsis_fr}<li>
-					<p><b>Synopsis / <i>Synopsis</i><span class="italic">Synopsis</span></b></p>
+					<p><b>Synopsis / <i>Synopsis</i></b></p>
 					{#if currentFilm?.synopsis_fr}
 						<p>{currentFilm?.synopsis_fr}</p>
 					{/if}{#if currentFilm?.synopsis_en}
