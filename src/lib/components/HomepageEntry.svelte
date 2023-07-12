@@ -37,7 +37,7 @@
 		/>
 	</div>
 	<p class="py-2">
-		film du catalogue: <span class="italic"
+		Film du catalogue : <span class="italic"
 			>{!isEpisode(entry) ? title : `${getTitle(entry.series)} - EP${entry.numero} ${title}`}</span
 		>
 	</p>
