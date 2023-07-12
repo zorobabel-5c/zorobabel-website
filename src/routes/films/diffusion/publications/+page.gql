@@ -1,5 +1,5 @@
 query PublicationsQuery {
-	publications {
+	publications(sort: "-numero") {
 		titre
 		description
 		couverture {

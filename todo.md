@@ -1,7 +1,3 @@
-# Liens & Publications
-
-- order by "-numero"
-
 # Prix
 
 - make image fixed size (see 11 & 14)
