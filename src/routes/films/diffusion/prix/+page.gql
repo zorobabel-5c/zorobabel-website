@@ -1,5 +1,5 @@
 query PrixQuery {
-	prix: Prix(limit: -1) {
+	prix: Prix(limit: -1, sort: "-numero") {
 		numero
 		description
 		film_awarded {
