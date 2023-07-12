@@ -12,6 +12,7 @@
 	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
 	import AngleLeft from '$lib/components/icons/AngleLeft.svelte';
 	import AngleRight from '$lib/components/icons/AngleRight.svelte';
+	import AfficheEvent from '$lib/components/AfficheEvent.svelte';
 
 	export let data: PageData;
 	export let showModal: boolean;
@@ -54,7 +55,7 @@
 		<HomepageEntry entry={currentEntry} index={0} />
 		{#each combinedFiltered as entry}
 			{#if entry.affiche?.id}
-				<Affiche {entry} />
+				<AfficheEvent {entry} />
 			{/if}
 		{/each}
 		{#each auteurs as entry}
