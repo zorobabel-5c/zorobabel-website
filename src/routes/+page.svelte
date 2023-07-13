@@ -12,7 +12,8 @@
 	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
 	import AngleLeft from '$lib/components/icons/AngleLeft.svelte';
 	import AngleRight from '$lib/components/icons/AngleRight.svelte';
-	import AfficheEvent from '$lib/components/AfficheEvent.svelte';
+	// @ts-ignore
+	import Masonry from 'svelte-bricks';
 
 	export let data: PageData;
 	export let showModal: boolean;
@@ -26,14 +27,18 @@
 		ateliers = []
 	} = $HomepageFilms.data! ?? {});
 	$: events = sortByExpiryDate(ateliers, evenements).filter((e) =>
-		isFutureDate(e.date_de_peremption)
+		isFutureDate(e.date_de_peremption ?? '')
 	);
+
+	$: all = [...events, ...auteurs].filter((item) => item.id !== currentEntry.id);
 
 	showVideoModal.subscribe((value) => {
 		showModal = value;
 	});
 
-	$: randomized = randomizeMany(films_d_ateliers, auteurs, episodes);
+	$: randomized = randomizeMany(films_d_ateliers, auteurs, episodes).filter(
+		(e) => !!e?.video?.thumbnail_url
+	);
 	let current = 0;
 
 	$: currentEntry = randomized[current];
@@ -50,22 +55,20 @@
 <PageHead />
 
 {#if !$HomepageFilms.fetching}
-	<section
-		id="home-grid"
-		class="lg:columns-4 md:columns-3 sm:columns-2 px-4 sm:px-[unset] gap-0 font-josefin font-normal"
+	<Masonry
+		items={[currentEntry, ...all]}
+		minColWidth={200}
+		gap={0}
+		let:item
+		let:idx
+		class="px-4 sm:px-[unset] font-josefin font-normal"
 	>
-		<HomepageEntry entry={currentEntry} index={0} />
-		{#each events as entry}
-			{#if entry.affiche?.id}
-				<AfficheEvent {entry} />
-			{/if}
-		{/each}
-		{#each auteurs as entry}
-			{#if entry.affiche?.id}
-				<Affiche {entry} />
-			{/if}
-		{/each}
-	</section>
+		{#if item?.affiche?.id && idx !== 0}
+			<Affiche entry={item} />
+		{:else if idx === 0}
+			<HomepageEntry entry={currentEntry} index={0} />
+		{/if}
+	</Masonry>
 	{#if showModal}
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div

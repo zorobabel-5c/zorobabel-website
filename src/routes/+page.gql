@@ -18,6 +18,7 @@ query HomepageFilms {
 		titre_english
 		slug
 		date_created
+		numero
 		affiche {
 			id
 		}

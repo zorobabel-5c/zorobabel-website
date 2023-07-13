@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { HomepageFilms$result } from '$houdini';
 	import { showVideoModal } from '$lib/store/modals';
-	import { getSlug, getTitle, isAuteur, isEpisode, isFilmDAtelier } from '$lib/utils';
+	import { getTitle, isEpisode } from '$lib/utils';
 
 	export let entry:
 		| HomepageFilms$result['films_d_ateliers'][number]
@@ -9,13 +9,6 @@
 		| HomepageFilms$result['episodes'][number];
 	export let index: number;
 	$: title = getTitle(entry);
-	$: url = isAuteur(entry)
-		? `/films/auteurs/${getSlug(entry)}`
-		: isEpisode(entry)
-		? `/films/series/${getSlug(entry.series)}/episodes/${getSlug(entry)}`
-		: isFilmDAtelier(entry)
-		? `/films/ateliers/${getSlug(entry)}`
-		: '';
 </script>
 
 <div class="group overflow-hidden relative cursor-pointer font-josefin">
