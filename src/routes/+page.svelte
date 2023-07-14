@@ -14,6 +14,7 @@
 	import AngleRight from '$lib/components/icons/AngleRight.svelte';
 	// @ts-ignore
 	import Masonry from 'svelte-bricks';
+	import AfficheEvent from '$lib/components/AfficheEvent.svelte';
 
 	export let data: PageData;
 	export let showModal: boolean;
@@ -64,7 +65,11 @@
 		class="px-4 sm:px-[unset] font-josefin font-normal"
 	>
 		{#if item?.affiche?.id && idx !== 0}
-			<Affiche entry={item} />
+			{#if item?.date_de_peremption}
+				<AfficheEvent entry={item} />
+			{:else}
+				<Affiche entry={item} />
+			{/if}
 		{:else if idx === 0}
 			<HomepageEntry entry={currentEntry} index={0} />
 		{/if}

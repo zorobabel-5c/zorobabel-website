@@ -22,6 +22,9 @@ query HomepageFilms {
 		affiche {
 			id
 		}
+		image_1 {
+			id
+		}
 		video {
 			height
 			html

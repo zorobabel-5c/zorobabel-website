@@ -16,7 +16,7 @@
 	{#if !$LiensQuery.fetching}
 		{#each liens as item}
 			<div class="group overflow-hidden relative cursor-pointer font-josefin">
-				<a href={item.lien}>
+				<a href={item.lien} target="_blank">
 					<div
 						class="absolute h-full w-full bg-black opacity-80 hidden group-hover:flex justify-center items-center"
 					>
