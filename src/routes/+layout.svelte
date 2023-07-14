@@ -49,7 +49,7 @@
 	>
 		<a href="/" class="z-20" on:click={toggleSideNav}>
 			<img
-				src="https://backend-zorobabel.5c.be/assets/62c21e86-8e74-4f41-afd0-a243b80f7b5a"
+				src="https://backend.zorobabel.be/assets/62c21e86-8e74-4f41-afd0-a243b80f7b5a"
 				alt="logo de zorobabel"
 				class="aspect-square w-[50px]"
 			/>

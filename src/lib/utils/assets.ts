@@ -8,8 +8,8 @@ export function imageFromAssets(
 ): string | undefined {
 	if (!asset) return;
 	if (typeof asset === 'string') {
-		return 'https://backend-zorobabel.5c.be/assets/' + asset;
+		return 'https://backend.zorobabel.be/assets/' + asset;
 	}
 	if (!asset.id) return;
-	return 'https://backend-zorobabel.5c.be/assets/' + asset.id;
+	return 'https://backend.zorobabel.be/assets/' + asset.id;
 }
