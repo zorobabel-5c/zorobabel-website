@@ -8,7 +8,6 @@
 		| HomepageFilms$result['films_d_ateliers'][number]
 		| HomepageFilms$result['auteurs'][number]
 		| HomepageFilms$result['episodes'][number];
-	export let index: number;
 	$: title = getTitle(entry);
 </script>
 
