@@ -1,6 +1,6 @@
 {
-	"version": "0.3.4",
-	"healthCheckPath": "/",
+	"version": "0.3.5",
+	"healthCheckPath": "/health",
 	"httpPort": 3000,
 	"addons": {
 		"localstorage": {}
