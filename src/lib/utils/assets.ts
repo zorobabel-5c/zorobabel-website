@@ -10,10 +10,8 @@ export function imageFromAssets(
 
 	if (!asset) return;
 	if (typeof asset === 'string') {
-		console.log('https://backend.zorobabel.be/assets/' + asset + format);
 		return 'https://backend.zorobabel.be/assets/' + asset + format;
 	}
 	if (!asset.id) return;
-	console.log('https://backend.zorobabel.be/assets/' + asset.id + format);
 	return 'https://backend.zorobabel.be/assets/' + asset.id + format;
 }
