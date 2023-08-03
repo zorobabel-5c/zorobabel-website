@@ -22,7 +22,7 @@
 	>
 		<div class="flex gap-4 mb-4">
 			<img
-				src={imageFromAssets(item.logo) + '?width=40'}
+				src={imageFromAssets(item.logo) + '&width=40'}
 				alt="logo de l'événement numéro {item.numero}"
 				class="object-contain"
 			/>

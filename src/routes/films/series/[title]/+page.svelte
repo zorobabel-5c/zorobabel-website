@@ -30,7 +30,7 @@
 	{:else}
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<img
-			src={imageFromAssets(currentSeries?.image_remplacement?.id) + '?width=450&quality=30'}
+			src={imageFromAssets(currentSeries?.image_remplacement?.id) + '&width=450'}
 			alt="affiche de la série '{currentSeries?.titre}'"
 			class="w-full object-contain py-2 cursor-pointer"
 			on:click|self={() => (showAfficheModal = true)}
@@ -62,7 +62,7 @@
 			>
 				<div class="flex-1">
 					<img
-						src={imageFromAssets(currentSeries?.image_remplacement?.id) + '?width=800&quality=30'}
+						src={imageFromAssets(currentSeries?.image_remplacement?.id) + '&width=800'}
 						alt="affiche du film '{currentSeries?.titre}'"
 						class="object-contain"
 					/>

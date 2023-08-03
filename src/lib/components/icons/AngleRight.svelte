@@ -4,7 +4,7 @@
 
 <svg
 	fill="currentColor"
-	height="3rem"
+	height="3em"
 	viewBox="0 0 52 52"
 	transform="matrix(1, 0, 0, 1, 0, 0)"
 	class={classes}

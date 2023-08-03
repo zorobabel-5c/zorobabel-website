@@ -77,25 +77,25 @@
 				<VimeoIframe video={currentFilm?.video_bande_annonce} />
 			{:else if currentFilm?.image_de_remplacement}
 				<img
-					src={imageFromAssets(currentFilm?.image_de_remplacement) + '?width=800&quality=30'}
+					src={imageFromAssets(currentFilm?.image_de_remplacement) + '&width=800'}
 					alt={currentFilm?.image_de_remplacement.title}
 				/>
 			{:else if currentFilm?.image_1}
 				<img
-					src={imageFromAssets(currentFilm?.image_1) + '?width=800&quality=30'}
+					src={imageFromAssets(currentFilm?.image_1) + '&width=800'}
 					alt="image 1 du film '{currentFilm?.titre_original}'"
 				/>
 			{/if}
 		{:else if !currentFilm?.video && !currentFilm?.video_bande_annonce}
 			<img
-				src={imageFromAssets(currentFilm?.image_de_remplacement) + '?width=800&quality=30'}
+				src={imageFromAssets(currentFilm?.image_de_remplacement) + '&width=800'}
 				alt="image du film '{currentFilm?.titre_original}'"
 			/>
 		{:else if currentFilm?.video?.html}
 			<VimeoIframe video={currentFilm?.video} />
 		{:else if currentFilm?.image_1}
 			<img
-				src={imageFromAssets(currentFilm?.image_1) + '?width=800&quality=30'}
+				src={imageFromAssets(currentFilm?.image_1) + '&width=800'}
 				alt="image 1 du film '{currentFilm?.titre_original}'"
 			/>
 		{/if}
@@ -113,7 +113,7 @@
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<img
 					on:click={handleImage}
-					src={imageFromAssets(images[0]) + '?width=270&quality=30'}
+					src={imageFromAssets(images[0]) + '&width=270'}
 					class="object-cover h-full"
 					alt="image 1 du film '{currentFilm?.titre_original}'"
 					data-list-index={0}
@@ -122,7 +122,7 @@
 				<img
 					on:click={handleImage}
 					data-list-index={1}
-					src={imageFromAssets(images[1]) + '?width=270&quality=30'}
+					src={imageFromAssets(images[1]) + '&width=270'}
 					class="object-cover h-full"
 					alt="image 2 du film '{currentFilm?.titre_original}'"
 				/>
@@ -130,7 +130,7 @@
 				<img
 					on:click={handleImage}
 					data-list-index={2}
-					src={imageFromAssets(images[2]) + '?width=270&quality=30'}
+					src={imageFromAssets(images[2]) + '&width=270'}
 					class="object-cover h-full"
 					alt="image 3 du film '{currentFilm?.titre_original}'"
 				/>
@@ -213,7 +213,7 @@
 					<img
 						on:click={handleImage}
 						data-list-index={3}
-						src={imageFromAssets(images[3]) + '?width=800&quality=30'}
+						src={imageFromAssets(images[3]) + '&width=800'}
 						alt="affiche du film '{currentFilm?.titre_original}'"
 						class="cursor-pointer"
 					/>
@@ -246,7 +246,7 @@
 				</button>
 				<div class="flex-1">
 					<img
-						src={imageFromAssets(images[currentIndex]) + '?width=800&quality=30'}
+						src={imageFromAssets(images[currentIndex]) + '&width=800'}
 						alt="affiche du film '{currentFilm?.titre_original}'"
 						class="object-contain"
 					/>

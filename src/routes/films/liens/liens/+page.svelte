@@ -25,7 +25,7 @@
 						>
 					</div>
 					<img
-						src={imageFromAssets(item.image) + '?width=270&quality=30'}
+						src={imageFromAssets(item.image) + '&width=270'}
 						class="object-cover h-full"
 						alt="logo de '{item.titre}'"
 					/>

@@ -19,7 +19,7 @@
 			<div class="flex gap-4 mb-4">
 				<div class="min-w-[2.5rem] min-h-[2.5rem]">
 					<img
-						src={imageFromAssets(item?.logo) + '?width=40'}
+						src={imageFromAssets(item?.logo) + '&width=40'}
 						alt="logo du film '{item.titre_original}'"
 					/>
 				</div>

@@ -20,7 +20,7 @@
 		{#each events as event}
 			<div class="border-b border-black mb-5">
 				<img
-					src={imageFromAssets(event.affiche) + '?width=654&quality=30'}
+					src={imageFromAssets(event.affiche) + '&width=654'}
 					alt="affiche de l'événement '{event.titre}'"
 					class="w-full object-cover"
 				/>

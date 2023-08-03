@@ -26,8 +26,7 @@
 		<div class="relative">
 			<div>
 				<img
-					src={entry.video?.thumbnail_url ||
-						imageFromAssets(entry.image_1) + '?width=300&quality=30'}
+					src={entry.video?.thumbnail_url || imageFromAssets(entry.image_1) + '&width=300'}
 					alt="image du film '{title}'"
 					class="w-full object-contain"
 				/>

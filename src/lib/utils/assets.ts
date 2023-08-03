@@ -6,10 +6,14 @@ export function imageFromAssets(asset: Nullable<Nullify<{ id: string }>>): strin
 export function imageFromAssets(
 	asset: Nullify<{ id: string }> | Nullable<string>
 ): string | undefined {
+	const format = '?format=auto&quality=50';
+
 	if (!asset) return;
 	if (typeof asset === 'string') {
-		return 'https://backend.zorobabel.be/assets/' + asset;
+		console.log('https://backend.zorobabel.be/assets/' + asset + format);
+		return 'https://backend.zorobabel.be/assets/' + asset + format;
 	}
 	if (!asset.id) return;
-	return 'https://backend.zorobabel.be/assets/' + asset.id;
+	console.log('https://backend.zorobabel.be/assets/' + asset.id + format);
+	return 'https://backend.zorobabel.be/assets/' + asset.id + format;
 }
