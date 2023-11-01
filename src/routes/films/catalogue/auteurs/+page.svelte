@@ -42,7 +42,7 @@
 					{/if}
 					{#if item.coproduction}
 						<p class="italic font-semibold">
-							{item.coproduction}
+							{@html item.coproduction}
 						</p>
 					{/if}
 				</div>

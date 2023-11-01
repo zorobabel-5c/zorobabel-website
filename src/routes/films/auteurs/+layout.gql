@@ -84,4 +84,15 @@ query FilmDAuteurs {
 	) {
 		slug
 	}
+	awards: Prix {
+		description
+		numero
+		film_awarded {
+			item {
+				... on Films_d_auteur {
+					id
+				}
+			}
+		}
+	}
 }

@@ -13,7 +13,7 @@
 	export let data: LayoutData;
 
 	$: ({ FilmDAuteurs } = data);
-	$: ({ films = [] } = $FilmDAuteurs.data! ?? {});
+	$: ({ films = [], awards = [] } = $FilmDAuteurs.data! ?? {});
 	$: currentFilm = films.find((f) => f.slug === $page.params.title);
 
 	let showGalleryModal = false;
@@ -30,6 +30,12 @@
 		currentFilm?.image_3,
 		currentFilm?.affiche
 	];
+
+	$: prices = awards.filter((award) => {
+		return award.film_awarded.some((film) => film?.item?.id === currentFilm?.id);
+	});
+
+	$: console.log(prices);
 
 	$: prev = () => {
 		currentIndex--;
@@ -99,13 +105,15 @@
 				alt="image 1 du film '{currentFilm?.titre_original}'"
 			/>
 		{/if}
-		<div class="columns-2">
+		<div class="flex">
 			<p>{currentFilm?.synopsis_fr ?? ''}</p>
 			<p>{currentFilm?.synopsis_en ?? ''}</p>
 		</div>
-		{#if currentFilm?.prix_obtenus_par_le_film}
+		{#if prices}
 			<div class="mt-4 font-light text-sm text-center px-8">
-				<p>{currentFilm?.prix_obtenus_par_le_film}</p>
+				{#each prices as price}
+					<p class="mb-2">{price.description}</p>
+				{/each}
 			</div>
 		{/if}
 		{#if currentFilm?.image_1 && currentFilm?.image_2 && currentFilm?.image_3}
