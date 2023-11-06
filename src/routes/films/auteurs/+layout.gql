@@ -23,7 +23,6 @@ query FilmDAuteurs {
 		realisation
 		public
 		production
-		prix_obtenus_par_le_film
 		participants
 		numero
 		musique
