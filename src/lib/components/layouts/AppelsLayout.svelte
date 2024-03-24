@@ -12,7 +12,7 @@
 		</li>
 		<li>
 			<a href="carre" class:text-red-500={$page.url.pathname.startsWith('/appels/carre')}>
-				<p>le carré des auteurs</p>
+				<p>résidence au carré</p>
 			</a>
 		</li>
 	</svelte:fragment>

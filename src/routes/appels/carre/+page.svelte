@@ -7,7 +7,7 @@
 	$: ({ carre_des_auteurs } = $CarreQuery.data! ?? {});
 </script>
 
-<PageHead head={'le carré des auteurs'} />
+<PageHead head={'résidence au carré'} />
 
 {#if !$CarreQuery.fetching}
 	<div>{@html carre_des_auteurs?.contenu ?? ''}</div>
