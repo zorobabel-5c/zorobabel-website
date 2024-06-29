@@ -15,6 +15,11 @@
 				<p>résidence au carré</p>
 			</a>
 		</li>
+		<li>
+			<a href="production" class:text-red-500={$page.url.pathname.startsWith('/appels/production')}>
+				<p>production</p>
+			</a>
+		</li>
 	</svelte:fragment>
 	<div slot="content">
 		<slot name="content" />
