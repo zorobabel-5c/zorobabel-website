@@ -2,7 +2,9 @@
 
 /** @type {import('houdini').ConfigFile} */
 const config = {
-	apiUrl: 'https://backend.zorobabel.be/graphql',
+	watchSchema: {
+		url: 'https://backend.zorobabel.be/graphql'
+	},
 	plugins: {
 		'houdini-svelte': {}
 	},

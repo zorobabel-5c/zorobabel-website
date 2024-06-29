@@ -42,7 +42,6 @@ type Films_d_auteur {
   """Voir le numéro du précédent film d'auteur"""
   numero: Int
   participants: String
-  prix_obtenus_par_le_film: String
 
   """Production / Partenariats / Aides"""
   production: String
@@ -115,7 +114,6 @@ type Films_d_auteur_aggregated_count {
   """Voir le numéro du précédent film d'auteur"""
   numero: Int
   participants: Int
-  prix_obtenus_par_le_film: Int
 
   """Production / Partenariats / Aides"""
   production: Int
@@ -174,7 +172,6 @@ input Films_d_auteur_filter {
   musique: string_filter_operators
   numero: number_filter_operators
   participants: string_filter_operators
-  prix_obtenus_par_le_film: string_filter_operators
   production: string_filter_operators
   public: string_filter_operators
   realisation: string_filter_operators
@@ -313,63 +310,90 @@ type Prix_mutated {
 type Query {
   Films_d_auteur(filter: Films_d_auteur_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Films_d_auteur!]!
   Films_d_auteur_aggregated(filter: Films_d_auteur_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Films_d_auteur_aggregated!]!
-  Films_d_auteur_by_id(id: ID!): Films_d_auteur
+  Films_d_auteur_by_id(id: ID!, version: String): Films_d_auteur
+  Films_d_auteur_by_version(id: ID!, version: String!): version_Films_d_auteur
   Prix(filter: Prix_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Prix!]!
   Prix_aggregated(filter: Prix_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Prix_aggregated!]!
-  Prix_by_id(id: ID!): Prix
+  Prix_by_id(id: ID!, version: String): Prix
+  Prix_by_version(id: ID!, version: String!): version_Prix
   Prix_film_awarded(filter: Prix_film_awarded_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Prix_film_awarded!]!
   Prix_film_awarded_aggregated(filter: Prix_film_awarded_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Prix_film_awarded_aggregated!]!
-  Prix_film_awarded_by_id(id: ID!): Prix_film_awarded
-  a_propos: a_propos
+  Prix_film_awarded_by_id(id: ID!, version: String): Prix_film_awarded
+  Prix_film_awarded_by_version(id: ID!, version: String!): version_Prix_film_awarded
+  a_propos(version: String): a_propos
+  a_propos_by_version(version: String!): version_a_propos
   ateliers(filter: ateliers_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ateliers!]!
   ateliers_aggregated(filter: ateliers_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ateliers_aggregated!]!
-  ateliers_by_id(id: ID!): ateliers
-  carre_des_auteurs: carre_des_auteurs
+  ateliers_by_id(id: ID!, version: String): ateliers
+  ateliers_by_version(id: ID!, version: String!): version_ateliers
+  carre_des_auteurs(version: String): carre_des_auteurs
+  carre_des_auteurs_by_version(version: String!): version_carre_des_auteurs
   cinema(filter: cinema_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [cinema!]!
   cinema_aggregated(filter: cinema_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [cinema_aggregated!]!
-  cinema_by_id(id: ID!): cinema
-  contact: contact
+  cinema_by_id(id: ID!, version: String): cinema
+  cinema_by_version(id: ID!, version: String!): version_cinema
+  contact(version: String): contact
+  contact_by_version(version: String!): version_contact
   coproductions(filter: coproductions_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [coproductions!]!
   coproductions_aggregated(filter: coproductions_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [coproductions_aggregated!]!
-  coproductions_by_id(id: ID!): coproductions
+  coproductions_by_id(id: ID!, version: String): coproductions
+  coproductions_by_version(id: ID!, version: String!): version_coproductions
   episodes(filter: episodes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [episodes!]!
   episodes_aggregated(filter: episodes_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [episodes_aggregated!]!
-  episodes_by_id(id: ID!): episodes
+  episodes_by_id(id: ID!, version: String): episodes
+  episodes_by_version(id: ID!, version: String!): version_episodes
   evenements(filter: evenements_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [evenements!]!
   evenements_aggregated(filter: evenements_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [evenements_aggregated!]!
-  evenements_by_id(id: ID!): evenements
+  evenements_by_id(id: ID!, version: String): evenements
+  evenements_by_version(id: ID!, version: String!): version_evenements
   evenements_films(filter: evenements_films_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [evenements_films!]!
   evenements_films_aggregated(filter: evenements_films_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [evenements_films_aggregated!]!
-  evenements_films_by_id(id: ID!): evenements_films
-  festivals: festivals
+  evenements_films_by_id(id: ID!, version: String): evenements_films
+  evenements_films_by_version(id: ID!, version: String!): version_evenements_films
+  festivals(version: String): festivals
+  festivals_by_version(version: String!): version_festivals
   films_d_ateliers(filter: films_d_ateliers_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_d_ateliers!]!
   films_d_ateliers_aggregated(filter: films_d_ateliers_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_d_ateliers_aggregated!]!
-  films_d_ateliers_by_id(id: ID!): films_d_ateliers
+  films_d_ateliers_by_id(id: ID!, version: String): films_d_ateliers
+  films_d_ateliers_by_version(id: ID!, version: String!): version_films_d_ateliers
   films_de_commande(filter: films_de_commande_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_de_commande!]!
   films_de_commande_aggregated(filter: films_de_commande_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [films_de_commande_aggregated!]!
-  films_de_commande_by_id(id: ID!): films_de_commande
-  l_equipe: l_equipe
-  le_logo: le_logo
+  films_de_commande_by_id(id: ID!, version: String): films_de_commande
+  films_de_commande_by_version(id: ID!, version: String!): version_films_de_commande
+  l_equipe(version: String): l_equipe
+  l_equipe_by_version(version: String!): version_l_equipe
+  le_logo(version: String): le_logo
+  le_logo_by_version(version: String!): version_le_logo
   liens(filter: liens_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [liens!]!
   liens_aggregated(filter: liens_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [liens_aggregated!]!
-  liens_by_id(id: ID!): liens
-  partenariats: partenariats
+  liens_by_id(id: ID!, version: String): liens
+  liens_by_version(id: ID!, version: String!): version_liens
+  partenariats(version: String): partenariats
+  partenariats_by_version(version: String!): version_partenariats
+  production(version: String): production
+  production_by_version(version: String!): version_production
   publications(filter: publications_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [publications!]!
   publications_aggregated(filter: publications_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [publications_aggregated!]!
-  publications_by_id(id: ID!): publications
+  publications_by_id(id: ID!, version: String): publications
+  publications_by_version(id: ID!, version: String!): version_publications
   series(filter: series_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series!]!
   series_aggregated(filter: series_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_aggregated!]!
-  series_by_id(id: ID!): series
+  series_by_id(id: ID!, version: String): series
+  series_by_version(id: ID!, version: String!): version_series
   series_episode(filter: series_episode_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_episode!]!
   series_episode_aggregated(filter: series_episode_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [series_episode_aggregated!]!
-  series_episode_by_id(id: ID!): series_episode
-  start: start
+  series_episode_by_id(id: ID!, version: String): series_episode
+  series_episode_by_version(id: ID!, version: String!): version_series_episode
+  start(version: String): start
+  start_by_version(version: String!): version_start
   television(filter: television_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [television!]!
   television_aggregated(filter: television_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [television_aggregated!]!
-  television_by_id(id: ID!): television
+  television_by_id(id: ID!, version: String): television
+  television_by_version(id: ID!, version: String!): version_television
   vimeo_metadata(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vimeo_metadata!]!
   vimeo_metadata_aggregated(filter: vimeo_metadata_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vimeo_metadata_aggregated!]!
-  vimeo_metadata_by_id(id: ID!): vimeo_metadata
+  vimeo_metadata_by_id(id: ID!, version: String): vimeo_metadata
+  vimeo_metadata_by_version(id: ID!, version: String!): version_vimeo_metadata
 }
 
 type Subscription {
@@ -393,6 +417,7 @@ type Subscription {
   le_logo_mutated(event: EventEnum): le_logo_mutated
   liens_mutated(event: EventEnum): liens_mutated
   partenariats_mutated(event: EventEnum): partenariats_mutated
+  production_mutated(event: EventEnum): production_mutated
   publications_mutated(event: EventEnum): publications_mutated
   series_episode_mutated(event: EventEnum): series_episode_mutated
   series_mutated(event: EventEnum): series_mutated
@@ -487,6 +512,21 @@ type ateliers_mutated {
   data: ateliers
   event: EventEnum
   key: ID!
+}
+
+input big_int_filter_operators {
+  _between: [GraphQLBigInt]
+  _eq: GraphQLBigInt
+  _gt: GraphQLBigInt
+  _gte: GraphQLBigInt
+  _in: [GraphQLBigInt]
+  _lt: GraphQLBigInt
+  _lte: GraphQLBigInt
+  _nbetween: [GraphQLBigInt]
+  _neq: GraphQLBigInt
+  _nin: [GraphQLBigInt]
+  _nnull: Boolean
+  _null: Boolean
 }
 
 input boolean_filter_operators {
@@ -671,6 +711,8 @@ type directus_files {
   filename_disk: String
   filename_download: String!
   filesize: GraphQLBigInt
+  focal_point_x: Int
+  focal_point_y: Int
   folder: String
   height: Int
   id: ID!
@@ -700,7 +742,9 @@ input directus_files_filter {
   embed: string_filter_operators
   filename_disk: string_filter_operators
   filename_download: string_filter_operators
-  filesize: number_filter_operators
+  filesize: big_int_filter_operators
+  focal_point_x: number_filter_operators
+  focal_point_y: number_filter_operators
   folder: string_filter_operators
   height: number_filter_operators
   id: string_filter_operators
@@ -1187,21 +1231,33 @@ type liens {
   id: ID!
   image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
   lien: String
+  numero: Int
   titre: String
 }
 
 type liens_aggregated {
+  avg: liens_aggregated_fields
+  avgDistinct: liens_aggregated_fields
   count: liens_aggregated_count
   countAll: Int
   countDistinct: liens_aggregated_count
   group: JSON
+  max: liens_aggregated_fields
+  min: liens_aggregated_fields
+  sum: liens_aggregated_fields
+  sumDistinct: liens_aggregated_fields
 }
 
 type liens_aggregated_count {
   id: Int
   image: Int
   lien: Int
+  numero: Int
   titre: Int
+}
+
+type liens_aggregated_fields {
+  numero: Float
 }
 
 input liens_filter {
@@ -1210,6 +1266,7 @@ input liens_filter {
   id: string_filter_operators
   image: directus_files_filter
   lien: string_filter_operators
+  numero: number_filter_operators
   titre: string_filter_operators
 }
 
@@ -1245,27 +1302,53 @@ type partenariats_mutated {
   key: ID!
 }
 
+type production {
+  contenu: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_updated: String
+}
+
+type production_mutated {
+  data: production
+  event: EventEnum
+  key: ID!
+}
+
 type publications {
   couverture(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
   description: String
   id: ID!
+  numero: Int
   slug: String
   titre: String!
 }
 
 type publications_aggregated {
+  avg: publications_aggregated_fields
+  avgDistinct: publications_aggregated_fields
   count: publications_aggregated_count
   countAll: Int
   countDistinct: publications_aggregated_count
   group: JSON
+  max: publications_aggregated_fields
+  min: publications_aggregated_fields
+  sum: publications_aggregated_fields
+  sumDistinct: publications_aggregated_fields
 }
 
 type publications_aggregated_count {
   couverture: Int
   description: Int
   id: Int
+  numero: Int
   slug: Int
   titre: Int
+}
+
+type publications_aggregated_fields {
+  numero: Float
 }
 
 input publications_filter {
@@ -1274,6 +1357,7 @@ input publications_filter {
   couverture: directus_files_filter
   description: string_filter_operators
   id: string_filter_operators
+  numero: number_filter_operators
   slug: string_filter_operators
   titre: string_filter_operators
 }
@@ -1509,6 +1593,389 @@ type television_mutated {
   data: television
   event: EventEnum
   key: ID!
+}
+
+""""""
+type version_Films_d_auteur {
+  affiche: JSON
+  animation: String
+  annee: Int
+  contact: String
+  coproduction: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  duree_minutes: String
+  duree_secondes: String
+  format: String
+  id: ID!
+  image: String
+  image_1: JSON
+  image_2: JSON
+  image_3: JSON
+  image_de_remplacement: JSON
+
+  """
+  N'oubliez pas de décocher la case une fois le film terminé pour que l'affiche ou une image du film s'affiche sur la page d'accueil.
+  """
+  in_progress: Boolean
+  langue_originale: String
+  lien_bande_annonce: String
+  lien_video: String
+  logo: JSON
+  montage: String
+  mot_de_passe: String
+  musique: String
+
+  """Voir le numéro du précédent film d'auteur"""
+  numero: Int
+  participants: String
+
+  """Production / Partenariats / Aides"""
+  production: String
+  public: String
+  realisation: String
+  scenario: String
+  slug: String
+  son: String
+  synopsis_en: String
+  synopsis_fr: String
+  titre_english: String
+  titre_original: String!
+  user_created: String
+  user_updated: String
+  video: JSON
+  video_bande_annonce: JSON
+  ville: String
+  voix: String
+}
+
+""""""
+type version_Prix {
+  description: String
+  film_awarded: JSON
+  film_awarded_func: count_functions
+  id: ID!
+  numero: Int!
+}
+
+""""""
+type version_Prix_film_awarded {
+  Prix_id: JSON
+  collection: String
+  id: ID!
+  item: String
+}
+
+""""""
+type version_a_propos {
+  contenu: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_created: String
+  user_updated: String
+}
+
+""""""
+type version_ateliers {
+  affiche: JSON
+  date_created: Date
+  date_created_func: datetime_functions
+  date_de_peremption: Date!
+  date_de_peremption_func: date_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+
+  """
+  Indiquez ici des informations qui ne serait éventuellement pas reprises dans le visuel (intitulé, description, infos pratiques, âge des participants, dates, horaire, adresse, P.A.F., contact, garderie, facilités, soutiens institutionnels, etc.)
+  """
+  description: String!
+  id: ID!
+  slug: String
+  titre: String!
+  type_d_atelier: String!
+  user_created: String
+  user_updated: String
+}
+
+""""""
+type version_carre_des_auteurs {
+  contenu: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_created: String
+  user_updated: String
+}
+
+""""""
+type version_cinema {
+  affiche: JSON
+  description: String
+  id: ID!
+  titre: String
+}
+
+""""""
+type version_contact {
+  contenu: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_created: String
+  user_updated: String
+}
+
+""""""
+type version_coproductions {
+  description: String
+  id: ID!
+  lien: String
+  titre_lien: String
+}
+
+""""""
+type version_episodes {
+  annee: Int
+  coproduction: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  duree_minutes: String
+  duree_secondes: String
+  id: ID!
+  lien_video: String
+  logo: JSON
+
+  """Voir le numéro du précédent film d'auteur"""
+  numero: Int
+  realisation: String
+  series: JSON
+  slug: String
+  synopsis_en: String
+  synopsis_fr: String
+  titre: String!
+  titre_english: String
+  user_created: String
+  user_updated: String
+  video: JSON
+}
+
+""""""
+type version_evenements {
+  affiche: JSON
+  date_created: Date
+  date_created_func: datetime_functions
+
+  """Date à laquelle l'événement ne s'affichera plus sur le site"""
+  date_de_peremption: Date!
+  date_de_peremption_func: date_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+
+  """
+  Indiquez ici les information liées à l'événement (description, infos pratiques, date, horaire, P.A.F. éventuellement, contact, etc.
+  """
+  description: String!
+  id: ID!
+  slug: String
+  titre: String!
+  user_created: String
+  user_updated: String
+}
+
+""""""
+type version_evenements_films {
+  description: String
+  id: ID!
+  logo: JSON
+  numero: Int!
+}
+
+""""""
+type version_festivals {
+  id: ID!
+  liste: String
+}
+
+""""""
+type version_films_d_ateliers {
+  annee: Int!
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+
+  """Suivre le format Minutes'Secondes'', par exemple: 4'33''"""
+  duree_minutes: String!
+  duree_secondes: String
+  id: ID!
+  lien_video: String
+  logo: JSON
+  numero: Int!
+
+  """Cochez la case si vous souhaitez que le film apparaisse dans le site."""
+  online: Boolean
+  partenariats: String
+  public: String
+  slug: String
+  synopsis_fr: String
+  technique: String
+  titre: String!
+  user_created: String
+  user_updated: String
+  video: JSON
+}
+
+""""""
+type version_films_de_commande {
+  annee: Int
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  description: String
+  duree_minutes: String
+  duree_secondes: String
+  id: ID!
+  logo: JSON
+  numero: Int
+  realisation: String
+  slug: String
+  technique: String
+  titre: String!
+  user_created: String
+  user_updated: String
+}
+
+""""""
+type version_l_equipe {
+  contenu: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_created: String
+  user_updated: String
+}
+
+""""""
+type version_le_logo {
+  contenu: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_created: String
+  user_updated: String
+}
+
+""""""
+type version_liens {
+  id: ID!
+  image: JSON
+  lien: String
+  numero: Int
+  titre: String
+}
+
+""""""
+type version_partenariats {
+  id: ID!
+  liste: String
+}
+
+""""""
+type version_production {
+  contenu: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_updated: String
+}
+
+""""""
+type version_publications {
+  couverture: JSON
+  description: String
+  id: ID!
+  numero: Int
+  slug: String
+  titre: String!
+}
+
+""""""
+type version_series {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  episodes: JSON
+  episodes_func: count_functions
+  id: ID!
+  image_remplacement: JSON
+  lien_bande_annonce: String
+  logo: JSON
+
+  """Voir le numéro du précédent film d'auteur"""
+  numero: Int
+  realisation: String
+  slug: String
+  synopsis_en: String
+  synopsis_fr: String
+  titre: String!
+  titre_english: String
+  user_created: String
+  user_updated: String
+  video_bande_annonce: JSON
+}
+
+""""""
+type version_series_episode {
+  collection: String
+  id: ID!
+  item: String
+  series_id: JSON
+}
+
+""""""
+type version_start {
+  contenu: String
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  user_updated: String
+}
+
+""""""
+type version_television {
+  description: String
+  id: ID!
+  logo: JSON
+}
+
+""""""
+type version_vimeo_metadata {
+  height: Int
+  html: String!
+  id: ID!
+  thumbnail_height: Int
+  thumbnail_url: String
+  thumbnail_width: Int
+  video_id: String
+  width: Int
+  zorobabel_link: String
 }
 
 type vimeo_metadata {
