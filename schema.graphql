@@ -705,6 +705,8 @@ type datetime_functions {
 
 type directus_files {
   charset: String
+  created_on: Date
+  created_on_func: datetime_functions
   description: String
   duration: Int
   embed: String
@@ -726,6 +728,9 @@ type directus_files {
   tags: JSON
   tags_func: count_functions
   title: String
+  tus_data: JSON
+  tus_data_func: count_functions
+  tus_id: String
   type: String
   uploaded_by: String
   uploaded_on: Date
@@ -737,6 +742,8 @@ input directus_files_filter {
   _and: [directus_files_filter]
   _or: [directus_files_filter]
   charset: string_filter_operators
+  created_on: date_filter_operators
+  created_on_func: datetime_function_filter_operators
   description: string_filter_operators
   duration: number_filter_operators
   embed: string_filter_operators
@@ -758,6 +765,9 @@ input directus_files_filter {
   tags: string_filter_operators
   tags_func: count_function_filter_operators
   title: string_filter_operators
+  tus_data: string_filter_operators
+  tus_data_func: count_function_filter_operators
+  tus_id: string_filter_operators
   type: string_filter_operators
   uploaded_by: string_filter_operators
   uploaded_on: date_filter_operators
