@@ -205,7 +205,7 @@
 				</li>{/if}
 			{#if currentFilm?.production}<li>
 					<p><b>Production / <i>Production</i> :</b></p>
-					<span>{currentFilm?.production}</span>
+					<span>{@html currentFilm?.production}</span>
 				</li>{/if}
 			{#if currentFilm?.contact}<li>
 					<b>Contact :</b>
