@@ -83,7 +83,7 @@ query FilmDAuteurs {
 	) {
 		slug
 	}
-	awards: Prix {
+	awards: Prix(sort: "-numero", limit: -1) {
 		description
 		numero
 		film_awarded {
