@@ -64,9 +64,9 @@
 		let:idx
 		class="px-4 sm:px-[unset] font-josefin font-normal"
 	> -->
-	<div class="flex flex-wrap">
+	<div class="flex flex-wrap bg-black text-white">
 		{#each [currentEntry, ...all] as item, idx}
-		<div class="w-1/3">
+		<div class="w-1/4">
 			{#if item?.affiche?.id && idx !== 0}
 			{#if item?.date_de_peremption}
 			<AfficheEvent entry={item} />
