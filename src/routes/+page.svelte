@@ -56,24 +56,30 @@
 <PageHead />
 
 {#if !$HomepageFilms.fetching}
-	<Masonry
+	<!-- <Masonry
 		items={[currentEntry, ...all]}
 		minColWidth={200}
 		gap={0}
 		let:item
 		let:idx
 		class="px-4 sm:px-[unset] font-josefin font-normal"
-	>
-		{#if item?.affiche?.id && idx !== 0}
+	> -->
+	<div class="flex flex-wrap">
+		{#each [currentEntry, ...all] as item, idx}
+		<div class="w-1/3">
+			{#if item?.affiche?.id && idx !== 0}
 			{#if item?.date_de_peremption}
-				<AfficheEvent entry={item} />
+			<AfficheEvent entry={item} />
 			{:else}
-				<Affiche entry={item} />
+			<Affiche entry={item} />
 			{/if}
-		{:else if idx === 0}
+			{:else if idx === 0}
 			<HomepageEntry entry={currentEntry} index={0} />
-		{/if}
-	</Masonry>
+			{/if}
+		</div>
+		{/each}
+	</div>
+	<!-- </Masonry> -->
 	{#if showModal}
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div
