@@ -56,14 +56,6 @@
 <PageHead />
 
 {#if !$HomepageFilms.fetching}
-	<!-- <Masonry
-		items={[currentEntry, ...all]}
-		minColWidth={200}
-		gap={0}
-		let:item
-		let:idx
-		class="px-4 sm:px-[unset] font-josefin font-normal"
-	> -->
 	<div class="flex flex-wrap bg-black text-white">
 		{#each [currentEntry, ...all] as item, idx}
 		<div class="w-1/4">
@@ -79,7 +71,6 @@
 		</div>
 		{/each}
 	</div>
-	<!-- </Masonry> -->
 	{#if showModal}
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div
