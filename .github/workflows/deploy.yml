@@ -13,7 +13,7 @@ jobs:
         run: npm run build
       - name: Deploy
         run: './.github/workflows/deploy.sh'
-        with:
+        env:
           CLOUDRON_TOKEN: "${{ secrets.ZOROBABEL_GITHUB_ACTION }}"
           CLOUDRON_APP_ID: "${{ secrets.CLOUDRON_APP_ID }}"
           CLOUDRON_FQDN: "${{ secrets.CLOUDRON_FQDN }}"
