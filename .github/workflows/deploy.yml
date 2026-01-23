@@ -8,9 +8,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v6
       - name: Install Dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
+        run: npm install -g cloudron@6.0.0
       - name: Deploy
         run: './.github/workflows/deploy.sh'
         env:
