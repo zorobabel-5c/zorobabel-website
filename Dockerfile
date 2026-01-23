@@ -1,4 +1,4 @@
-FROM node:18-bullseye-slim as builder
+FROM node:18-bullseye-slim AS builder
 
 WORKDIR /usr/src/app
 
@@ -12,7 +12,7 @@ RUN npm run build
 
 FROM node:18-bullseye-slim
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 USER node
 
 WORKDIR /usr/src/app
