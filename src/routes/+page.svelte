@@ -58,17 +58,19 @@
 {#if !$HomepageFilms.fetching}
 	<div class="flex flex-wrap bg-black text-white font-josefin">
 		{#each [currentEntry, ...all] as item, idx}
-		<div class="w-1/2 md:w-1/3 lg:w-1/4">
 			{#if item?.affiche?.id && idx !== 0}
-			{#if item?.date_de_peremption}
-			<AfficheEvent entry={item} />
-			{:else}
-			<Affiche entry={item} />
-			{/if}
+				<div class="w-1/2 md:w-1/3 lg:w-1/4">
+					{#if item?.date_de_peremption}
+						<AfficheEvent entry={item} />
+					{:else}
+						<Affiche entry={item} />
+					{/if}
+				</div>
 			{:else if idx === 0}
-			<HomepageEntry entry={currentEntry} index={0} />
+				<div class="w-1/2 md:w-1/3 lg:w-1/4">
+					<HomepageEntry entry={currentEntry} index={0} />
+				</div>
 			{/if}
-		</div>
 		{/each}
 	</div>
 	{#if showModal}
