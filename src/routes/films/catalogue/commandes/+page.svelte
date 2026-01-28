@@ -30,7 +30,7 @@
 						{/if}
 					</p>
 					{#if item.description}
-						<p>{item.description}</p>
+						<p>{@html item.description}</p>
 					{/if}
 				</div>
 			</div>
