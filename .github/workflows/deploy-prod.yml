@@ -3,9 +3,9 @@ on:
     branches:
       - main
 jobs:
-  deploy-to-front:
+  deploy-to-front-prod:
     runs-on: ubuntu-latest
-    environment: front
+    environment: front-prod
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
