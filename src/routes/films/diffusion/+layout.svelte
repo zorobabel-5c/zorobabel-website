@@ -1,38 +1,47 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import FilmSecondaryLayout from '$lib/components/layouts/FilmSecondaryLayout.svelte';
 	import PageHead from '$lib/components/PageHead.svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <PageHead head={'diffusion'} />
 
 <FilmSecondaryLayout>
-	<svelte:fragment slot="nav">
-		<ul class="[&>li]:mb-3 lg:[&>li]:mb-12 text-center">
-			<li class:text-red-500={$page.url.pathname.endsWith('/prix')}>
-				<a href="./prix">prix</a>
-			</li>
-			<li class:text-red-500={$page.url.pathname.endsWith('/festivals')}>
-				<a href="./festivals">festivals</a>
-			</li>
-			<li class:text-red-500={$page.url.pathname.endsWith('/evenements')}>
-				<a href="./evenements">
-					<p>événements</p>
-					<p>events</p>
-				</a>
-			</li>
-			<li class:text-red-500={$page.url.pathname.endsWith('/television')}>
-				<a href="./television">television</a>
-			</li>
-			<li class:text-red-500={$page.url.pathname.endsWith('/cinema')}>
-				<a href="./cinema">cinema</a>
-			</li>
-			<li class:text-red-500={$page.url.pathname.endsWith('/publications')}>
-				<a href="./publications">publications</a>
-			</li>
-		</ul>
-	</svelte:fragment>
-	<div slot="content">
-		<slot />
-	</div>
+	{#snippet nav()}
+	
+			<ul class="[&>li]:mb-3 lg:[&>li]:mb-12 text-center">
+				<li class:text-red-500={page.url.pathname.endsWith('/prix')}>
+					<a href="./prix">prix</a>
+				</li>
+				<li class:text-red-500={page.url.pathname.endsWith('/festivals')}>
+					<a href="./festivals">festivals</a>
+				</li>
+				<li class:text-red-500={page.url.pathname.endsWith('/evenements')}>
+					<a href="./evenements">
+						<p>événements</p>
+						<p>events</p>
+					</a>
+				</li>
+				<li class:text-red-500={page.url.pathname.endsWith('/television')}>
+					<a href="./television">television</a>
+				</li>
+				<li class:text-red-500={page.url.pathname.endsWith('/cinema')}>
+					<a href="./cinema">cinema</a>
+				</li>
+				<li class:text-red-500={page.url.pathname.endsWith('/publications')}>
+					<a href="./publications">publications</a>
+				</li>
+			</ul>
+		
+	{/snippet}
+	{#snippet content()}
+		<div >
+			{@render children?.()}
+		</div>
+	{/snippet}
 </FilmSecondaryLayout>

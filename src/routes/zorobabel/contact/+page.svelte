@@ -2,10 +2,14 @@
 	import type { PageData } from '../a-propos/$houdini';
 	import PageHead from '$lib/components/PageHead.svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	$: ({ ProposQuery } = data);
-	$: ({ a_propos, l_equipe, contact } = $ProposQuery.data! ?? {});
+	let { data }: Props = $props();
+
+	let { ProposQuery } = $derived(data);
+	let { a_propos, l_equipe, contact } = $derived($ProposQuery.data! ?? {});
 </script>
 
 <PageHead head={'à propos'} />
@@ -22,6 +26,6 @@
 		marginheight="0"
 		marginwidth="0"
 		src="https://www.openstreetmap.org/export/embed.html?bbox=4.321864843368531%2C50.81766617771769%2C4.32863473892212%2C50.82108574264538&amp;layer=hot&amp;marker=50.81937599148283%2C4.325249791145325"
-	/><br />
+	></iframe><br />
 	<div id="equipe">{@html l_equipe?.contenu ?? ''}</div>
 {/if}

@@ -1,7 +1,11 @@
 <script lang="ts">
-	export let head = 'zorobabel';
+	interface Props {
+		head?: string;
+	}
 
-	$: title = head == 'zorobabel' || head == '' ? head : `${head} | zorobabel`;
+	let { head = 'zorobabel' }: Props = $props();
+
+	let title = $derived(head == 'zorobabel' || head == '' ? head : `${head} | zorobabel`);
 </script>
 
 <svelte:head>

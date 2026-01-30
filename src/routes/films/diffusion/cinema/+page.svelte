@@ -5,22 +5,28 @@
 	import List from '$lib/components/List.svelte';
 	import PageHead from '$lib/components/PageHead.svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	$: ({ CinemaQuery } = data);
-	$: ({ cinema = [] } = $CinemaQuery.data! ?? {});
+	let { data }: Props = $props();
+
+	let { CinemaQuery } = $derived(data);
+	let { cinema = [] } = $derived($CinemaQuery.data! ?? {});
 </script>
 
 <PageHead head={'cinema'} />
 
 {#if !$CinemaQuery.fetching}
-	<List items={cinema} let:item getKey={getTitle} shouldScrollIntoView={false}>
-		<div class="flex gap-4 mb-6 items-start">
-			<img src={imageFromAssets(item.affiche)} alt="affiche du film '{item.titre}'" class="w-30" />
-			<div>
-				<h4 class="font-semibold">{item.titre}</h4>
-				<p>{@html item.description}</p>
+	<List items={cinema}  getKey={getTitle} shouldScrollIntoView={false}>
+		{#snippet children({ item })}
+				<div class="flex gap-4 mb-6 items-start">
+				<img src={imageFromAssets(item.affiche)} alt="affiche du film '{item.titre}'" class="w-30" />
+				<div>
+					<h4 class="font-semibold">{item.titre}</h4>
+					<p>{@html item.description}</p>
+				</div>
 			</div>
-		</div>
-	</List>
+					{/snippet}
+		</List>
 {/if}

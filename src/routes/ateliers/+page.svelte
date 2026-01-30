@@ -1,6 +1,10 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 
-	$: browser && goto(`/ateliers/stages`);
+	run(() => {
+		browser && goto(`/ateliers/stages`);
+	});
 </script>

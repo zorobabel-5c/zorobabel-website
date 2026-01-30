@@ -1,16 +1,20 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import type { LayoutData } from '../../../$houdini';
 
 	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
 	import PageHead from '$lib/components/PageHead.svelte';
 
-	export let data: LayoutData;
+	interface Props {
+		data: LayoutData;
+	}
 
-	$: ({ SeriesPage } = data);
-	$: ({ series = [] } = $SeriesPage.data! ?? {});
-	$: currentSeries = series.find((s) => s.slug === $page.params.title);
-	$: currentEpisode = currentSeries?.episodes?.find((e) => e?.slug === $page.params.name);
+	let { data }: Props = $props();
+
+	let { SeriesPage } = $derived(data);
+	let { series = [] } = $derived($SeriesPage.data! ?? {});
+	let currentSeries = $derived(series.find((s) => s.slug === page.params.title));
+	let currentEpisode = $derived(currentSeries?.episodes?.find((e) => e?.slug === page.params.name));
 </script>
 
 <PageHead head={currentEpisode?.titre} />
