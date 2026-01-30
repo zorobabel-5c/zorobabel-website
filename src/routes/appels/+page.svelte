@@ -2,5 +2,5 @@
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 
-	$: browser && goto(`/appels/start`);
+	$: browser && goto(`/appels/carre`);
 </script>

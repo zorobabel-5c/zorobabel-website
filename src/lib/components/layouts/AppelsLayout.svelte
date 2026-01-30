@@ -5,11 +5,11 @@
 
 <BaseLayout>
 	<svelte:fragment slot="sidemenu">
-		<li>
+		<!--li>
 			<a href="start" class:text-red-500={$page.url.pathname.startsWith('/appels/start')}>
 				<p>start</p>
 			</a>
-		</li>
+		</li-->
 		<li>
 			<a href="carre" class:text-red-500={$page.url.pathname.startsWith('/appels/carre')}>
 				<p>résidence au carré</p>
