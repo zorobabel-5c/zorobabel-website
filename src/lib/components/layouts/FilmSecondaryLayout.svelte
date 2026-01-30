@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
+	interface Props {
+		nav?: import('svelte').Snippet;
+		content?: import('svelte').Snippet;
+	}
+
+	let { nav, content }: Props = $props();
 </script>
 
 <section id="films" class="mm:grid mm:grid-cols-8 lg:grid-cols-films">
@@ -15,7 +21,7 @@
 				<li>
 					<a
 						href="/films/auteurs"
-						class:text-red-500={$page.url.pathname.startsWith('/films/auteurs')}
+						class:text-red-500={page.url.pathname.startsWith('/films/auteurs')}
 					>
 						<p>films d'auteur</p>
 						<p class="italic -mt-1">author's films</p>
@@ -24,7 +30,7 @@
 				<li>
 					<a
 						href="/films/series"
-						class:text-red-500={$page.url.pathname.startsWith('/films/series')}
+						class:text-red-500={page.url.pathname.startsWith('/films/series')}
 					>
 						<p>séries créatives</p>
 						<p class="italic -mt-1">creative series</p>
@@ -33,7 +39,7 @@
 				<li>
 					<a
 						href="/films/ateliers"
-						class:text-red-500={$page.url.pathname.startsWith('/films/ateliers')}
+						class:text-red-500={page.url.pathname.startsWith('/films/ateliers')}
 					>
 						<p>films d’atelier</p>
 						<p class="italic -mt-1">workshop's films</p>
@@ -42,13 +48,13 @@
 				<li>
 					<a
 						href="/films/diffusion"
-						class:text-red-500={$page.url.pathname.startsWith('/films/diffusion')}
+						class:text-red-500={page.url.pathname.startsWith('/films/diffusion')}
 					>
 						<p>diffusion</p>
 					</a>
 				</li>
 				<li>
-					<a href="/films/liens" class:text-red-500={$page.url.pathname.startsWith('/films/liens')}>
+					<a href="/films/liens" class:text-red-500={page.url.pathname.startsWith('/films/liens')}>
 						<p>liens</p>
 						<p class="italic -mt-1">links</p>
 					</a>
@@ -56,22 +62,22 @@
 				<li>
 					<a
 						href="/films/catalogue"
-						class:text-red-500={$page.url.pathname.startsWith('/films/catalogue')}
+						class:text-red-500={page.url.pathname.startsWith('/films/catalogue')}
 					>
 						<p>catalogue</p>
 					</a>
 				</li>
 			</ul>
 		</nav>
-		<div class="col-span-8 mm:col-span-8 lg:hidden my-3 h-[1px] bg-gray-800 w-[90%] mx-auto" />
+		<div class="col-span-8 mm:col-span-8 lg:hidden my-3 h-[1px] bg-gray-800 w-[90%] mx-auto"></div>
 		<nav
 			id="second_sidenav"
 			class="col-span-5 mm:col-span-8 lg:col-span-5 self-center lg:self-start"
 		>
-			<slot name="nav" />
+			{@render nav?.()}
 		</nav>
 	</aside>
 	<main class="mm:col-span-5 lg:col-start-2 lg:col-end-3 text-sm mx-2">
-		<slot name="content" />
+		{@render content?.()}
 	</main>
 </section>

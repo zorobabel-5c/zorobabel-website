@@ -2,10 +2,14 @@
 	import type { PageData } from '../partenariats/$houdini';
 	import PageHead from '$lib/components/PageHead.svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	$: ({ PartenariatsQuery } = data);
-	$: ({ partenariats } = $PartenariatsQuery.data! ?? {});
+	let { data }: Props = $props();
+
+	let { PartenariatsQuery } = $derived(data);
+	let { partenariats } = $derived($PartenariatsQuery.data! ?? {});
 </script>
 
 <PageHead head={'partenariats'} />

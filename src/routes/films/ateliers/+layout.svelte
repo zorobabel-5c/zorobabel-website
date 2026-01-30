@@ -4,21 +4,32 @@
 	import List from '$lib/components/List.svelte';
 	import LinkListItem from '$lib/components/LinkListItem.svelte';
 
-	export let data: LayoutData;
+	interface Props {
+		data: LayoutData;
+		children?: import('svelte').Snippet;
+	}
 
-	$: ({ FilmDAteliers } = data);
-	$: ({ films = [] } = $FilmDAteliers.data! ?? {});
+	let { data, children }: Props = $props();
+
+	let { FilmDAteliers } = $derived(data);
+	let { films = [] } = $derived($FilmDAteliers.data! ?? {});
 </script>
 
 {#if !$FilmDAteliers.fetching}
 	<FilmLayout>
-		<svelte:fragment slot="nav">
-			<List items={films} let:item getKey={(f) => f.titre} classes="grid content-start gap-2">
-				<LinkListItem {item} getLogoId={(f) => f.logo?.id} />
-			</List>
-		</svelte:fragment>
-		<div slot="content">
-			<slot />
-		</div>
+		{#snippet nav()}
+			
+				<List items={films}  getKey={(f) => f.titre} classes="grid content-start gap-2">
+					{#snippet children({ item })}
+								<LinkListItem {item} getLogoId={(f) => f.logo?.id} />
+												{/snippet}
+						</List>
+			
+			{/snippet}
+		{#snippet content()}
+				<div >
+				{@render children?.()}
+			</div>
+			{/snippet}
 	</FilmLayout>
 {/if}

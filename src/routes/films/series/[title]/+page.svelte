@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { self } from 'svelte/legacy';
+
+	import { page } from '$app/state';
 	import { imageFromAssets } from '$lib/utils';
 	import type { LayoutData } from '../$houdini';
 
@@ -7,13 +9,17 @@
 	import PageHead from '$lib/components/PageHead.svelte';
 	import Close from '$lib/components/icons/Close.svelte';
 
-	export let data: LayoutData;
+	interface Props {
+		data: LayoutData;
+	}
 
-	$: ({ SeriesPage } = data);
-	$: ({ series = [] } = $SeriesPage.data! ?? {});
-	$: currentSeries = series.find((s) => s.slug === $page.params.title);
+	let { data }: Props = $props();
 
-	let showAfficheModal = false;
+	let { SeriesPage } = $derived(data);
+	let { series = [] } = $derived($SeriesPage.data! ?? {});
+	let currentSeries = $derived(series.find((s) => s.slug === page.params.title));
+
+	let showAfficheModal = $state(false);
 </script>
 
 <PageHead head={currentSeries?.titre} />
@@ -28,12 +34,12 @@
 	{#if currentSeries?.video_bande_annonce}
 		<VimeoIframe video={currentSeries?.video_bande_annonce} />
 	{:else}
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<img
 			src={imageFromAssets(currentSeries?.image_remplacement?.id) + '&width=450'}
 			alt="affiche de la série '{currentSeries?.titre}'"
 			class="w-full object-contain py-2 cursor-pointer"
-			on:click|self={() => (showAfficheModal = true)}
+			onclick={self(() => (showAfficheModal = true))}
 		/>
 	{/if}
 	<div class="columns-2">
@@ -45,14 +51,14 @@
 		{/if}
 	</div>
 	{#if showAfficheModal}
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<div
 			class="w-full h-[100vh] bg-[rgb(0,0,0,0.9)] fixed top-0 left-0 z-50 grid place-content-center"
-			on:click|self={() => (showAfficheModal = false)}
+			onclick={self(() => (showAfficheModal = false))}
 		>
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<div
-				on:click={() => (showAfficheModal = false)}
+				onclick={() => (showAfficheModal = false)}
 				class="op-8 right-[5vw] absolute z-20 cursor-pointer"
 			>
 				<Close classes="text-white w-7 hover:text-red-500" />

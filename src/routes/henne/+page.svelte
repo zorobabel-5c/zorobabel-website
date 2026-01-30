@@ -1,6 +1,10 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 
-	$: browser && goto(`https://henne.zorobabel.be`);
+	run(() => {
+		browser && goto(`https://henne.zorobabel.be`);
+	});
 </script>

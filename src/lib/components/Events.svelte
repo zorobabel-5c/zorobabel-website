@@ -11,8 +11,12 @@
 		affiche: { id: string } | null;
 	};
 
-	export let events: Event[];
-	export let noEventMessage: string = `Il n'y a pas d'événement programmé.`;
+	interface Props {
+		events: Event[];
+		noEventMessage?: string;
+	}
+
+	let { events, noEventMessage = `Il n'y a pas d'événement programmé.` }: Props = $props();
 </script>
 
 <div>

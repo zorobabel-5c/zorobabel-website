@@ -74,11 +74,7 @@ query FilmDAuteurs {
 	latests: Films_d_auteur(
 		sort: "-numero"
 		filter: {
-			_and: [
-				{ video: { id: { _nnull: true } } }
-				{ in_progress: { _eq: false } }
-				{ lien_video: { _nnull: true } }
-			]
+			in_progress: { _eq: false }
 		}
 	) {
 		slug

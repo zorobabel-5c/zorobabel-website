@@ -7,10 +7,14 @@
 
 	import { getSlug, imageFromAssets, removePrefix, truncate } from '$lib/utils';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	$: ({ CatalogueSeries } = data);
-	$: ({ series = [] } = $CatalogueSeries.data! ?? {});
+	let { data }: Props = $props();
+
+	let { CatalogueSeries } = $derived(data);
+	let { series = [] } = $derived($CatalogueSeries.data! ?? {});
 </script>
 
 <PageHead head={`séries créatives (catalogue)`} />
@@ -19,37 +23,41 @@
 	<section class="mm:overflow-y-scroll h-[calc(100vh-120px)]">
 		<List
 			items={series}
-			let:item
+			
 			getKey={getSlug}
 			classes="mb-8 relative"
 			shouldScrollIntoView={false}
 		>
-			<div class="font-semibold flex gap-2 items-center mb-4 py-1">
-				<img
-					src={imageFromAssets(item.logo?.id)}
-					alt="logo de la série '{item.titre}'"
-					class="w-10"
-				/>
-				<span class="font-bold">{item.titre}</span>
-			</div>
-			<div class="pb-8">
-				<List
-					items={item.episodes ?? []}
-					let:item={subItem}
-					getKey={getSlug}
-					classes="ml-10 grid content-start gap-2"
-					pathIndex={5}
-				>
-					{#if subItem?.titre}
-						<LinkListItem
-							item={subItem}
-							getLogoId={(f) => f.logo?.id}
-							getLink={(ep) => `/films/series/${getSlug(item)}/episodes/${getSlug(ep)}`}
-							getProcessedTitle={(ep) => truncate(ep.titre, 100)}
-						/>
-					{/if}
+			{#snippet children({ item })}
+						<div class="font-semibold flex gap-2 items-center mb-4 py-1">
+					<img
+						src={imageFromAssets(item.logo?.id)}
+						alt="logo de la série '{item.titre}'"
+						class="w-10"
+					/>
+					<span class="font-bold">{item.titre}</span>
+				</div>
+				<div class="pb-8">
+					<List
+						items={item.episodes ?? []}
+						
+						getKey={getSlug}
+						classes="ml-10 grid content-start gap-2"
+						pathIndex={5}
+					>
+						{#snippet children({ item: subItem })}
+										{#if subItem?.titre}
+								<LinkListItem
+									item={subItem}
+									getLogoId={(f) => f.logo?.id}
+									getLink={(ep) => `/films/series/${getSlug(item)}/episodes/${getSlug(ep)}`}
+									getProcessedTitle={(ep) => truncate(ep.titre, 100)}
+								/>
+							{/if}
+															{/snippet}
+								</List>
+				</div>
+								{/snippet}
 				</List>
-			</div>
-		</List>
 	</section>
 {/if}

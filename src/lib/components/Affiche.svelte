@@ -4,18 +4,14 @@
 	import { isAtelier, isAuteur, isEvenement } from '$lib/utils';
 	import { getTitle, getSlug } from '$lib/utils';
 
-	export let entry:
+	interface Props {
+		entry: 
 		| HomepageFilms$result['evenements'][number]
 		| HomepageFilms$result['ateliers'][number]
 		| HomepageFilms$result['auteurs'][number];
-	$: title = getTitle(entry);
-	$: url = isEvenement(entry)
-		? `/evenements/`
-		: isAuteur(entry)
-		? `/films/auteurs/${getSlug(entry)}`
-		: isAtelier(entry)
-		? atelierUrl(entry)
-		: '';
+	}
+
+	let { entry }: Props = $props();
 
 	let atelierUrl = (entry: HomepageFilms$result['ateliers'][number]) => {
 		if (entry.type_d_atelier === 'enfants') {
@@ -26,6 +22,14 @@
 			return `/ateliers/cours-du-soir`;
 		}
 	};
+	let title = $derived(getTitle(entry));
+	let url = $derived(isEvenement(entry)
+		? `/evenements/`
+		: isAuteur(entry)
+		? `/films/auteurs/${getSlug(entry)}`
+		: isAtelier(entry)
+		? atelierUrl(entry)
+		: '');
 </script>
 
 <div class="group overflow-hidden relative cursor-pointer">

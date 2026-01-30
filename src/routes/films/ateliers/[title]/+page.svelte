@@ -1,15 +1,19 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import type { LayoutData } from '../$houdini';
 
 	import VimeoIframe from '$lib/components/VimeoIframe.svelte';
 	import PageHead from '$lib/components/PageHead.svelte';
 
-	export let data: LayoutData;
+	interface Props {
+		data: LayoutData;
+	}
 
-	$: ({ FilmDAteliers } = data);
-	$: ({ films = [] } = $FilmDAteliers.data! ?? {});
-	$: currentFilm = films.find((f) => f.slug === $page.params.title);
+	let { data }: Props = $props();
+
+	let { FilmDAteliers } = $derived(data);
+	let { films = [] } = $derived($FilmDAteliers.data! ?? {});
+	let currentFilm = $derived(films.find((f) => f.slug === page.params.title));
 </script>
 
 <PageHead head={currentFilm?.titre} />

@@ -1,18 +1,24 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 
 	import ArrowDown from '../icons/ArrowDown.svelte';
 	import ArrowUp from '../icons/ArrowUp.svelte';
+	interface Props {
+		nav?: import('svelte').Snippet;
+		content?: import('svelte').Snippet;
+	}
 
-	$: uppercasify =
-		$page.url.pathname.startsWith('/films/auteurs') ||
-		$page.url.pathname.startsWith('/films/series') ||
-		$page.url.pathname.startsWith('/films/ateliers');
+	let { nav, content }: Props = $props();
 
-	let element: HTMLElement;
+	let uppercasify =
+		$derived(page.url.pathname.startsWith('/films/auteurs') ||
+		page.url.pathname.startsWith('/films/series') ||
+		page.url.pathname.startsWith('/films/ateliers'));
 
-	let showTop = false;
-	let showBottom = true;
+	let element: HTMLElement = $state();
+
+	let showTop = $state(false);
+	let showBottom = $state(true);
 
 	function handleScroll() {
 		if (element.scrollTop === 0) {
@@ -44,7 +50,7 @@
 				<li>
 					<a
 						href="/films/auteurs"
-						class:text-red-500={$page.url.pathname.startsWith('/films/auteurs')}
+						class:text-red-500={page.url.pathname.startsWith('/films/auteurs')}
 					>
 						<p>films d'auteur</p>
 						<p class="italic -mt-1">author's films</p>
@@ -53,7 +59,7 @@
 				<li>
 					<a
 						href="/films/series"
-						class:text-red-500={$page.url.pathname.startsWith('/films/series')}
+						class:text-red-500={page.url.pathname.startsWith('/films/series')}
 					>
 						<p>séries créatives</p>
 						<p class="italic -mt-1">creative series</p>
@@ -62,7 +68,7 @@
 				<li>
 					<a
 						href="/films/ateliers"
-						class:text-red-500={$page.url.pathname.startsWith('/films/ateliers')}
+						class:text-red-500={page.url.pathname.startsWith('/films/ateliers')}
 					>
 						<p>films d’atelier</p>
 						<p class="italic -mt-1">workshop's films</p>
@@ -71,13 +77,13 @@
 				<li>
 					<a
 						href="/films/diffusion"
-						class:text-red-500={$page.url.pathname.startsWith('/films/diffusion')}
+						class:text-red-500={page.url.pathname.startsWith('/films/diffusion')}
 					>
 						<p>diffusion</p>
 					</a>
 				</li>
 				<li>
-					<a href="/films/liens" class:text-red-500={$page.url.pathname.startsWith('/films/liens')}>
+					<a href="/films/liens" class:text-red-500={page.url.pathname.startsWith('/films/liens')}>
 						<p>liens</p>
 						<p class="italic -mt-1">links</p>
 					</a>
@@ -85,26 +91,26 @@
 				<li>
 					<a
 						href="/films/catalogue"
-						class:text-red-500={$page.url.pathname.startsWith('/films/catalogue')}
+						class:text-red-500={page.url.pathname.startsWith('/films/catalogue')}
 					>
 						<p>catalogue</p>
 					</a>
 				</li>
 			</ul>
 		</nav>
-		<div class="col-span-8 mm:col-span-8 lg:hidden my-3 h-[1px] bg-gray-800 w-[90%] mx-auto" />
+		<div class="col-span-8 mm:col-span-8 lg:hidden my-3 h-[1px] bg-gray-800 w-[90%] mx-auto"></div>
 		<nav
 			id="second_sidenav"
 			class:uppercase={uppercasify}
 			class:text-[11px]={uppercasify}
 			class="col-span-5 mm:col-span-8 lg:col-span-5 overflow-y-scroll"
 			bind:this={element}
-			on:scroll={handleScroll}
+			onscroll={handleScroll}
 		>
 			<div class={showTop ? 'sticky top-0 bg-white flex items-center justify-center' : 'hidden'}>
 				<ArrowUp classes="-mt-[11px]" />
 			</div>
-			<slot name="nav" />
+			{@render nav?.()}
 			<div
 				class={showBottom ? 'sticky bottom-0 bg-white flex items-center justify-center' : 'hidden'}
 			>
@@ -113,6 +119,6 @@
 		</nav>
 	</aside>
 	<main class="mm:col-span-5 lg:col-start-2 lg:col-end-3 text-sm mx-2">
-		<slot name="content" />
+		{@render content?.()}
 	</main>
 </section>

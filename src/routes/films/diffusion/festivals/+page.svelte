@@ -2,10 +2,14 @@
 	import type { PageData } from '../festivals/$houdini';
 	import PageHead from '$lib/components/PageHead.svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	$: ({ FestivalsQuery } = data);
-	$: ({ festivals } = $FestivalsQuery.data! ?? {});
+	let { data }: Props = $props();
+
+	let { FestivalsQuery } = $derived(data);
+	let { festivals } = $derived($FestivalsQuery.data! ?? {});
 </script>
 
 <PageHead head={'festivals'} />

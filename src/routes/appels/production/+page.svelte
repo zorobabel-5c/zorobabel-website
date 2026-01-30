@@ -1,10 +1,14 @@
 <script lang="ts">
 	import PageHead from '$lib/components/PageHead.svelte';
 	import type { PageData } from './$houdini';
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	$: ({ ProductionQuery } = data);
-	$: ({ production } = $ProductionQuery.data! ?? {});
+	let { data }: Props = $props();
+
+	let { ProductionQuery } = $derived(data);
+	let { production } = $derived($ProductionQuery.data! ?? {});
 </script>
 
 <PageHead head={'production'} />

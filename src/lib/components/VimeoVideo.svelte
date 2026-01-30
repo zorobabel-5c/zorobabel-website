@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { getVideoIframe } from '$lib/utils';
 
-	export let src: string;
-	$: details = getVideoIframe(src);
+	interface Props {
+		src: string;
+	}
+
+	let { src }: Props = $props();
+	let details = $derived(getVideoIframe(src));
 </script>
 
 <div>
