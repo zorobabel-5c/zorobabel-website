@@ -4,10 +4,14 @@
 
 	import PageHead from '$lib/components/PageHead.svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	$: ({ LiensQuery } = data);
-	$: ({ liens } = $LiensQuery.data! ?? {});
+	let { data }: Props = $props();
+
+	let { LiensQuery } = $derived(data);
+	let { liens } = $derived($LiensQuery.data! ?? {});
 </script>
 
 <PageHead head={'liens'} />

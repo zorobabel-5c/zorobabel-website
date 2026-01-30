@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { run, self } from 'svelte/legacy';
+
 	import { afterNavigate } from '$app/navigation';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { imageFromAssets } from '$lib/utils';
 	import type { LayoutData } from '../$houdini';
 
@@ -10,41 +12,47 @@
 	import AngleLeft from '$lib/components/icons/AngleLeft.svelte';
 	import Close from '$lib/components/icons/Close.svelte';
 
-	export let data: LayoutData;
+	interface Props {
+		data: LayoutData;
+	}
 
-	$: ({ FilmDAuteurs } = data);
-	$: ({ films = [], awards = [] } = $FilmDAuteurs.data! ?? {});
-	$: currentFilm = films.find((f) => f.slug === $page.params.title);
+	let { data }: Props = $props();
 
-	let showGalleryModal = false;
-	let currentIndex: number;
+	let { FilmDAuteurs } = $derived(data);
+	let { films = [], awards = [] } = $derived($FilmDAuteurs.data! ?? {});
+	let currentFilm = $derived(films.find((f) => f.slug === page.params.title));
+
+	let showGalleryModal = $state(false);
+	let currentIndex: number = $state();
 
 	const handleImage = (event: Event) => {
 		currentIndex = event.target?.dataset.listIndex;
 		showGalleryModal = true;
 	};
 
-	$: images = [
+	let images = $derived([
 		currentFilm?.image_1,
 		currentFilm?.image_2,
 		currentFilm?.image_3,
 		currentFilm?.affiche
-	];
+	]);
 
-	$: prices = awards.filter((award) => {
+	let prices = $derived(awards.filter((award) => {
 		return award.film_awarded.some((film) => film?.item?.id === currentFilm?.id);
+	}));
+
+	run(() => {
+		console.log(prices);
 	});
 
-	$: console.log(prices);
-
-	$: prev = () => {
+	let prev = $derived(() => {
 		currentIndex--;
-	};
-	$: next = () => {
+	});
+	let next = $derived(() => {
 		currentIndex++;
-	};
+	});
 
-	let titleElement: HTMLElement;
+	let titleElement: HTMLElement = $state();
 
 	afterNavigate(() => {
 		if (titleElement) {
@@ -118,25 +126,25 @@
 		{/if}
 		{#if currentFilm?.image_1 && currentFilm?.image_2 && currentFilm?.image_3}
 			<div class="grid grid-cols-3 mt-4 cursor-pointer">
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
 				<img
-					on:click={handleImage}
+					onclick={handleImage}
 					src={imageFromAssets(images[0]) + '&width=270'}
 					class="object-cover h-full"
 					alt="image 1 du film '{currentFilm?.titre_original}'"
 					data-list-index={0}
 				/>
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
 				<img
-					on:click={handleImage}
+					onclick={handleImage}
 					data-list-index={1}
 					src={imageFromAssets(images[1]) + '&width=270'}
 					class="object-cover h-full"
 					alt="image 2 du film '{currentFilm?.titre_original}'"
 				/>
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
 				<img
-					on:click={handleImage}
+					onclick={handleImage}
 					data-list-index={2}
 					src={imageFromAssets(images[2]) + '&width=270'}
 					class="object-cover h-full"
@@ -217,9 +225,9 @@
 				</li>{/if}
 			{#if currentFilm?.affiche}
 				<li>
-					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<!-- svelte-ignore a11y_click_events_have_key_events -->
 					<img
-						on:click={handleImage}
+						onclick={handleImage}
 						data-list-index={3}
 						src={imageFromAssets(images[3]) + '&width=800'}
 						alt="affiche du film '{currentFilm?.titre_original}'"
@@ -230,14 +238,14 @@
 		</ul>
 	</section>
 	{#if showGalleryModal}
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<div
 			class="w-full h-[100vh] bg-[rgb(0,0,0,0.9)] fixed top-0 left-0 z-50 grid place-content-center"
-			on:click|self={() => (showGalleryModal = false)}
+			onclick={self(() => (showGalleryModal = false))}
 		>
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<div
-				on:click={() => (showGalleryModal = false)}
+				onclick={() => (showGalleryModal = false)}
 				class="op-8 right-[5vw] absolute z-20 cursor-pointer"
 			>
 				<Close classes="text-white w-7 hover:text-red-500" />
@@ -246,7 +254,7 @@
 				class="lg:w-[700px] md:w-[90vw] flex gap-4 [&>button]:self-center [&>button]:p-2 [&>button]:rounded-lg"
 			>
 				<button
-					on:click={prev}
+					onclick={prev}
 					class:invisible={currentIndex === 0}
 					class="text-white hover:text-red-500"
 				>
@@ -263,7 +271,7 @@
 					</p>
 				</div>
 				<button
-					on:click={next}
+					onclick={next}
 					class:invisible={currentIndex === 3}
 					class="text-white hover:text-red-500"
 				>

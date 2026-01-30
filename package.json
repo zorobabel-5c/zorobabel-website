@@ -22,30 +22,325 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-node": "^5.2.0",
-		"@sveltejs/kit": "^2.5.18",
+		"@sveltejs/kit": "^2.12.0",
+		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@typescript-eslint/eslint-plugin": "^8.24.0",
 		"@typescript-eslint/parser": "^8.24.0",
 		"@vitest/ui": "^1.6.0",
 		"autoprefixer": "^10.4.20",
-		"eslint": "^9.20.0",
+		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.0.1",
-		"eslint-plugin-svelte": "^2.46.1",
+		"eslint-plugin-svelte": "^3.14.0",
 		"fast-check": "^3.23.2",
 		"graphql": "^16.10.0",
-		"houdini": "^1.2.47",
-		"houdini-svelte": "^1.2.47",
+		"houdini": "^1.5.10",
+		"houdini-svelte": "^2.1.20",
 		"postcss": "^8.5.2",
 		"prettier": "^3.5.0",
 		"prettier-plugin-svelte": "^3.3.3",
 		"sass": "^1.84.0",
-		"svelte": "^4.2.18",
-		"svelte-check": "^3.8.4",
+		"svelte": "^5.0.0",
 		"svelte-bricks": "^0.2.1",
+		"svelte-check": "^4.0.0",
 		"tailwindcss": "^3.4.4",
 		"tslib": "^2.8.1",
 		"typescript": "^5.7.3",
 		"vite": "^5.3.2",
 		"vitest": "^1.6.0"
 	},
-	"type": "module"
+	"type": "module",
+	"exports": {
+		"./package.json": "./package.json",
+		"./components/Affiche.svelte": {
+			"types": "./package/components/Affiche.svelte.d.ts",
+			"svelte": "./package/components/Affiche.svelte",
+			"default": "./package/components/Affiche.svelte"
+		},
+		"./components/AfficheEvent.svelte": {
+			"types": "./package/components/AfficheEvent.svelte.d.ts",
+			"svelte": "./package/components/AfficheEvent.svelte",
+			"default": "./package/components/AfficheEvent.svelte"
+		},
+		"./components/Events.svelte": {
+			"types": "./package/components/Events.svelte.d.ts",
+			"svelte": "./package/components/Events.svelte",
+			"default": "./package/components/Events.svelte"
+		},
+		"./components/HomepageEntry.svelte": {
+			"types": "./package/components/HomepageEntry.svelte.d.ts",
+			"svelte": "./package/components/HomepageEntry.svelte",
+			"default": "./package/components/HomepageEntry.svelte"
+		},
+		"./components/LinkListItem.svelte": {
+			"types": "./package/components/LinkListItem.svelte.d.ts",
+			"svelte": "./package/components/LinkListItem.svelte",
+			"default": "./package/components/LinkListItem.svelte"
+		},
+		"./components/List.svelte": {
+			"types": "./package/components/List.svelte.d.ts",
+			"svelte": "./package/components/List.svelte",
+			"default": "./package/components/List.svelte"
+		},
+		"./components/PageHead.svelte": {
+			"types": "./package/components/PageHead.svelte.d.ts",
+			"svelte": "./package/components/PageHead.svelte",
+			"default": "./package/components/PageHead.svelte"
+		},
+		"./components/VimeoIframe.svelte": {
+			"types": "./package/components/VimeoIframe.svelte.d.ts",
+			"svelte": "./package/components/VimeoIframe.svelte",
+			"default": "./package/components/VimeoIframe.svelte"
+		},
+		"./components/VimeoVideo.svelte": {
+			"types": "./package/components/VimeoVideo.svelte.d.ts",
+			"svelte": "./package/components/VimeoVideo.svelte",
+			"default": "./package/components/VimeoVideo.svelte"
+		},
+		"./components/icons/AngleLeft.svelte": {
+			"types": "./package/components/icons/AngleLeft.svelte.d.ts",
+			"svelte": "./package/components/icons/AngleLeft.svelte",
+			"default": "./package/components/icons/AngleLeft.svelte"
+		},
+		"./components/icons/AngleRight.svelte": {
+			"types": "./package/components/icons/AngleRight.svelte.d.ts",
+			"svelte": "./package/components/icons/AngleRight.svelte",
+			"default": "./package/components/icons/AngleRight.svelte"
+		},
+		"./components/icons/ArrowDown.svelte": {
+			"types": "./package/components/icons/ArrowDown.svelte.d.ts",
+			"svelte": "./package/components/icons/ArrowDown.svelte",
+			"default": "./package/components/icons/ArrowDown.svelte"
+		},
+		"./components/icons/ArrowUp.svelte": {
+			"types": "./package/components/icons/ArrowUp.svelte.d.ts",
+			"svelte": "./package/components/icons/ArrowUp.svelte",
+			"default": "./package/components/icons/ArrowUp.svelte"
+		},
+		"./components/icons/Close.svelte": {
+			"types": "./package/components/icons/Close.svelte.d.ts",
+			"svelte": "./package/components/icons/Close.svelte",
+			"default": "./package/components/icons/Close.svelte"
+		},
+		"./components/icons/Play.svelte": {
+			"types": "./package/components/icons/Play.svelte.d.ts",
+			"svelte": "./package/components/icons/Play.svelte",
+			"default": "./package/components/icons/Play.svelte"
+		},
+		"./components/icons/Search.svelte": {
+			"types": "./package/components/icons/Search.svelte.d.ts",
+			"svelte": "./package/components/icons/Search.svelte",
+			"default": "./package/components/icons/Search.svelte"
+		},
+		"./components/layouts/AppelsLayout.svelte": {
+			"types": "./package/components/layouts/AppelsLayout.svelte.d.ts",
+			"svelte": "./package/components/layouts/AppelsLayout.svelte",
+			"default": "./package/components/layouts/AppelsLayout.svelte"
+		},
+		"./components/layouts/AteliersLayout.svelte": {
+			"types": "./package/components/layouts/AteliersLayout.svelte.d.ts",
+			"svelte": "./package/components/layouts/AteliersLayout.svelte",
+			"default": "./package/components/layouts/AteliersLayout.svelte"
+		},
+		"./components/layouts/BaseLayout.svelte": {
+			"types": "./package/components/layouts/BaseLayout.svelte.d.ts",
+			"svelte": "./package/components/layouts/BaseLayout.svelte",
+			"default": "./package/components/layouts/BaseLayout.svelte"
+		},
+		"./components/layouts/EventsLayout.svelte": {
+			"types": "./package/components/layouts/EventsLayout.svelte.d.ts",
+			"svelte": "./package/components/layouts/EventsLayout.svelte",
+			"default": "./package/components/layouts/EventsLayout.svelte"
+		},
+		"./components/layouts/FilmLayout.svelte": {
+			"types": "./package/components/layouts/FilmLayout.svelte.d.ts",
+			"svelte": "./package/components/layouts/FilmLayout.svelte",
+			"default": "./package/components/layouts/FilmLayout.svelte"
+		},
+		"./components/layouts/FilmSecondaryLayout.svelte": {
+			"types": "./package/components/layouts/FilmSecondaryLayout.svelte.d.ts",
+			"svelte": "./package/components/layouts/FilmSecondaryLayout.svelte",
+			"default": "./package/components/layouts/FilmSecondaryLayout.svelte"
+		},
+		"./components/layouts/FilmsSingleNavLayout.svelte": {
+			"types": "./package/components/layouts/FilmsSingleNavLayout.svelte.d.ts",
+			"svelte": "./package/components/layouts/FilmsSingleNavLayout.svelte",
+			"default": "./package/components/layouts/FilmsSingleNavLayout.svelte"
+		},
+		"./components/layouts/ZorobabelLayout.svelte": {
+			"types": "./package/components/layouts/ZorobabelLayout.svelte.d.ts",
+			"svelte": "./package/components/layouts/ZorobabelLayout.svelte",
+			"default": "./package/components/layouts/ZorobabelLayout.svelte"
+		},
+		"./store/modals": {
+			"types": "./package/store/modals.d.ts",
+			"default": "./package/store/modals.js"
+		},
+		"./utils/array.test": {
+			"types": "./package/utils/array.test.d.ts",
+			"default": "./package/utils/array.test.js"
+		},
+		"./utils/array": {
+			"types": "./package/utils/array.d.ts",
+			"default": "./package/utils/array.js"
+		},
+		"./utils/assets": {
+			"types": "./package/utils/assets.d.ts",
+			"default": "./package/utils/assets.js"
+		},
+		"./utils/date": {
+			"types": "./package/utils/date.d.ts",
+			"default": "./package/utils/date.js"
+		},
+		"./utils/fn": {
+			"types": "./package/utils/fn.d.ts",
+			"default": "./package/utils/fn.js"
+		},
+		"./utils/guards": {
+			"types": "./package/utils/guards.d.ts",
+			"default": "./package/utils/guards.js"
+		},
+		"./utils": {
+			"types": "./package/utils/index.d.ts",
+			"svelte": "./package/utils/index.js",
+			"default": "./package/utils/index.js"
+		},
+		"./utils/string.test": {
+			"types": "./package/utils/string.test.d.ts",
+			"default": "./package/utils/string.test.js"
+		},
+		"./utils/string": {
+			"types": "./package/utils/string.d.ts",
+			"default": "./package/utils/string.js"
+		},
+		"./utils/title": {
+			"types": "./package/utils/title.d.ts",
+			"default": "./package/utils/title.js"
+		},
+		"./utils/types": {
+			"types": "./package/utils/types.d.ts",
+			"default": "./package/utils/types.js"
+		},
+		"./utils/vimeo": {
+			"types": "./package/utils/vimeo.d.ts",
+			"default": "./package/utils/vimeo.js"
+		}
+	},
+	"files": [
+		"package"
+	],
+	"typesVersions": {
+		">4.0": {
+			"components/Affiche.svelte": [
+				"./package/components/Affiche.svelte.d.ts"
+			],
+			"components/AfficheEvent.svelte": [
+				"./package/components/AfficheEvent.svelte.d.ts"
+			],
+			"components/Events.svelte": [
+				"./package/components/Events.svelte.d.ts"
+			],
+			"components/HomepageEntry.svelte": [
+				"./package/components/HomepageEntry.svelte.d.ts"
+			],
+			"components/LinkListItem.svelte": [
+				"./package/components/LinkListItem.svelte.d.ts"
+			],
+			"components/List.svelte": [
+				"./package/components/List.svelte.d.ts"
+			],
+			"components/PageHead.svelte": [
+				"./package/components/PageHead.svelte.d.ts"
+			],
+			"components/VimeoIframe.svelte": [
+				"./package/components/VimeoIframe.svelte.d.ts"
+			],
+			"components/VimeoVideo.svelte": [
+				"./package/components/VimeoVideo.svelte.d.ts"
+			],
+			"components/icons/AngleLeft.svelte": [
+				"./package/components/icons/AngleLeft.svelte.d.ts"
+			],
+			"components/icons/AngleRight.svelte": [
+				"./package/components/icons/AngleRight.svelte.d.ts"
+			],
+			"components/icons/ArrowDown.svelte": [
+				"./package/components/icons/ArrowDown.svelte.d.ts"
+			],
+			"components/icons/ArrowUp.svelte": [
+				"./package/components/icons/ArrowUp.svelte.d.ts"
+			],
+			"components/icons/Close.svelte": [
+				"./package/components/icons/Close.svelte.d.ts"
+			],
+			"components/icons/Play.svelte": [
+				"./package/components/icons/Play.svelte.d.ts"
+			],
+			"components/icons/Search.svelte": [
+				"./package/components/icons/Search.svelte.d.ts"
+			],
+			"components/layouts/AppelsLayout.svelte": [
+				"./package/components/layouts/AppelsLayout.svelte.d.ts"
+			],
+			"components/layouts/AteliersLayout.svelte": [
+				"./package/components/layouts/AteliersLayout.svelte.d.ts"
+			],
+			"components/layouts/BaseLayout.svelte": [
+				"./package/components/layouts/BaseLayout.svelte.d.ts"
+			],
+			"components/layouts/EventsLayout.svelte": [
+				"./package/components/layouts/EventsLayout.svelte.d.ts"
+			],
+			"components/layouts/FilmLayout.svelte": [
+				"./package/components/layouts/FilmLayout.svelte.d.ts"
+			],
+			"components/layouts/FilmSecondaryLayout.svelte": [
+				"./package/components/layouts/FilmSecondaryLayout.svelte.d.ts"
+			],
+			"components/layouts/FilmsSingleNavLayout.svelte": [
+				"./package/components/layouts/FilmsSingleNavLayout.svelte.d.ts"
+			],
+			"components/layouts/ZorobabelLayout.svelte": [
+				"./package/components/layouts/ZorobabelLayout.svelte.d.ts"
+			],
+			"store/modals": [
+				"./package/store/modals.d.ts"
+			],
+			"utils/array.test": [
+				"./package/utils/array.test.d.ts"
+			],
+			"utils/array": [
+				"./package/utils/array.d.ts"
+			],
+			"utils/assets": [
+				"./package/utils/assets.d.ts"
+			],
+			"utils/date": [
+				"./package/utils/date.d.ts"
+			],
+			"utils/fn": [
+				"./package/utils/fn.d.ts"
+			],
+			"utils/guards": [
+				"./package/utils/guards.d.ts"
+			],
+			"utils": [
+				"./package/utils/index.d.ts"
+			],
+			"utils/string.test": [
+				"./package/utils/string.test.d.ts"
+			],
+			"utils/string": [
+				"./package/utils/string.d.ts"
+			],
+			"utils/title": [
+				"./package/utils/title.d.ts"
+			],
+			"utils/types": [
+				"./package/utils/types.d.ts"
+			],
+			"utils/vimeo": [
+				"./package/utils/vimeo.d.ts"
+			]
+		}
+	}
 }

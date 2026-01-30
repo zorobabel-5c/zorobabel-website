@@ -1,6 +1,10 @@
 <script lang="ts">
 	import type { FilmDAuteurs$result } from '$houdini/artifacts/FilmDAuteurs';
-	export let video: FilmDAuteurs$result['films'][number]['video'] | undefined;
+	interface Props {
+		video: FilmDAuteurs$result['films'][number]['video'] | undefined;
+	}
+
+	let { video }: Props = $props();
 </script>
 
 {#if video?.html}

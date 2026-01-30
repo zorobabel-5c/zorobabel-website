@@ -4,16 +4,20 @@
 	import { getTitle, imageFromAssets, isEpisode } from '$lib/utils';
 	import Play from './icons/Play.svelte';
 
-	export let entry:
+	interface Props {
+		entry: 
 		| HomepageFilms$result['films_d_ateliers'][number]
 		| HomepageFilms$result['auteurs'][number]
 		| HomepageFilms$result['episodes'][number];
-	$: title = getTitle(entry);
+	}
+
+	let { entry }: Props = $props();
+	let title = $derived(getTitle(entry));
 </script>
 
 <div class="group overflow-hidden relative cursor-pointer font-josefin">
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<div on:click={() => showVideoModal.set(true)}>
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<div onclick={() => showVideoModal.set(true)}>
 		<div
 			class="absolute h-full w-full bg-black opacity-80 hidden group-hover:flex justify-center items-center z-20"
 		>

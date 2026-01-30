@@ -1,10 +1,14 @@
 <script lang="ts">
 	import PageHead from '$lib/components/PageHead.svelte';
 	import type { PageData } from './$houdini';
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	$: ({ CarreQuery } = data);
-	$: ({ carre_des_auteurs } = $CarreQuery.data! ?? {});
+	let { data }: Props = $props();
+
+	let { CarreQuery } = $derived(data);
+	let { carre_des_auteurs } = $derived($CarreQuery.data! ?? {});
 </script>
 
 <PageHead head={'résidence au carré'} />
