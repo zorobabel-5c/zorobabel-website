@@ -5,13 +5,17 @@
 	import Events from '$lib/components/Events.svelte';
 	import PageHead from '$lib/components/PageHead.svelte';
 
-	export let data: LayoutData;
+	interface Props {
+		data: LayoutData;
+	}
 
-	$: ({ AteliersQuery } = data);
-	$: ({ ateliers = [] } = $AteliersQuery.data! ?? {});
-	$: events = ateliers
+	let { data }: Props = $props();
+
+	let { AteliersQuery } = $derived(data);
+	let { ateliers = [] } = $derived($AteliersQuery.data! ?? {});
+	let events = $derived(ateliers
 		.filter((atelier) => atelier.type_d_atelier === 'soir')
-		.filter((atelier) => isFutureDate(atelier.date_de_peremption));
+		.filter((atelier) => isFutureDate(atelier.date_de_peremption)));
 
 	let message = `Il n'y a pas de cours du soir programmé.`;
 </script>

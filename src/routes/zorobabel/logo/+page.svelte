@@ -2,10 +2,14 @@
 	import type { PageData } from './$houdini';
 	import PageHead from '$lib/components/PageHead.svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
 
-	$: ({ LogoQuery } = data);
-	$: ({ le_logo } = $LogoQuery.data! ?? {});
+	let { data }: Props = $props();
+
+	let { LogoQuery } = $derived(data);
+	let { le_logo } = $derived($LogoQuery.data! ?? {});
 </script>
 
 <PageHead head={'le logo'} />

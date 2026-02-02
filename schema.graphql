@@ -54,8 +54,8 @@ type Films_d_auteur {
   synopsis_fr: String
   titre_english: String
   titre_original: String!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
   video(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
   video_bande_annonce(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
   ville: String
@@ -156,7 +156,7 @@ input Films_d_auteur_filter {
   duree_minutes: string_filter_operators
   duree_secondes: string_filter_operators
   format: string_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   image: string_filter_operators
   image_1: directus_files_filter
   image_2: directus_files_filter
@@ -182,8 +182,8 @@ input Films_d_auteur_filter {
   synopsis_fr: string_filter_operators
   titre_english: string_filter_operators
   titre_original: string_filter_operators
-  user_created: string_filter_operators
-  user_updated: string_filter_operators
+  user_created: id_filter_operators
+  user_updated: id_filter_operators
   video: vimeo_metadata_filter
   video_bande_annonce: vimeo_metadata_filter
   ville: string_filter_operators
@@ -291,13 +291,29 @@ type Prix_film_awarded_mutated {
   key: ID!
 }
 
+""""""
+input Prix_film_awarded_quantifier_filter {
+  Prix_id: Prix_filter
+  _and: [Prix_film_awarded_filter]
+  _none: Prix_film_awarded_filter
+  _or: [Prix_film_awarded_filter]
+  _some: Prix_film_awarded_filter
+  collection: string_filter_operators
+  id: number_filter_operators
+  item__Films_d_auteur: Films_d_auteur_filter
+  item__episodes: episodes_filter
+  item__films_d_ateliers: films_d_ateliers_filter
+  item__films_de_commande: films_de_commande_filter
+  item__series: series_filter
+}
+
 input Prix_filter {
   _and: [Prix_filter]
   _or: [Prix_filter]
   description: string_filter_operators
-  film_awarded: Prix_film_awarded_filter
+  film_awarded: Prix_film_awarded_quantifier_filter
   film_awarded_func: count_function_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   numero: number_filter_operators
 }
 
@@ -433,8 +449,8 @@ type a_propos {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 type a_propos_mutated {
@@ -460,8 +476,8 @@ type ateliers {
   slug: String
   titre: String!
   type_d_atelier: String!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 type ateliers_aggregated {
@@ -500,12 +516,12 @@ input ateliers_filter {
   date_updated: date_filter_operators
   date_updated_func: datetime_function_filter_operators
   description: string_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   slug: string_filter_operators
   titre: string_filter_operators
   type_d_atelier: string_filter_operators
-  user_created: string_filter_operators
-  user_updated: string_filter_operators
+  user_created: id_filter_operators
+  user_updated: id_filter_operators
 }
 
 type ateliers_mutated {
@@ -543,8 +559,8 @@ type carre_des_auteurs {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 type carre_des_auteurs_mutated {
@@ -579,7 +595,7 @@ input cinema_filter {
   _or: [cinema_filter]
   affiche: directus_files_filter
   description: string_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   titre: string_filter_operators
 }
 
@@ -596,8 +612,8 @@ type contact {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 type contact_mutated {
@@ -631,7 +647,7 @@ input coproductions_filter {
   _and: [coproductions_filter]
   _or: [coproductions_filter]
   description: string_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   lien: string_filter_operators
   titre_lien: string_filter_operators
 }
@@ -715,13 +731,13 @@ type directus_files {
   filesize: GraphQLBigInt
   focal_point_x: Int
   focal_point_y: Int
-  folder: String
+  folder: ID
   height: Int
   id: ID!
   location: String
   metadata: JSON
   metadata_func: count_functions
-  modified_by: String
+  modified_by: ID
   modified_on: Date
   modified_on_func: datetime_functions
   storage: String!
@@ -732,7 +748,7 @@ type directus_files {
   tus_data_func: count_functions
   tus_id: String
   type: String
-  uploaded_by: String
+  uploaded_by: ID
   uploaded_on: Date
   uploaded_on_func: datetime_functions
   width: Int
@@ -752,13 +768,13 @@ input directus_files_filter {
   filesize: big_int_filter_operators
   focal_point_x: number_filter_operators
   focal_point_y: number_filter_operators
-  folder: string_filter_operators
+  folder: id_filter_operators
   height: number_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   location: string_filter_operators
   metadata: string_filter_operators
   metadata_func: count_function_filter_operators
-  modified_by: string_filter_operators
+  modified_by: id_filter_operators
   modified_on: date_filter_operators
   modified_on_func: datetime_function_filter_operators
   storage: string_filter_operators
@@ -769,7 +785,7 @@ input directus_files_filter {
   tus_data_func: count_function_filter_operators
   tus_id: string_filter_operators
   type: string_filter_operators
-  uploaded_by: string_filter_operators
+  uploaded_by: id_filter_operators
   uploaded_on: date_filter_operators
   uploaded_on_func: datetime_function_filter_operators
   width: number_filter_operators
@@ -803,8 +819,8 @@ type episodes {
   synopsis_fr: String
   titre: String!
   titre_english: String
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
   video(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
 }
 
@@ -864,7 +880,7 @@ input episodes_filter {
   date_updated_func: datetime_function_filter_operators
   duree_minutes: string_filter_operators
   duree_secondes: string_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   lien_video: string_filter_operators
   logo: directus_files_filter
   numero: number_filter_operators
@@ -875,8 +891,8 @@ input episodes_filter {
   synopsis_fr: string_filter_operators
   titre: string_filter_operators
   titre_english: string_filter_operators
-  user_created: string_filter_operators
-  user_updated: string_filter_operators
+  user_created: id_filter_operators
+  user_updated: id_filter_operators
   video: vimeo_metadata_filter
 }
 
@@ -884,6 +900,36 @@ type episodes_mutated {
   data: episodes
   event: EventEnum
   key: ID!
+}
+
+""""""
+input episodes_quantifier_filter {
+  _and: [episodes_filter]
+  _none: episodes_filter
+  _or: [episodes_filter]
+  _some: episodes_filter
+  annee: number_filter_operators
+  coproduction: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  duree_minutes: string_filter_operators
+  duree_secondes: string_filter_operators
+  id: id_filter_operators
+  lien_video: string_filter_operators
+  logo: directus_files_filter
+  numero: number_filter_operators
+  realisation: string_filter_operators
+  series: series_filter
+  slug: string_filter_operators
+  synopsis_en: string_filter_operators
+  synopsis_fr: string_filter_operators
+  titre: string_filter_operators
+  titre_english: string_filter_operators
+  user_created: id_filter_operators
+  user_updated: id_filter_operators
+  video: vimeo_metadata_filter
 }
 
 type evenements {
@@ -904,8 +950,8 @@ type evenements {
   id: ID!
   slug: String
   titre: String!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 type evenements_aggregated {
@@ -969,7 +1015,7 @@ input evenements_films_filter {
   _and: [evenements_films_filter]
   _or: [evenements_films_filter]
   description: string_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   logo: directus_files_filter
   numero: number_filter_operators
 }
@@ -991,11 +1037,11 @@ input evenements_filter {
   date_updated: date_filter_operators
   date_updated_func: datetime_function_filter_operators
   description: string_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   slug: string_filter_operators
   titre: string_filter_operators
-  user_created: string_filter_operators
-  user_updated: string_filter_operators
+  user_created: id_filter_operators
+  user_updated: id_filter_operators
 }
 
 type evenements_mutated {
@@ -1038,8 +1084,8 @@ type films_d_ateliers {
   synopsis_fr: String
   technique: String
   titre: String!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
   video(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
 }
 
@@ -1097,7 +1143,7 @@ input films_d_ateliers_filter {
   date_updated_func: datetime_function_filter_operators
   duree_minutes: string_filter_operators
   duree_secondes: string_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   lien_video: string_filter_operators
   logo: directus_files_filter
   numero: number_filter_operators
@@ -1108,8 +1154,8 @@ input films_d_ateliers_filter {
   synopsis_fr: string_filter_operators
   technique: string_filter_operators
   titre: string_filter_operators
-  user_created: string_filter_operators
-  user_updated: string_filter_operators
+  user_created: id_filter_operators
+  user_updated: id_filter_operators
   video: vimeo_metadata_filter
 }
 
@@ -1135,8 +1181,8 @@ type films_de_commande {
   slug: String
   technique: String
   titre: String!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 type films_de_commande_aggregated {
@@ -1186,21 +1232,43 @@ input films_de_commande_filter {
   description: string_filter_operators
   duree_minutes: string_filter_operators
   duree_secondes: string_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   logo: directus_files_filter
   numero: number_filter_operators
   realisation: string_filter_operators
   slug: string_filter_operators
   technique: string_filter_operators
   titre: string_filter_operators
-  user_created: string_filter_operators
-  user_updated: string_filter_operators
+  user_created: id_filter_operators
+  user_updated: id_filter_operators
 }
 
 type films_de_commande_mutated {
   data: films_de_commande
   event: EventEnum
   key: ID!
+}
+
+input id_filter_operators {
+  _contains: ID
+  _empty: Boolean
+  _ends_with: ID
+  _eq: ID
+  _icontains: ID
+  _iends_with: ID
+  _in: [ID]
+  _istarts_with: ID
+  _ncontains: ID
+  _nempty: Boolean
+  _nends_with: ID
+  _neq: ID
+  _niends_with: ID
+  _nin: [ID]
+  _nistarts_with: ID
+  _nnull: Boolean
+  _nstarts_with: ID
+  _null: Boolean
+  _starts_with: ID
 }
 
 type l_equipe {
@@ -1210,8 +1278,8 @@ type l_equipe {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 type l_equipe_mutated {
@@ -1227,8 +1295,8 @@ type le_logo {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 type le_logo_mutated {
@@ -1273,7 +1341,7 @@ type liens_aggregated_fields {
 input liens_filter {
   _and: [liens_filter]
   _or: [liens_filter]
-  id: string_filter_operators
+  id: id_filter_operators
   image: directus_files_filter
   lien: string_filter_operators
   numero: number_filter_operators
@@ -1317,7 +1385,7 @@ type production {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_updated: String
+  user_updated: ID
 }
 
 type production_mutated {
@@ -1366,7 +1434,7 @@ input publications_filter {
   _or: [publications_filter]
   couverture: directus_files_filter
   description: string_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   numero: number_filter_operators
   slug: string_filter_operators
   titre: string_filter_operators
@@ -1398,8 +1466,8 @@ type series {
   synopsis_fr: String
   titre: String!
   titre_english: String
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
   video_bande_annonce(filter: vimeo_metadata_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): vimeo_metadata
 }
 
@@ -1502,9 +1570,9 @@ input series_filter {
   date_created_func: datetime_function_filter_operators
   date_updated: date_filter_operators
   date_updated_func: datetime_function_filter_operators
-  episodes: episodes_filter
+  episodes: episodes_quantifier_filter
   episodes_func: count_function_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   image_remplacement: directus_files_filter
   lien_bande_annonce: string_filter_operators
   logo: directus_files_filter
@@ -1515,8 +1583,8 @@ input series_filter {
   synopsis_fr: string_filter_operators
   titre: string_filter_operators
   titre_english: string_filter_operators
-  user_created: string_filter_operators
-  user_updated: string_filter_operators
+  user_created: id_filter_operators
+  user_updated: id_filter_operators
   video_bande_annonce: vimeo_metadata_filter
 }
 
@@ -1531,7 +1599,7 @@ type start {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_updated: String
+  user_updated: ID
 }
 
 type start_mutated {
@@ -1653,8 +1721,8 @@ type version_Films_d_auteur {
   synopsis_fr: String
   titre_english: String
   titre_original: String!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
   video: JSON
   video_bande_annonce: JSON
   ville: String
@@ -1686,8 +1754,8 @@ type version_a_propos {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 """"""
@@ -1708,8 +1776,8 @@ type version_ateliers {
   slug: String
   titre: String!
   type_d_atelier: String!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 """"""
@@ -1720,8 +1788,8 @@ type version_carre_des_auteurs {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 """"""
@@ -1740,8 +1808,8 @@ type version_contact {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 """"""
@@ -1775,8 +1843,8 @@ type version_episodes {
   synopsis_fr: String
   titre: String!
   titre_english: String
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
   video: JSON
 }
 
@@ -1799,8 +1867,8 @@ type version_evenements {
   id: ID!
   slug: String
   titre: String!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 """"""
@@ -1841,8 +1909,8 @@ type version_films_d_ateliers {
   synopsis_fr: String
   technique: String
   titre: String!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
   video: JSON
 }
 
@@ -1863,8 +1931,8 @@ type version_films_de_commande {
   slug: String
   technique: String
   titre: String!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 """"""
@@ -1875,8 +1943,8 @@ type version_l_equipe {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 """"""
@@ -1887,8 +1955,8 @@ type version_le_logo {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
 }
 
 """"""
@@ -1912,7 +1980,7 @@ type version_production {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_updated: String
+  user_updated: ID
 }
 
 """"""
@@ -1946,8 +2014,8 @@ type version_series {
   synopsis_fr: String
   titre: String!
   titre_english: String
-  user_created: String
-  user_updated: String
+  user_created: ID
+  user_updated: ID
   video_bande_annonce: JSON
 }
 
@@ -1965,7 +2033,7 @@ type version_start {
   date_updated: Date
   date_updated_func: datetime_functions
   id: ID!
-  user_updated: String
+  user_updated: ID
 }
 
 """"""
@@ -2037,7 +2105,7 @@ input vimeo_metadata_filter {
   _or: [vimeo_metadata_filter]
   height: number_filter_operators
   html: string_filter_operators
-  id: string_filter_operators
+  id: id_filter_operators
   thumbnail_height: number_filter_operators
   thumbnail_url: string_filter_operators
   thumbnail_width: number_filter_operators
