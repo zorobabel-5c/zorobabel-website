@@ -1,7 +1,7 @@
 query FilmDAteliers {
 	films: films_d_ateliers(
 		sort: "-numero"
-		filter: { _and: [{ video: { id: { _nnull: true } } }, { online: { _eq: true } }] }
+		filter: { online: { _eq: true } }
 	) {
 		id
 		annee
